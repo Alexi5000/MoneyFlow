@@ -1,0 +1,210 @@
+{
+  "user": {
+    "id": "user_001",
+    "name": "Alex Johnson",
+    "email": "alex.johnson@email.com",
+    "totalBalance": 15420.50,
+    "monthlyIncome": 5200.00,
+    "monthlyExpenses": 3850.75,
+    "savingsGoal": 10000.00,
+    "currentSavings": 8750.25,
+    "avatar": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2"
+  },
+  "transactions": [
+    {
+      "id": "txn_001",
+      "amount": -85.50,
+      "category": "Food & Dining",
+      "subcategory": "Groceries",
+      "description": "Whole Foods Market",
+      "date": "2024-01-15T10:30:00Z",
+      "type": "expense",
+      "merchant": "Whole Foods",
+      "location": "Downtown",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "txn_002",
+      "amount": 5200.00,
+      "category": "Income",
+      "subcategory": "Salary",
+      "description": "Monthly Salary",
+      "date": "2024-01-01T09:00:00Z",
+      "type": "income",
+      "merchant": "TechCorp Inc.",
+      "paymentMethod": "Direct Deposit"
+    },
+    {
+      "id": "txn_003",
+      "amount": -1200.00,
+      "category": "Housing",
+      "subcategory": "Rent",
+      "description": "Monthly Rent Payment",
+      "date": "2024-01-01T08:00:00Z",
+      "type": "expense",
+      "merchant": "Property Management Co.",
+      "paymentMethod": "Bank Transfer"
+    },
+    {
+      "id": "txn_004",
+      "amount": -45.20,
+      "category": "Transportation",
+      "subcategory": "Gas",
+      "description": "Shell Gas Station",
+      "date": "2024-01-14T16:45:00Z",
+      "type": "expense",
+      "merchant": "Shell",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "txn_005",
+      "amount": -12.99,
+      "category": "Entertainment",
+      "subcategory": "Streaming",
+      "description": "Netflix Subscription",
+      "date": "2024-01-10T12:00:00Z",
+      "type": "expense",
+      "merchant": "Netflix",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "txn_006",
+      "amount": -150.00,
+      "category": "Shopping",
+      "subcategory": "Clothing",
+      "description": "Nike Store",
+      "date": "2024-01-12T14:20:00Z",
+      "type": "expense",
+      "merchant": "Nike",
+      "paymentMethod": "Debit Card"
+    },
+    {
+      "id": "txn_007",
+      "amount": -75.30,
+      "category": "Health & Fitness",
+      "subcategory": "Gym",
+      "description": "Monthly Gym Membership",
+      "date": "2024-01-05T07:00:00Z",
+      "type": "expense",
+      "merchant": "FitLife Gym",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "txn_008",
+      "amount": -28.50,
+      "category": "Food & Dining",
+      "subcategory": "Restaurants",
+      "description": "Starbucks Coffee",
+      "date": "2024-01-13T08:15:00Z",
+      "type": "expense",
+      "merchant": "Starbucks",
+      "paymentMethod": "Mobile Payment"
+    }
+  ],
+  "budgets": [
+    {
+      "id": "budget_001",
+      "category": "Food & Dining",
+      "allocated": 600.00,
+      "spent": 425.30,
+      "remaining": 174.70,
+      "percentage": 70.88,
+      "color": "#10b981",
+      "icon": "🍽️"
+    },
+    {
+      "id": "budget_002",
+      "category": "Transportation",
+      "allocated": 300.00,
+      "spent": 245.20,
+      "remaining": 54.80,
+      "percentage": 81.73,
+      "color": "#f59e0b",
+      "icon": "🚗"
+    },
+    {
+      "id": "budget_003",
+      "category": "Entertainment",
+      "allocated": 200.00,
+      "spent": 87.99,
+      "remaining": 112.01,
+      "percentage": 43.99,
+      "color": "#6366f1",
+      "icon": "🎬"
+    },
+    {
+      "id": "budget_004",
+      "category": "Shopping",
+      "allocated": 400.00,
+      "spent": 350.00,
+      "remaining": 50.00,
+      "percentage": 87.50,
+      "color": "#ec4899",
+      "icon": "🛍️"
+    },
+    {
+      "id": "budget_005",
+      "category": "Health & Fitness",
+      "allocated": 150.00,
+      "spent": 75.30,
+      "remaining": 74.70,
+      "percentage": 50.20,
+      "color": "#10b981",
+      "icon": "💪"
+    },
+    {
+      "id": "budget_006",
+      "category": "Housing",
+      "allocated": 1500.00,
+      "spent": 1200.00,
+      "remaining": 300.00,
+      "percentage": 80.00,
+      "color": "#8b5cf6",
+      "icon": "🏠"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Food & Dining",
+      "color": "#10b981",
+      "icon": "🍽️",
+      "subcategories": ["Groceries", "Restaurants", "Coffee", "Takeout"]
+    },
+    {
+      "name": "Transportation",
+      "color": "#f59e0b",
+      "icon": "🚗",
+      "subcategories": ["Gas", "Public Transit", "Uber/Lyft", "Parking"]
+    },
+    {
+      "name": "Entertainment",
+      "color": "#6366f1",
+      "icon": "🎬",
+      "subcategories": ["Movies", "Streaming", "Games", "Events"]
+    },
+    {
+      "name": "Shopping",
+      "color": "#ec4899",
+      "icon": "🛍️",
+      "subcategories": ["Clothing", "Electronics", "Home", "Personal Care"]
+    },
+    {
+      "name": "Health & Fitness",
+      "color": "#10b981",
+      "icon": "💪",
+      "subcategories": ["Gym", "Medical", "Supplements", "Sports"]
+    },
+    {
+      "name": "Housing",
+      "color": "#8b5cf6",
+      "icon": "🏠",
+      "subcategories": ["Rent", "Utilities", "Internet", "Insurance"]
+    },
+    {
+      "name": "Income",
+      "color": "#059669",
+      "icon": "💰",
+      "subcategories": ["Salary", "Freelance", "Investments", "Other"]
+    }
+  ]
+}
