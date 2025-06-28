@@ -1,12 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Layout } from '../src/components/Layout/Layout'
-import { DashboardPage } from '../src/pages/DashboardPage'
-import { TransactionsPage } from '../src/pages/TransactionsPage'
-import { BudgetsPage } from '../src/pages/BudgetsPage'
-import { AnalyticsPage } from '../src/pages/AnalyticsPage'
-import { AIInsightsPage } from '../src/pages/AIInsightsPage'
-import { SettingsPage } from '../src/pages/SettingsPage'
+import { Layout } from './components/Layout/Layout'
+import { DashboardPage } from './pages/DashboardPage'
+import { TransactionsPage } from './pages/TransactionsPage'
+import { BudgetsPage } from './pages/BudgetsPage'
+import { AnalyticsPage } from './pages/AnalyticsPage'
+import { AIInsightsPage } from './pages/AIInsightsPage'
+import { SettingsPage } from './pages/SettingsPage'
 
 function App() {
   return (
