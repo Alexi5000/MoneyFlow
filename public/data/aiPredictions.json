@@ -1,62 +1,76 @@
 {
   "predictions": {
     "nextMonthSpending": {
-      "amount": 3920.00,
-      "confidence": 0.87,
+      "amount": 3400.00,
+      "confidence": 0.85,
       "trend": "increasing",
-      "change": 69.25,
-      "changePercentage": 1.8
+      "changePercentage": 6.25
     },
     "budgetForecasts": [
       {
         "category": "Food & Dining",
-        "predicted": 650.00,
-        "current": 600.00,
+        "predicted": 420.00,
+        "current": 400.00,
         "likelihood": "high",
         "confidence": 0.92
       },
       {
         "category": "Transportation",
-        "predicted": 280.00,
-        "current": 300.00,
+        "predicted": 180.00,
+        "current": 200.00,
         "likelihood": "medium",
         "confidence": 0.78
       },
       {
         "category": "Entertainment",
-        "predicted": 220.00,
-        "current": 200.00,
+        "predicted": 165.00,
+        "current": 150.00,
         "likelihood": "medium",
         "confidence": 0.81
+      },
+      {
+        "category": "Shopping",
+        "predicted": 280.00,
+        "current": 300.00,
+        "likelihood": "high",
+        "confidence": 0.88
+      },
+      {
+        "category": "Health & Fitness",
+        "predicted": 125.00,
+        "current": 120.00,
+        "likelihood": "low",
+        "confidence": 0.65
       }
     ],
     "savingsProjection": {
-      "sixMonths": 12500.00,
-      "oneYear": 18750.00,
+      "sixMonths": 8250.00,
+      "oneYear": 15750.00,
       "goalAchievement": "2024-08-15",
-      "confidence": 0.85
+      "confidence": 0.82
     },
     "spendingPatterns": {
       "peakDays": ["Friday", "Saturday", "Sunday"],
       "peakHours": [12, 13, 18, 19, 20],
       "seasonalTrends": {
-        "winter": "higher_food_spending",
+        "winter": "higher_heating_costs",
         "spring": "increased_shopping",
         "summer": "more_entertainment",
         "fall": "back_to_school_expenses"
-      }
+      },
+      "averageTransactionSize": 67.45
     },
     "riskAnalysis": {
       "overbudgetRisk": {
         "level": "medium",
-        "categories": ["Shopping", "Transportation"],
-        "probability": 0.65
+        "categories": ["Shopping", "Entertainment"],
+        "probability": 0.72
       },
       "emergencyFundStatus": {
-        "recommended": 15600.00,
-        "current": 8750.25,
-        "shortfall": 6849.75,
-        "monthsToGoal": 8.2
+        "recommended": 9600.00,
+        "current": 2750.00,
+        "shortfall": 6850.00,
+        "monthsToGoal": 5.2
       }
     }
   },
@@ -64,108 +78,75 @@
     {
       "id": "insight_001",
       "type": "spending_alert",
-      "title": "Shopping Budget Alert",
-      "message": "You're 87% through your shopping budget with 15 days left in the month.",
+      "title": "Shopping Budget Exceeded",
+      "message": "You've exceeded your shopping budget by $79.99 this month. Consider reviewing your recent purchases.",
       "severity": "warning",
       "category": "Shopping",
       "actionable": true,
       "suggestions": [
-        "Consider postponing non-essential purchases",
-        "Look for deals and discounts on planned items",
-        "Review your shopping list priorities"
-      ]
+        "Review recent shopping purchases",
+        "Set up spending alerts for this category",
+        "Consider increasing your shopping budget for next month"
+      ],
+      "confidence": 0.95
     },
     {
       "id": "insight_002",
       "type": "savings_opportunity",
-      "title": "Coffee Spending Optimization",
-      "message": "You could save $45/month by making coffee at home 3 days per week.",
+      "title": "Coffee Spending Pattern",
+      "message": "You're spending $47/month on coffee. Making coffee at home 3 days a week could save you $20/month.",
       "severity": "info",
       "category": "Food & Dining",
       "actionable": true,
-      "potentialSavings": 45.00,
+      "potentialSavings": 20.00,
       "suggestions": [
         "Invest in a quality coffee maker",
         "Buy coffee beans in bulk",
         "Limit coffee shop visits to 2 days per week"
-      ]
+      ],
+      "confidence": 0.87
     },
     {
       "id": "insight_003",
       "type": "positive_trend",
-      "title": "Great Job on Entertainment Budget!",
-      "message": "You're staying well within your entertainment budget this month.",
+      "title": "Great Transportation Savings!",
+      "message": "You're 29% under budget for transportation this month. Keep up the good work!",
       "severity": "success",
-      "category": "Entertainment",
-      "actionable": false
-    },
-    {
-      "id": "insight_004",
-      "type": "goal_progress",
-      "title": "Savings Goal Progress",
-      "message": "You're 87.5% of the way to your $10,000 savings goal!",
-      "severity": "success",
-      "category": "Savings",
-      "actionable": true,
-      "progress": 0.875,
-      "suggestions": [
-        "Consider increasing monthly savings by $100",
-        "Look for additional income opportunities",
-        "Review and optimize recurring subscriptions"
-      ]
+      "category": "Transportation",
+      "actionable": false,
+      "confidence": 0.91
     }
   ],
   "recommendations": [
     {
-      "id": "rec_001",
-      "title": "Optimize Subscription Services",
-      "description": "Review your streaming and subscription services. You could save $25/month by consolidating.",
+      "category": "Food & Dining",
+      "currentBudget": 400.00,
+      "recommendedBudget": 420.00,
+      "reasoning": "Your spending has consistently been near the budget limit. A small increase will provide more flexibility.",
+      "confidence": 0.89,
       "impact": "medium",
       "effort": "low",
-      "potentialSavings": 25.00,
-      "category": "Entertainment"
+      "potentialSavings": 0
     },
     {
-      "id": "rec_002",
-      "title": "Meal Planning Strategy",
-      "description": "Plan your meals weekly to reduce food waste and impulse purchases.",
+      "category": "Shopping",
+      "currentBudget": 300.00,
+      "recommendedBudget": 250.00,
+      "reasoning": "You've exceeded this budget. Consider reducing it to encourage more mindful spending.",
+      "confidence": 0.84,
       "impact": "high",
       "effort": "medium",
-      "potentialSavings": 120.00,
-      "category": "Food & Dining"
+      "potentialSavings": 600.00
     },
     {
-      "id": "rec_003",
-      "title": "Transportation Optimization",
-      "description": "Consider carpooling or public transit 2 days per week to reduce gas expenses.",
-      "impact": "medium",
-      "effort": "medium",
-      "potentialSavings": 60.00,
-      "category": "Transportation"
-    },
-    {
-      "id": "rec_004",
-      "title": "Automated Savings Increase",
-      "description": "Increase your automated savings by $150/month to reach your goal faster.",
-      "impact": "high",
+      "category": "Entertainment",
+      "currentBudget": 150.00,
+      "recommendedBudget": 130.00,
+      "reasoning": "You're close to your limit. A slight reduction could help with overall savings goals.",
+      "confidence": 0.76,
+      "impact": "low",
       "effort": "low",
-      "potentialSavings": 1800.00,
-      "category": "Savings"
+      "potentialSavings": 240.00
     }
-  ],
-  "marketTrends": {
-    "inflation": {
-      "rate": 3.2,
-      "impact": "Food and transportation costs are rising",
-      "recommendation": "Consider adjusting budgets by 5-8%"
-    },
-    "seasonalFactors": {
-      "current": "winter",
-      "expectedChanges": [
-        "Higher heating costs",
-        "Holiday spending aftermath",
-        "Gym membership increases"
-      ]
-    }
-  }
+  ]
 }
