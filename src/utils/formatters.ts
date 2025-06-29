@@ -23,3 +23,18 @@ export const calculatePercentageChange = (current: number, previous: number): nu
   if (previous === 0) return 0
   return ((current - previous) / previous) * 100
 }
+
+export const formatCompactNumber = (num: number): string => {
+  if (num >= 1000000) {
+    return (num / 1000000).toFixed(1) + 'M'
+  }
+  if (num >= 1000) {
+    return (num / 1000).toFixed(1) + 'K'
+  }
+  return num.toString()
+}
+
+export const formatTransactionAmount = (amount: number, type: 'income' | 'expense'): string => {
+  const formattedAmount = formatCurrency(Math.abs(amount))
+  return type === 'income' ? `+${formattedAmount}` : `-${formattedAmount}`
+}
