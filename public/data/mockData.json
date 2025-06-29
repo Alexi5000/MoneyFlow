@@ -1,0 +1,76 @@
+{
+  "user": {
+    "id": "1",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "totalBalance": 12450.00,
+    "monthlyIncome": 5230.00,
+    "monthlyExpenses": 3120.00,
+    "savingsGoal": 10000.00,
+    "currentSavings": 2110.00
+  },
+  "transactions": [
+    {
+      "id": "1",
+      "amount": -85.50,
+      "category": "Food",
+      "description": "Grocery Store",
+      "date": "2024-01-15",
+      "type": "expense",
+      "merchant": "Whole Foods"
+    },
+    {
+      "id": "2",
+      "amount": 5230.00,
+      "category": "Salary",
+      "description": "Monthly Salary",
+      "date": "2024-01-01",
+      "type": "income"
+    },
+    {
+      "id": "3",
+      "amount": -45.20,
+      "category": "Transportation",
+      "description": "Gas Station",
+      "date": "2024-01-14",
+      "type": "expense",
+      "merchant": "Shell"
+    }
+  ],
+  "budgets": [
+    {
+      "id": "1",
+      "category": "Food",
+      "allocated": 500,
+      "spent": 425,
+      "remaining": 75,
+      "period": "monthly"
+    },
+    {
+      "id": "2",
+      "category": "Transportation",
+      "allocated": 300,
+      "spent": 245,
+      "remaining": 55,
+      "period": "monthly"
+    }
+  ],
+  "aiInsights": [
+    {
+      "id": "1",
+      "type": "tip",
+      "title": "Spending Pattern Detected",
+      "description": "You tend to spend more on weekends. Consider setting a weekend budget.",
+      "actionable": true,
+      "confidence": 0.85
+    },
+    {
+      "id": "2",
+      "type": "warning",
+      "title": "Budget Alert",
+      "description": "You're approaching your food budget limit for this month.",
+      "actionable": true,
+      "confidence": 0.92
+    }
+  ]
+}

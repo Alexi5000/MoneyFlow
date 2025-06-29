@@ -1,38 +1,26 @@
-import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { FestivalLayout } from './components/Layout/FestivalLayout'
-import { FestivalDashboardPage } from './pages/FestivalDashboardPage'
-import { TransactionsPage } from './pages/TransactionsPage'
-import { BudgetsPage } from './pages/BudgetsPage'
-import { AnalyticsPage } from './pages/AnalyticsPage'
-import { AIInsightsPage } from './pages/AIInsightsPage'
-import { SettingsPage } from './pages/SettingsPage'
-import { ErrorBoundary } from './components/UI/ErrorBoundary'
-import { useFinancialStore } from './store/financialStore'
+import { Layout } from './components/Layout'
+import { Dashboard } from './pages/Dashboard'
+import { Transactions } from './pages/Transactions'
+import { Budgets } from './pages/Budgets'
+import { Analytics } from './pages/Analytics'
+import { Settings } from './pages/Settings'
 
 function App() {
-  const { initializeData } = useFinancialStore()
-
-  useEffect(() => {
-    // Initialize data on app load
-    initializeData()
-  }, [initializeData])
-
   return (
-    <ErrorBoundary>
-      <Router>
+    <Router>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
         <Routes>
-          <Route path="/" element={<FestivalLayout />}>
-            <Route index element={<FestivalDashboardPage />} />
-            <Route path="transactions" element={<TransactionsPage />} />
-            <Route path="budgets" element={<BudgetsPage />} />
-            <Route path="analytics" element={<AnalyticsPage />} />
-            <Route path="ai-insights" element={<AIInsightsPage />} />
-            <Route path="settings" element={<SettingsPage />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="transactions" element={<Transactions />} />
+            <Route path="budgets" element={<Budgets />} />
+            <Route path="analytics" element={<Analytics />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
         </Routes>
-      </Router>
-    </ErrorBoundary>
+      </div>
+    </Router>
   )
 }
 
