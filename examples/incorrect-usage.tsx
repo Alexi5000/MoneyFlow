@@ -2,7 +2,7 @@
 
 import React from 'react'
 // This is WRONG - LucideIcon is not a component
-import { LucideIcon } from 'lucide-react'
+import { DivideIcon as LucideIcon } from 'lucide-react'
 
 // This is also WRONG - trying to use LucideIcon as a component
 const MyComponent: React.FC = () => {
