@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { mockBackendService } from '../services/mockBackendService'
 
 interface Prediction {
   nextMonthSpending: {
@@ -71,6 +72,7 @@ interface AIState {
   isAnalyzing: boolean
   lastAnalysis: number | null
   analysisProgress: number
+  error: string | null
   
   // Actions
   setPredictions: (predictions: Prediction) => void
@@ -78,17 +80,20 @@ interface AIState {
   setRecommendations: (recommendations: Recommendation[]) => void
   setAnalyzing: (analyzing: boolean) => void
   setAnalysisProgress: (progress: number) => void
+  setError: (error: string | null) => void
   updateLastAnalysis: () => void
   
   // AI Analysis functions
   analyzeSpendingPatterns: () => Promise<void>
   generateInsights: () => Promise<void>
   createRecommendations: () => Promise<void>
+  fetchAIData: () => Promise<void>
   
   // Utility functions
   getInsightsByCategory: (category: string) => Insight[]
   getRecommendationsByImpact: (impact: 'low' | 'medium' | 'high') => Recommendation[]
   shouldRefreshAnalysis: () => boolean
+  resetAnalysis: () => void
 }
 
 export const useAIStore = create<AIState>((set, get) => ({
@@ -98,60 +103,148 @@ export const useAIStore = create<AIState>((set, get) => ({
   isAnalyzing: false,
   lastAnalysis: null,
   analysisProgress: 0,
+  error: null,
 
   setPredictions: (predictions) => set({ predictions }),
   setInsights: (insights) => set({ insights }),
   setRecommendations: (recommendations) => set({ recommendations }),
   setAnalyzing: (isAnalyzing) => set({ isAnalyzing }),
   setAnalysisProgress: (analysisProgress) => set({ analysisProgress }),
+  setError: (error) => set({ error }),
   updateLastAnalysis: () => set({ lastAnalysis: Date.now() }),
 
   analyzeSpendingPatterns: async () => {
-    set({ isAnalyzing: true, analysisProgress: 0 })
+    set({ isAnalyzing: true, analysisProgress: 0, error: null })
     
-    // Simulate AI analysis with progress updates
-    for (let i = 0; i <= 100; i += 10) {
-      set({ analysisProgress: i })
-      await new Promise(resolve => setTimeout(resolve, 100))
-    }
-    
-    // In a real app, this would call an AI service
-    // For now, we'll use mock data
     try {
-      const response = await fetch('/src/data/aiPredictions.json')
-      const data = await response.json()
+      // Simulate AI analysis with progress updates
+      for (let i = 0; i <= 100; i += 20) {
+        set({ analysisProgress: i })
+        await new Promise(resolve => setTimeout(resolve, 200))
+      }
       
-      set({
-        predictions: data.predictions,
-        insights: data.insights,
-        recommendations: data.recommendations,
-        isAnalyzing: false,
-        lastAnalysis: Date.now(),
-        analysisProgress: 100
-      })
+      const response = await mockBackendService.triggerAIAnalysis()
+      
+      if (response.success) {
+        set({
+          predictions: response.data.predictions,
+          insights: response.data.insights,
+          recommendations: response.data.recommendations,
+          isAnalyzing: false,
+          lastAnalysis: Date.now(),
+          analysisProgress: 100,
+          error: null
+        })
+      } else {
+        set({ 
+          error: response.message || 'Failed to analyze spending patterns',
+          isAnalyzing: false,
+          analysisProgress: 0
+        })
+      }
     } catch (error) {
       console.error('Failed to analyze spending patterns:', error)
-      set({ isAnalyzing: false, analysisProgress: 0 })
+      set({ 
+        error: 'Failed to analyze spending patterns. Please try again.',
+        isAnalyzing: false, 
+        analysisProgress: 0 
+      })
     }
   },
 
   generateInsights: async () => {
-    // This would typically call an AI service to generate personalized insights
-    // For now, we'll simulate the process
-    set({ isAnalyzing: true })
+    set({ isAnalyzing: true, error: null })
     
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    set({ isAnalyzing: false })
+    try {
+      const response = await mockBackendService.fetchAIInsights()
+      
+      if (response.success) {
+        set({ 
+          insights: response.data,
+          isAnalyzing: false,
+          error: null
+        })
+      } else {
+        set({ 
+          error: response.message || 'Failed to generate insights',
+          isAnalyzing: false
+        })
+      }
+    } catch (error) {
+      console.error('Failed to generate insights:', error)
+      set({ 
+        error: 'Failed to generate insights. Please try again.',
+        isAnalyzing: false 
+      })
+    }
   },
 
   createRecommendations: async () => {
-    // This would typically call an AI service to create personalized recommendations
-    set({ isAnalyzing: true })
+    set({ isAnalyzing: true, error: null })
     
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    try {
+      const response = await mockBackendService.fetchAIRecommendations()
+      
+      if (response.success) {
+        set({ 
+          recommendations: response.data,
+          isAnalyzing: false,
+          error: null
+        })
+      } else {
+        set({ 
+          error: response.message || 'Failed to create recommendations',
+          isAnalyzing: false
+        })
+      }
+    } catch (error) {
+      console.error('Failed to create recommendations:', error)
+      set({ 
+        error: 'Failed to create recommendations. Please try again.',
+        isAnalyzing: false 
+      })
+    }
+  },
+
+  fetchAIData: async () => {
+    set({ isAnalyzing: true, error: null })
     
-    set({ isAnalyzing: false })
+    try {
+      // Fetch all AI data in parallel
+      const [predictionsResponse, insightsResponse, recommendationsResponse] = await Promise.all([
+        mockBackendService.fetchAIPredictions(),
+        mockBackendService.fetchAIInsights(),
+        mockBackendService.fetchAIRecommendations()
+      ])
+
+      if (predictionsResponse.success && insightsResponse.success && recommendationsResponse.success) {
+        set({
+          predictions: predictionsResponse.data,
+          insights: insightsResponse.data,
+          recommendations: recommendationsResponse.data,
+          isAnalyzing: false,
+          lastAnalysis: Date.now(),
+          error: null
+        })
+      } else {
+        const errors = [
+          !predictionsResponse.success && predictionsResponse.message,
+          !insightsResponse.success && insightsResponse.message,
+          !recommendationsResponse.success && recommendationsResponse.message
+        ].filter(Boolean)
+        
+        set({ 
+          error: errors.join(', ') || 'Failed to fetch AI data',
+          isAnalyzing: false
+        })
+      }
+    } catch (error) {
+      console.error('Failed to fetch AI data:', error)
+      set({ 
+        error: 'Failed to fetch AI data. Please try again.',
+        isAnalyzing: false 
+      })
+    }
   },
 
   getInsightsByCategory: (category) => {
@@ -171,5 +264,17 @@ export const useAIStore = create<AIState>((set, get) => ({
     // Refresh analysis if it's been more than 24 hours
     const twentyFourHours = 24 * 60 * 60 * 1000
     return Date.now() - lastAnalysis > twentyFourHours
+  },
+
+  resetAnalysis: () => {
+    set({
+      predictions: null,
+      insights: [],
+      recommendations: [],
+      isAnalyzing: false,
+      lastAnalysis: null,
+      analysisProgress: 0,
+      error: null
+    })
   },
 }))
