@@ -1,6 +1,6 @@
 import React from 'react'
 import { clsx } from 'clsx'
-import { LucideIcon } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
 interface ButtonProps {
   children: React.ReactNode
