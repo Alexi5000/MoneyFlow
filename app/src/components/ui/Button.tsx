@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import type { LucideIcon } from 'lucide-react'
 
 interface ButtonProps {
-  children: React.ReactNode
+  children?: React.ReactNode
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
   icon?: LucideIcon

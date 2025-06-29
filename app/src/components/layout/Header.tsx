@@ -2,14 +2,12 @@ import React from 'react'
 import { Bell, Search, Settings, User, Moon, Sun, Menu } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { useTheme } from '../../hooks/useTheme'
-import { clsx } from 'clsx'
 
 interface HeaderProps {
   onMenuClick: () => void
-  isSidebarOpen: boolean
 }
 
-export const Header: React.FC<HeaderProps> = ({ onMenuClick, isSidebarOpen }) => {
+export const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
   const { theme, toggleTheme } = useTheme()
 
   return (
