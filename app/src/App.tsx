@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { DashboardPage } from './pages/DashboardPage'
@@ -7,8 +7,20 @@ import { BudgetsPage } from './pages/BudgetsPage'
 import { AnalyticsPage } from './pages/AnalyticsPage'
 import { AIInsightsPage } from './pages/AIInsightsPage'
 import { SettingsPage } from './pages/SettingsPage'
+import { useTheme } from './hooks/useTheme'
 
 function App() {
+  const { theme } = useTheme()
+
+  useEffect(() => {
+    // Initialize theme on app load
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [theme])
+
   return (
     <Router>
       <Routes>
