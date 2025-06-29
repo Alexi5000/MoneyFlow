@@ -1,7 +1,9 @@
-import React, { useRef, useMemo } from 'react'
+import React, { useRef, useMemo, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Points, PointMaterial } from '@react-three/drei'
 import * as THREE from 'three'
+import { analyzeDeviceCapabilities } from '../../utils/webglDetection'
+import { ErrorBoundary } from '../UI/ErrorBoundary'
 
 interface ParticleSystemProps {
   count?: number
@@ -15,13 +17,17 @@ const ParticleSystem: React.FC<ParticleSystemProps> = ({
   color = '#6366f1'
 }) => {
   const meshRef = useRef<THREE.Points>(null)
+  const deviceCaps = analyzeDeviceCapabilities()
+  
+  // Adjust particle count based on device capabilities
+  const adjustedCount = Math.min(count, deviceCaps.recommendedParticleCount)
   
   const particles = useMemo(() => {
-    const positions = new Float32Array(count * 3)
-    const velocities = new Float32Array(count * 3)
-    const colors = new Float32Array(count * 3)
+    const positions = new Float32Array(adjustedCount * 3)
+    const velocities = new Float32Array(adjustedCount * 3)
+    const colors = new Float32Array(adjustedCount * 3)
     
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < adjustedCount; i++) {
       const i3 = i * 3
       
       // Random positions
@@ -42,14 +48,14 @@ const ParticleSystem: React.FC<ParticleSystemProps> = ({
     }
     
     return { positions, velocities, colors }
-  }, [count, color])
+  }, [adjustedCount, color])
   
   useFrame((state, delta) => {
     if (!meshRef.current) return
     
     const positions = meshRef.current.geometry.attributes.position.array as Float32Array
     
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < adjustedCount; i++) {
       const i3 = i * 3
       
       // Update positions
@@ -79,19 +85,19 @@ const ParticleSystem: React.FC<ParticleSystemProps> = ({
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={count}
+          count={adjustedCount}
           array={particles.positions}
           itemSize={3}
         />
         <bufferAttribute
           attach="attributes-color"
-          count={count}
+          count={adjustedCount}
           array={particles.colors}
           itemSize={3}
         />
       </bufferGeometry>
       <PointMaterial
-        size={0.05}
+        size={deviceCaps.isMobile ? 0.03 : 0.05}
         vertexColors
         transparent
         opacity={0.8}
@@ -102,15 +108,51 @@ const ParticleSystem: React.FC<ParticleSystemProps> = ({
   )
 }
 
-export const MoneyParticleSystem: React.FC<ParticleSystemProps> = (props) => {
+// Fallback component for non-WebGL devices
+const FallbackParticles: React.FC = () => {
   return (
-    <div className="absolute inset-0 -z-10">
-      <Canvas
-        camera={{ position: [0, 0, 10], fov: 75 }}
-        style={{ background: 'transparent' }}
-      >
-        <ParticleSystem {...props} />
-      </Canvas>
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(20)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute w-2 h-2 bg-primary-500 rounded-full opacity-30 animate-float"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 3}s`,
+            animationDuration: `${3 + Math.random() * 2}s`
+          }}
+        />
+      ))}
     </div>
+  )
+}
+
+export const MoneyParticleSystem: React.FC<ParticleSystemProps> = (props) => {
+  const deviceCaps = analyzeDeviceCapabilities()
+  
+  // Use fallback for devices without WebGL or very low-end devices
+  if (!deviceCaps.hasWebGL || (deviceCaps.isLowEnd && deviceCaps.isMobile)) {
+    return <FallbackParticles />
+  }
+  
+  return (
+    <ErrorBoundary fallback={<FallbackParticles />}>
+      <div className="absolute inset-0 -z-10">
+        <Suspense fallback={<FallbackParticles />}>
+          <Canvas
+            camera={{ position: [0, 0, 10], fov: 75 }}
+            style={{ background: 'transparent' }}
+            gl={{ 
+              antialias: deviceCaps.recommendedQuality !== 'low',
+              alpha: true,
+              powerPreference: deviceCaps.isLowEnd ? 'low-power' : 'high-performance'
+            }}
+          >
+            <ParticleSystem {...props} />
+          </Canvas>
+        </Suspense>
+      </div>
+    </ErrorBoundary>
   )
 }

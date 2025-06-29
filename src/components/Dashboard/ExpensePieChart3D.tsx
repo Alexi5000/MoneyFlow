@@ -1,9 +1,12 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Text } from '@react-three/drei'
 import * as THREE from 'three'
 import { motion } from 'framer-motion'
 import { useFinancialStore } from '../../store/financialStore'
+import { analyzeDeviceCapabilities } from '../../utils/webglDetection'
+import { ErrorBoundary } from '../UI/ErrorBoundary'
+import { LoadingSpinner } from '../UI/LoadingSpinner'
 
 interface PieSliceProps {
   startAngle: number
@@ -108,7 +111,7 @@ const PieSlice: React.FC<PieSliceProps> = ({
             color="white"
             anchorX="center"
             anchorY="middle"
-            font="/fonts/inter-bold.woff"
+            font="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"
           >
             {category}
           </Text>
@@ -118,7 +121,7 @@ const PieSlice: React.FC<PieSliceProps> = ({
             color="#cccccc"
             anchorX="center"
             anchorY="middle"
-            font="/fonts/inter-regular.woff"
+            font="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
           >
             ${amount.toFixed(0)} ({percentage.toFixed(1)}%)
           </Text>
@@ -186,30 +189,101 @@ const Scene: React.FC = () => {
   )
 }
 
+// Fallback component for non-WebGL devices
+const FallbackChart: React.FC = () => {
+  const { budgets } = useFinancialStore()
+  const totalSpent = budgets.reduce((sum, budget) => sum + budget.spent, 0)
+  
+  return (
+    <div className="h-64 flex items-center justify-center">
+      <div className="w-48 h-48 relative">
+        <svg viewBox="0 0 200 200" className="w-full h-full transform -rotate-90">
+          {budgets.map((budget, index) => {
+            const percentage = (budget.spent / totalSpent) * 100
+            const angle = (percentage / 100) * 360
+            const startAngle = budgets.slice(0, index).reduce((sum, b) => sum + (b.spent / totalSpent) * 360, 0)
+            
+            const x1 = 100 + 80 * Math.cos((startAngle * Math.PI) / 180)
+            const y1 = 100 + 80 * Math.sin((startAngle * Math.PI) / 180)
+            const x2 = 100 + 80 * Math.cos(((startAngle + angle) * Math.PI) / 180)
+            const y2 = 100 + 80 * Math.sin(((startAngle + angle) * Math.PI) / 180)
+            
+            const largeArcFlag = angle > 180 ? 1 : 0
+            
+            return (
+              <path
+                key={budget.id}
+                d={`M 100 100 L ${x1} ${y1} A 80 80 0 ${largeArcFlag} 1 ${x2} ${y2} Z`}
+                fill={budget.color}
+                stroke="white"
+                strokeWidth="2"
+                className="hover:opacity-80 transition-opacity cursor-pointer"
+              />
+            )
+          })}
+        </svg>
+        
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center">
+            <div className="text-lg font-bold text-white">Total</div>
+            <div className="text-sm text-gray-400">${totalSpent.toFixed(0)}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export const ExpensePieChart3D: React.FC = () => {
   const { budgets } = useFinancialStore()
+  const deviceCaps = analyzeDeviceCapabilities()
   
   if (budgets.length === 0) {
     return (
       <div className="flex items-center justify-center h-64 text-gray-500">
-        No expense data available
+        <div className="text-center">
+          <div className="text-lg font-semibold mb-2">No expense data available</div>
+          <div className="text-sm">Add some transactions to see your expense breakdown</div>
+        </div>
       </div>
     )
   }
   
-  return (
-    <motion.div
-      className="h-64 w-full"
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 75 }}
-        style={{ background: 'transparent' }}
+  // Use fallback for devices without WebGL or low-end devices
+  if (!deviceCaps.hasWebGL || deviceCaps.isLowEnd) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
       >
-        <Scene />
-      </Canvas>
-    </motion.div>
+        <FallbackChart />
+      </motion.div>
+    )
+  }
+  
+  return (
+    <ErrorBoundary fallback={<FallbackChart />}>
+      <motion.div
+        className="h-64 w-full"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <Suspense fallback={<LoadingSpinner size="lg" text="Loading 3D chart..." />}>
+          <Canvas
+            camera={{ position: [0, 0, 5], fov: 75 }}
+            style={{ background: 'transparent' }}
+            gl={{ 
+              antialias: deviceCaps.recommendedQuality !== 'low',
+              alpha: true,
+              powerPreference: deviceCaps.isLowEnd ? 'low-power' : 'high-performance'
+            }}
+          >
+            <Scene />
+          </Canvas>
+        </Suspense>
+      </motion.div>
+    </ErrorBoundary>
   )
 }
