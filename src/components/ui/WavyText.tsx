@@ -12,59 +12,36 @@ export const WavyText: React.FC<WavyTextProps> = ({
   size = 'md',
   className = ''
 }) => {
-  const getSizeStyles = () => {
-    switch (size) {
-      case 'sm':
-        return 'text-2xl'
-      case 'md':
-        return 'text-4xl'
-      case 'lg':
-        return 'text-6xl'
-      case 'xl':
-        return 'text-8xl'
-      default:
-        return 'text-4xl'
-    }
+  const sizeClasses = {
+    sm: 'text-2xl',
+    md: 'text-4xl',
+    lg: 'text-6xl',
+    xl: 'text-8xl'
   }
 
-  const letters = children.split('')
+  const words = children.split(' ')
 
   return (
-    <div className={`
-      font-bungee
-      ${getSizeStyles()}
-      flex
-      items-center
-      justify-center
-      ${className}
-    `}>
-      {letters.map((letter, index) => (
+    <div className={`wavy-text ${sizeClasses[size]} ${className}`}>
+      {words.map((word, wordIndex) => (
         <motion.span
-          key={index}
-          className="inline-block"
-          style={{
-            background: `linear-gradient(45deg, 
-              hsl(${(index * 30) % 360}, 70%, 60%), 
-              hsl(${(index * 30 + 60) % 360}, 70%, 60%)
-            )`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            textShadow: '2px 2px 0px rgba(0,0,0,0.3)'
+          key={wordIndex}
+          className={`word-${(wordIndex % 3) + 1} inline-block mr-4`}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.6, 
+            delay: wordIndex * 0.2,
+            type: "spring",
+            stiffness: 100
           }}
-          animate={{
-            y: [0, -10, 0],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 2,
-            delay: index * 0.1,
-            repeat: Infinity,
-            repeatType: 'reverse',
-            ease: 'easeInOut'
+          whileHover={{ 
+            scale: 1.1,
+            rotate: [0, -5, 5, 0],
+            transition: { duration: 0.3 }
           }}
         >
-          {letter === ' ' ? '\u00A0' : letter}
+          {word}
         </motion.span>
       ))}
     </div>
