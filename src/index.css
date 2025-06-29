@@ -2,13 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Fredoka:wght@400;600;700&display=swap');
+
 @layer base {
   html {
-    font-family: system-ui, sans-serif;
+    font-family: 'Fredoka', system-ui, sans-serif;
   }
   
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-gray-900;
+    min-height: 100vh;
   }
 }
 
@@ -19,5 +23,172 @@
   
   .btn-secondary {
     @apply bg-secondary-500 hover:bg-secondary-600 text-white font-medium py-2 px-4 rounded-lg transition-colors;
+  }
+
+  /* Festival font classes */
+  .font-bungee {
+    font-family: 'Bungee', cursive;
+  }
+
+  .font-fredoka {
+    font-family: 'Fredoka', sans-serif;
+  }
+
+  /* Festival animations */
+  .festival-bounce {
+    animation: festival-bounce 2s ease-in-out infinite;
+  }
+
+  .festival-wiggle {
+    animation: festival-wiggle 3s ease-in-out infinite;
+  }
+
+  .festival-float {
+    animation: festival-float 4s ease-in-out infinite;
+  }
+
+  /* Sticker effect */
+  .sticker-shadow {
+    box-shadow: 
+      4px 4px 0px 0px rgba(0,0,0,1),
+      8px 8px 0px 0px rgba(0,0,0,0.1);
+  }
+
+  .sticker-shadow-lg {
+    box-shadow: 
+      6px 6px 0px 0px rgba(0,0,0,1),
+      12px 12px 0px 0px rgba(0,0,0,0.1);
+  }
+
+  /* Chunky border */
+  .chunky-border {
+    border: 4px solid black;
+  }
+
+  .chunky-border-lg {
+    border: 6px solid black;
+  }
+}
+
+@layer utilities {
+  /* Custom gradient backgrounds */
+  .bg-festival-pink {
+    background: linear-gradient(135deg, #ec4899, #be185d);
+  }
+
+  .bg-festival-yellow {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  }
+
+  .bg-festival-purple {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  }
+
+  .bg-festival-green {
+    background: linear-gradient(135deg, #10b981, #059669);
+  }
+
+  .bg-festival-blue {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+  }
+
+  /* Text effects */
+  .text-festival-shadow {
+    text-shadow: 
+      2px 2px 0px rgba(0,0,0,1),
+      4px 4px 0px rgba(0,0,0,0.3);
+  }
+
+  .text-festival-glow {
+    text-shadow: 
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 30px currentColor;
+  }
+}
+
+/* Keyframe animations */
+@keyframes festival-bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes festival-wiggle {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(-1deg);
+  }
+  75% {
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes festival-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+/* Responsive festival styles */
+@media (max-width: 768px) {
+  .festival-card {
+    transform: rotate(0deg) !important;
+  }
+  
+  .festival-card:hover {
+    transform: scale(1.02) !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .festival-card,
+  .chunky-button {
+    box-shadow: none !important;
+    border: 2px solid black !important;
+    transform: none !important;
+  }
+  
+  .rainbow-stripes {
+    display: none !important;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .festival-bounce,
+  .festival-wiggle,
+  .festival-float {
+    animation: none;
+  }
+  
+  .wavy-text span {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .festival-card {
+    border-width: 6px !important;
+  }
+  
+  .chunky-button {
+    border-width: 4px !important;
   }
 }
