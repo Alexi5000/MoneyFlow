@@ -12,37 +12,44 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@react-three/drei": "^9.95.0",
+    "@react-three/fiber": "^8.15.0",
+    "@types/three": "^0.160.0",
+    "clsx": "^2.0.0",
+    "framer-motion": "^10.16.0",
+    "gsap": "^3.12.2",
+    "lenis": "^1.0.0",
+    "lucide-react": "^0.300.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.0",
-    "three": "^0.160.0",
-    "@react-three/fiber": "^8.15.0",
-    "@react-three/drei": "^9.95.0",
-    "gsap": "^3.12.2",
-    "lenis": "^1.0.0",
-    "framer-motion": "^10.16.0",
     "recharts": "^2.8.0",
-    "lucide-react": "^0.300.0",
-    "clsx": "^2.0.0",
     "tailwindcss": "^3.4.0",
-    "zustand": "^4.4.7",
-    "@types/three": "^0.160.0"
+    "three": "^0.160.0",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.0.8",
+    "autoprefixer": "^10.4.16",
     "eslint": "^8.55.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "prettier": "^3.1.0",
-    "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32",
-    "typescript": "^5.2.2"
+    "prettier": "^3.1.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
   },
-  "keywords": ["budget", "finance", "ai", "3d", "react", "three.js"],
+  "keywords": [
+    "budget",
+    "finance",
+    "ai",
+    "3d",
+    "react",
+    "three.js"
+  ],
   "author": "MoneyFlow Team",
   "license": "MIT"
 }
