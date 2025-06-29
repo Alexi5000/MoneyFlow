@@ -5,6 +5,7 @@ import { useFinancialStore } from '../../store/financialStore'
 import { GlassmorphicCard } from '../UI/GlassmorphicCard'
 import { NeonButton } from '../UI/NeonButton'
 import { MoneyParticleSystem } from './MoneyParticleSystem'
+import { Avatar } from '../UI/ImageWithFallback'
 
 export const DashboardHero: React.FC = () => {
   const { user, getTotalIncome, getTotalExpenses } = useFinancialStore()
@@ -45,10 +46,10 @@ export const DashboardHero: React.FC = () => {
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  <img
-                    src={user.avatar || `https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2`}
-                    alt={user.name}
-                    className="w-16 h-16 rounded-full border-2 border-primary-500/50"
+                  <Avatar
+                    src={user.avatar}
+                    name={user.name}
+                    size="lg"
                   />
                   <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
                     <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
