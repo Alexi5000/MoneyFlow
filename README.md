@@ -42,14 +42,37 @@ A modern, AI-powered budget tracking application built with React, TypeScript, a
 ## Project Structure
 
 ```
-src/
-├── components/     # Reusable UI components
-├── pages/         # Main application pages
-├── services/      # API services and data fetching
-├── store/         # Zustand state management
-├── types/         # TypeScript type definitions
-├── utils/         # Utility functions and constants
-└── public/data/   # Mock JSON data
+MoneyFlow/
+├── config/                    # All configuration files
+│   ├── eslint.config.js
+│   ├── postcss.config.js
+│   ├── tailwind.config.js
+│   ├── tailwind.config.ts
+│   ├── tsconfig.*.json
+│   └── vite.config.ts
+├── docs/                     # Documentation
+│   ├── backend.md
+│   ├── troubleshooting-steps.md
+│   └── TODO.md
+├── public/                   # Static assets & entry point
+│   ├── data/                # Mock JSON data files
+│   ├── fonts/               # Font files
+│   └── index.html           # Vite entry point
+├── src/
+│   └── frontend/            # Main application code
+│       ├── components/      # Reusable UI components
+│       │   ├── budgets/     # Budget-related components
+│       │   ├── Dashboard/   # Dashboard components
+│       │   ├── Layout/      # Layout components
+│       │   ├── Transactions/# Transaction components
+│       │   └── UI/          # Reusable UI components
+│       ├── pages/           # Main application pages
+│       ├── services/        # API services and data fetching
+│       ├── store/           # Zustand state management
+│       ├── types/           # TypeScript type definitions
+│       ├── utils/           # Utility functions and constants
+│       └── data/            # Runtime data files
+└── README.md                # This file
 ```
 
 ## Development
