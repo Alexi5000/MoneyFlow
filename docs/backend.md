@@ -12,7 +12,7 @@ This document outlines the backend operations required for the MoneyFlow applica
   - **Description**: Fetches the current user's profile information.
   - **Inputs**: None (user identified via authentication token).
   - **Outputs**: User object (ID, name, email, financial summaries, avatar URL).
-  - **Current Mock**: `src/data/mockFinancialData.json` (`user` object).
+  - **Current Mock**: `src/frontend/data/mockFinancialData.json` (`user` object).
 
 - **`PUT /api/user`**
   - **Description**: Updates the current user's profile information.
@@ -30,13 +30,13 @@ This document outlines the backend operations required for the MoneyFlow applica
   - **Description**: Fetches a list of all transactions for the current user.
   - **Inputs**: Optional query parameters for filtering (e.g., `category`, `type`, `dateRange`), and pagination (`limit`, `offset`).
   - **Outputs**: Array of Transaction objects.
-  - **Current Mock**: `src/data/mockFinancialData.json` (`transactions` array).
+  - **Current Mock**: `src/frontend/data/mockFinancialData.json` (`transactions` array).
 
 - **`GET /api/transactions/recent`**
   - **Description**: Fetches a limited number of recent transactions.
   - **Inputs**: `limit` (number of transactions to return).
   - **Outputs**: Array of Transaction objects.
-  - **Current Mock**: Filtered `transactions` array from `src/data/mockFinancialData.json`.
+  - **Current Mock**: Filtered `transactions` array from `src/frontend/data/mockFinancialData.json`.
 
 - **`POST /api/transactions`**
   - **Description**: Adds a new transaction.
@@ -62,7 +62,7 @@ This document outlines the backend operations required for the MoneyFlow applica
   - **Description**: Fetches a list of all budgets for the current user.
   - **Inputs**: None.
   - **Outputs**: Array of Budget objects.
-  - **Current Mock**: `src/data/mockFinancialData.json` (`budgets` array).
+  - **Current Mock**: `src/frontend/data/mockFinancialData.json` (`budgets` array).
 
 - **`POST /api/budgets`**
   - **Description**: Creates a new budget.
@@ -90,19 +90,19 @@ This document outlines the backend operations required for the MoneyFlow applica
   - **Description**: Generates and fetches financial predictions (e.g., next month's spending, savings projections).
   - **Inputs**: None (uses historical user data).
   - **Outputs**: Prediction object.
-  - **Current Mock**: `src/data/aiPredictions.json` (`predictions` object).
+  - **Current Mock**: `src/frontend/data/aiPredictions.json` (`predictions` object).
 
 - **`GET /api/ai/insights`**
   - **Description**: Generates and fetches personalized financial insights (e.g., spending alerts, savings opportunities).
   - **Inputs**: None (uses historical user data).
   - **Outputs**: Array of Insight objects.
-  - **Current Mock**: `src/data/aiPredictions.json` (`insights` array).
+  - **Current Mock**: `src/frontend/data/aiPredictions.json` (`insights` array).
 
 - **`GET /api/ai/recommendations`**
   - **Description**: Generates and fetches actionable financial recommendations (e.g., budget optimization tips).
   - **Inputs**: None (uses historical user data).
   - **Outputs**: Array of Recommendation objects.
-  - **Current Mock**: `src/data/aiPredictions.json` (`recommendations` array).
+  - **Current Mock**: `src/frontend/data/aiPredictions.json` (`recommendations` array).
 
 - **`POST /api/ai/analyze`**
   - **Description**: Triggers AI analysis of spending patterns.
@@ -118,7 +118,7 @@ This document outlines the backend operations required for the MoneyFlow applica
   - **Description**: Fetches all available transaction categories.
   - **Inputs**: None.
   - **Outputs**: Array of Category objects.
-  - **Current Mock**: `src/data/mockFinancialData.json` (`categories` array).
+  - **Current Mock**: `src/frontend/data/mockFinancialData.json` (`categories` array).
 
 ## Data Models
 
@@ -197,8 +197,8 @@ interface Prediction {
 
 The project uses these mock data store files:
 
-- `src/data/mockFinancialData.json`: Contains initial mock data for `user`, `transactions`, `budgets`, and `categories`.
-- `src/data/aiPredictions.json`: Contains mock data for AI-generated `predictions`, `insights`, and `recommendations`.
+- `src/frontend/data/mockFinancialData.json`: Contains initial mock data for `user`, `transactions`, `budgets`, and `categories`.
+- `src/frontend/data/aiPredictions.json`: Contains mock data for AI-generated `predictions`, `insights`, and `recommendations`.
 
 ## Migration to Production Backend
 
