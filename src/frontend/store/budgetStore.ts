@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { Budget } from '../types'
-import { mockBackendService } from '../services/mockBackendService'
+import { apiService } from '../services/api'
 
 interface BudgetAlert {
   id: string
@@ -114,14 +114,10 @@ export const useBudgetStore = create<BudgetState>()(
       fetchBudgets: async () => {
         set({ isLoading: true, error: null })
         try {
-          const response = await mockBackendService.getBudgets()
-          if (response.success) {
-            get().setBudgets(response.data)
-          } else {
-            set({ error: response.message || 'Failed to fetch budgets' })
-          }
+          const budgets = await apiService.getBudgets()
+          get().setBudgets(budgets)
         } catch (error) {
-          set({ error: 'Failed to fetch budgets' })
+          set({ error: error instanceof Error ? error.message : 'Failed to fetch budgets' })
         } finally {
           set({ isLoading: false })
         }
@@ -130,14 +126,10 @@ export const useBudgetStore = create<BudgetState>()(
       createBudget: async (budgetData) => {
         set({ isLoading: true, error: null })
         try {
-          const response = await mockBackendService.createBudget(budgetData)
-          if (response.success) {
-            get().addBudget(response.data)
-          } else {
-            set({ error: response.message || 'Failed to create budget' })
-          }
+          const budget = await apiService.createBudget(budgetData)
+          get().addBudget(budget)
         } catch (error) {
-          set({ error: 'Failed to create budget' })
+          set({ error: error instanceof Error ? error.message : 'Failed to create budget' })
         } finally {
           set({ isLoading: false })
         }

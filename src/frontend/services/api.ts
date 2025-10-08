@@ -1,72 +1,98 @@
 import { User, Transaction, Budget, AIInsight } from '../types'
 
-// Mock API service - replace with real API calls
+// API service for MoneyFlow backend
 class ApiService {
-  private baseUrl = '/api'
+  private baseUrl = 'http://localhost:8000/api/v1'
+
+  private async request<T>(endpoint: string, options?: RequestInit): Promise<T> {
+    const url = `${this.baseUrl}${endpoint}`
+    const response = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers,
+      },
+      ...options,
+    })
+
+    if (!response.ok) {
+      throw new Error(`API request failed: ${response.status} ${response.statusText}`)
+    }
+
+    return response.json()
+  }
 
   async getUser(): Promise<User> {
-    // Mock user data
-    return {
-      id: '1',
-      name: 'John Doe',
-      email: 'john@example.com',
-      totalBalance: 12450.00,
-      monthlyIncome: 5230.00,
-      monthlyExpenses: 3120.00,
-      savingsGoal: 10000.00,
-      currentSavings: 2110.00
-    }
+    const response = await this.request<{ data: User; success: boolean }>('/users/me')
+    return response.data
   }
 
   async getTransactions(): Promise<Transaction[]> {
-    // Mock transaction data
-    return [
-      {
-        id: '1',
-        amount: -85.50,
-        category: 'Food',
-        description: 'Grocery Store',
-        date: '2024-01-15',
-        type: 'expense',
-        merchant: 'Whole Foods'
-      },
-      {
-        id: '2',
-        amount: 5230.00,
-        category: 'Salary',
-        description: 'Monthly Salary',
-        date: '2024-01-01',
-        type: 'income'
-      }
-    ]
+    const response = await this.request<{ data: Transaction[]; success: boolean }>('/transactions/recent?limit=20')
+    return response.data
   }
 
   async getBudgets(): Promise<Budget[]> {
-    // Mock budget data
-    return [
-      {
-        id: '1',
-        category: 'Food',
-        allocated: 500,
-        spent: 425,
-        remaining: 75,
-        period: 'monthly'
-      }
-    ]
+    const response = await this.request<{ data: { budgets: Budget[]; total_allocated: number; total_spent: number; total_remaining: number }; success: boolean }>('/budgets/')
+    return response.data.budgets
   }
 
   async getAIInsights(): Promise<AIInsight[]> {
-    // Mock AI insights
-    return [
-      {
-        id: '1',
-        type: 'tip',
-        title: 'Spending Pattern Detected',
-        description: 'You tend to spend more on weekends. Consider setting a weekend budget.',
-        actionable: true,
-        confidence: 0.85
-      }
-    ]
+    const response = await this.request<{ data: any[]; success: boolean }>('/ai/insights')
+    return response.data
+  }
+
+  async createTransaction(transaction: Omit<Transaction, 'id'>): Promise<Transaction> {
+    const response = await this.request<{ data: Transaction; success: boolean }>('/transactions/', {
+      method: 'POST',
+      body: JSON.stringify(transaction),
+    })
+    return response.data
+  }
+
+  async updateTransaction(id: string, transaction: Partial<Transaction>): Promise<Transaction> {
+    const response = await this.request<{ data: Transaction; success: boolean }>(`/transactions/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(transaction),
+    })
+    return response.data
+  }
+
+  async deleteTransaction(id: string): Promise<void> {
+    await this.request(`/transactions/${id}`, {
+      method: 'DELETE',
+    })
+  }
+
+  async createBudget(budget: Omit<Budget, 'id'>): Promise<Budget> {
+    const response = await this.request<{ data: Budget; success: boolean }>('/budgets/', {
+      method: 'POST',
+      body: JSON.stringify(budget),
+    })
+    return response.data
+  }
+
+  async updateBudget(id: string, budget: Partial<Budget>): Promise<Budget> {
+    const response = await this.request<{ data: Budget; success: boolean }>(`/budgets/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(budget),
+    })
+    return response.data
+  }
+
+  async deleteBudget(id: string): Promise<void> {
+    await this.request(`/budgets/${id}`, {
+      method: 'DELETE',
+    })
+  }
+
+  async getAIPredictions(): Promise<any> {
+    const response = await this.request<{ data: any; success: boolean }>('/ai/predictions')
+    return response.data
+  }
+
+  async getCategories(): Promise<any[]> {
+    const response = await this.request<{ data: any[]; success: boolean }>('/categories/')
+    return response.data
   }
 }
 
