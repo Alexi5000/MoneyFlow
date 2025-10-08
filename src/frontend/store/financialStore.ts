@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { User, Transaction, Budget } from '../types'
-import { mockBackendService } from '../services/mockBackendService'
+import { apiService } from '../services/api'
 
 interface FinancialState {
   user: User | null
@@ -48,14 +48,10 @@ export const useFinancialStore = create<FinancialState>()(
       fetchUserData: async () => {
         set({ isLoading: true, error: null })
         try {
-          const response = await mockBackendService.getUserProfile()
-          if (response.success) {
-            set({ user: response.data })
-          } else {
-            set({ error: response.message || 'Failed to fetch user data' })
-          }
+          const user = await apiService.getUser()
+          set({ user })
         } catch (error) {
-          set({ error: 'Failed to fetch user data' })
+          set({ error: error instanceof Error ? error.message : 'Failed to fetch user data' })
         } finally {
           set({ isLoading: false })
         }
@@ -64,14 +60,10 @@ export const useFinancialStore = create<FinancialState>()(
       fetchTransactions: async () => {
         set({ isLoading: true, error: null })
         try {
-          const response = await mockBackendService.getTransactions()
-          if (response.success) {
-            set({ transactions: response.data })
-          } else {
-            set({ error: response.message || 'Failed to fetch transactions' })
-          }
+          const transactions = await apiService.getTransactions()
+          set({ transactions })
         } catch (error) {
-          set({ error: 'Failed to fetch transactions' })
+          set({ error: error instanceof Error ? error.message : 'Failed to fetch transactions' })
         } finally {
           set({ isLoading: false })
         }
@@ -80,14 +72,10 @@ export const useFinancialStore = create<FinancialState>()(
       fetchBudgets: async () => {
         set({ isLoading: true, error: null })
         try {
-          const response = await mockBackendService.getBudgets()
-          if (response.success) {
-            set({ budgets: response.data })
-          } else {
-            set({ error: response.message || 'Failed to fetch budgets' })
-          }
+          const budgets = await apiService.getBudgets()
+          set({ budgets })
         } catch (error) {
-          set({ error: 'Failed to fetch budgets' })
+          set({ error: error instanceof Error ? error.message : 'Failed to fetch budgets' })
         } finally {
           set({ isLoading: false })
         }
