@@ -5,9 +5,9 @@ import { Navbar } from './Navbar'
 
 export const Layout: React.FC = () => {
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-primary">
       <Navbar />
-      
+
       <AnimatePresence mode="wait">
         <motion.main
           initial={{ opacity: 0, y: 20 }}
