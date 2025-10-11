@@ -22,9 +22,9 @@ from app.middleware.logging import LoggingMiddleware
 async def lifespan(app: FastAPI):
     """Application lifespan manager for startup and shutdown events."""
     # Startup
-    print(f"🚀 Starting MoneyFlow Backend API v{settings.VERSION}")
-    print(f"📊 Environment: {settings.ENVIRONMENT}")
-    print(f"🔗 API URL: http://{settings.HOST}:{settings.PORT}")
+    print(f"[START] MoneyFlow Backend API v{settings.VERSION}")
+    print(f"[ENV] Environment: {settings.ENVIRONMENT}")
+    print(f"[URL] API URL: http://{settings.HOST}:{settings.PORT}")
 
     # Create database tables
     await create_tables()
@@ -32,7 +32,7 @@ async def lifespan(app: FastAPI):
     yield
 
     # Shutdown
-    print("🔄 Shutting down MoneyFlow Backend API")
+    print("[SHUTDOWN] MoneyFlow Backend API")
 
 
 def create_application() -> FastAPI:

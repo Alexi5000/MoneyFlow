@@ -2,8 +2,10 @@
 Common Pydantic schemas used across the application.
 """
 
-from typing import List, Optional, Any, Dict
+from typing import List, Optional, Any, Dict, Generic, TypeVar
 from pydantic import BaseModel
+
+T = TypeVar('T')
 
 
 class Category(BaseModel):
@@ -15,10 +17,12 @@ class Category(BaseModel):
     parent_id: Optional[str] = None
     subcategories: Optional[List[str]] = None
 
+    model_config = {"from_attributes": True}
 
-class ApiResponse(BaseModel):
+
+class ApiResponse(BaseModel, Generic[T]):
     """Generic API response schema."""
-    data: Any
+    data: T
     success: bool
     message: Optional[str] = None
     errors: Optional[List[str]] = None

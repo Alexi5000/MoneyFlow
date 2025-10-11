@@ -11,7 +11,9 @@ import os
 from app.core.config import settings
 
 # Create database directory if it doesn't exist
-os.makedirs(os.path.dirname(settings.DATABASE_URL.replace("sqlite:///", "")), exist_ok=True)
+db_path = settings.DATABASE_URL.replace("sqlite:///", "")
+if db_path and os.path.dirname(db_path):
+    os.makedirs(os.path.dirname(db_path), exist_ok=True)
 
 # Create SQLAlchemy engine
 engine = create_engine(
@@ -47,10 +49,10 @@ async def create_tables():
 
         # Create all tables
         Base.metadata.create_all(bind=engine)
-        print("✅ Database tables created successfully")
+        print("[SUCCESS] Database tables created successfully")
 
     except Exception as e:
-        print(f"❌ Error creating database tables: {e}")
+        print(f"[ERROR] Error creating database tables: {e}")
         raise
 
 
@@ -58,9 +60,9 @@ async def drop_tables():
     """Drop all database tables (for testing)."""
     try:
         Base.metadata.drop_all(bind=engine)
-        print("✅ Database tables dropped successfully")
+        print("[SUCCESS] Database tables dropped successfully")
     except Exception as e:
-        print(f"❌ Error dropping database tables: {e}")
+        print(f"[ERROR] Error dropping database tables: {e}")
         raise
 
 
@@ -77,7 +79,7 @@ def init_db():
 
         # Check if data already exists
         if db.query(User).first():
-            print("📊 Database already initialized")
+            print("[INFO] Database already initialized")
             return
 
         # Create sample categories
@@ -183,10 +185,10 @@ def init_db():
             db.add(trans)
 
         db.commit()
-        print("✅ Database initialized with sample data")
+        print("[SUCCESS] Database initialized with sample data")
 
     except Exception as e:
-        print(f"❌ Error initializing database: {e}")
+        print(f"[ERROR] Error initializing database: {e}")
         db.rollback()
         raise
     finally:

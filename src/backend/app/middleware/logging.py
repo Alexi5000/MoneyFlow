@@ -16,7 +16,7 @@ class LoggingMiddleware(BaseHTTPMiddleware):
         start_time = time.time()
 
         # Log incoming request
-        print(f"📨 {request.method} {request.url.path}")
+        print(f"[REQ] {request.method} {request.url.path}")
 
         try:
             response = await call_next(request)
@@ -25,12 +25,12 @@ class LoggingMiddleware(BaseHTTPMiddleware):
             process_time = time.time() - start_time
 
             # Log response
-            print(f"📨 {request.method} {request.url.path} - {response.status_code} - {process_time:.".4f"")
+            print(f"[RES] {request.method} {request.url.path} - {response.status_code} - {process_time:.4f}s")
 
             return response
 
         except Exception as e:
             process_time = time.time() - start_time
-            print(f"❌ {request.method} {request.url.path} - ERROR - {process_time:.".4f"")
-            print(f"   Error: {str(e)}")
+            print(f"[ERR] {request.method} {request.url.path} - ERROR - {process_time:.4f}s")
+            print(f"      Error: {str(e)}")
             raise

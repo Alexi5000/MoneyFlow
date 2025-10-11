@@ -7,9 +7,9 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
-from app.models.category import Category
+from app.models.category import Category as CategoryModel
 from app.models.user import User
-from app.schemas.common import ApiResponse
+from app.schemas.common import ApiResponse, Category
 
 router = APIRouter()
 
@@ -19,9 +19,9 @@ async def get_categories(db: Session = Depends(get_db)):
     """Get all categories (global categories only)."""
     try:
         # Get global categories (no user_id filter for system categories)
-        categories = db.query(Category).filter(Category.user_id.is_(None)).all()
+        categories = db.query(CategoryModel).filter(CategoryModel.user_id.is_(None)).all()
 
-        return ApiResponse(data=categories, success=True)
+        return ApiResponse(data=[Category.model_validate(cat) for cat in categories], success=True)
 
     except Exception as e:
         raise HTTPException(
@@ -43,18 +43,18 @@ async def get_user_categories(db: Session = Depends(get_db)):
             )
 
         # Get user's categories + global categories
-        user_categories = db.query(Category).filter(
-            Category.user_id == user.id
+        user_categories = db.query(CategoryModel).filter(
+            CategoryModel.user_id == user.id
         ).all()
 
-        global_categories = db.query(Category).filter(
-            Category.user_id.is_(None)
+        global_categories = db.query(CategoryModel).filter(
+            CategoryModel.user_id.is_(None)
         ).all()
 
         # Combine and return all categories
         all_categories = global_categories + user_categories
 
-        return ApiResponse(data=all_categories, success=True)
+        return ApiResponse(data=[Category.model_validate(cat) for cat in all_categories], success=True)
 
     except HTTPException:
         raise
