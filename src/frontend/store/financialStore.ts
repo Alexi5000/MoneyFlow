@@ -37,7 +37,7 @@ export const useFinancialStore = create<FinancialState>()(
       transactions: [],
       budgets: [],
       isLoading: false,
-      error: null,
+      error: null, // Always start with no error
 
       setUser: (user) => set({ user }),
       setTransactions: (transactions) => set({ transactions }),
@@ -46,48 +46,65 @@ export const useFinancialStore = create<FinancialState>()(
       setError: (error) => set({ error }),
 
       fetchUserData: async () => {
-        set({ isLoading: true, error: null })
         try {
           const user = await apiService.getUser()
-          set({ user })
+          set({ user, error: null })
+          return true
         } catch (error) {
+          console.error('Failed to fetch user:', error)
           set({ error: error instanceof Error ? error.message : 'Failed to fetch user data' })
-        } finally {
-          set({ isLoading: false })
+          return false
         }
       },
 
       fetchTransactions: async () => {
-        set({ isLoading: true, error: null })
         try {
           const transactions = await apiService.getTransactions()
           set({ transactions })
+          return true
         } catch (error) {
-          set({ error: error instanceof Error ? error.message : 'Failed to fetch transactions' })
-        } finally {
-          set({ isLoading: false })
+          console.error('Failed to fetch transactions:', error)
+          // Don't set global error for transactions
+          return false
         }
       },
 
       fetchBudgets: async () => {
-        set({ isLoading: true, error: null })
         try {
           const budgets = await apiService.getBudgets()
           set({ budgets })
+          return true
         } catch (error) {
-          set({ error: error instanceof Error ? error.message : 'Failed to fetch budgets' })
-        } finally {
-          set({ isLoading: false })
+          console.error('Failed to fetch budgets:', error)
+          // Don't set global error for budgets
+          return false
         }
       },
 
       initializeData: async () => {
-        const { fetchUserData, fetchTransactions, fetchBudgets } = get()
-        await Promise.all([
-          fetchUserData(),
-          fetchTransactions(),
-          fetchBudgets()
-        ])
+        set({ isLoading: true, error: null })
+        try {
+          const { fetchUserData, fetchTransactions, fetchBudgets } = get()
+          
+          // Fetch user first (critical)
+          const userSuccess = await fetchUserData()
+          if (!userSuccess) {
+            throw new Error('Failed to connect to backend. Please ensure the server is running.')
+          }
+          
+          // Fetch other data (non-critical, continue even if they fail)
+          await Promise.allSettled([
+            fetchTransactions(),
+            fetchBudgets()
+          ])
+          
+          set({ isLoading: false })
+        } catch (error) {
+          set({ 
+            isLoading: false,
+            error: error instanceof Error ? error.message : 'Failed to initialize data'
+          })
+        }
       },
 
       getTotalIncome: () => {

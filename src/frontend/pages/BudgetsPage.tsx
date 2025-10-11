@@ -1,179 +1,80 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Plus, Target, TrendingUp, AlertTriangle } from 'lucide-react'
-import { GlassmorphicCard } from '../components/UI/GlassmorphicCard'
-import { NeonButton } from '../components/UI/NeonButton'
-import { LiquidBudgetGauge } from '../components/Dashboard/LiquidBudgetGauge'
+import { Plus } from 'lucide-react'
 import { useFinancialStore } from '../store/financialStore'
+import { formatCurrency } from '../utils/formatters'
 
 export const BudgetsPage: React.FC = () => {
-  const { budgets } = useFinancialStore()
+  const { budgets, initializeData } = useFinancialStore()
+
+  useEffect(() => {
+    if (budgets.length === 0) {
+      initializeData()
+    }
+  }, [budgets.length, initializeData])
 
   return (
-    <div className="space-y-6">
-      {/* Page Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <GlassmorphicCard className="p-6">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-              <h1 className="text-2xl font-bold text-white mb-2">Budgets & Goals</h1>
-              <p className="text-gray-400">Track your spending and achieve your financial goals</p>
-            </div>
-            
-            <div className="flex items-center gap-3">
-              <NeonButton
-                variant="ghost"
-                size="sm"
-                icon={<Target className="w-4 h-4" />}
-              >
-                Set Goal
-              </NeonButton>
-              
-              <NeonButton
-                variant="primary"
-                size="sm"
-                icon={<Plus className="w-4 h-4" />}
-              >
-                Create Budget
-              </NeonButton>
-            </div>
+    <div className="min-h-screen bg-black text-white pt-24 pb-16">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-4xl font-bold text-white mb-2">Budgets</h1>
+            <p className="text-gray-400">Set limits and track your spending</p>
           </div>
-        </GlassmorphicCard>
-      </motion.div>
-
-      {/* Budget Overview */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <GlassmorphicCard className="p-6" glow neonColor="primary">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-white">Budget Overview</h2>
-            <div className="text-sm text-gray-400">Liquid Fill Indicators</div>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {budgets.map((budget) => (
-              <LiquidBudgetGauge
-                key={budget.id}
-                category={budget.category}
-                spent={budget.spent}
-                allocated={budget.allocated}
-                percentage={budget.percentage}
-                color={budget.color}
-                icon={budget.icon}
-              />
-            ))}
-          </div>
-        </GlassmorphicCard>
-      </motion.div>
-
-      {/* Budget Performance */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Budget Alerts */}
-          <GlassmorphicCard className="p-6" glow neonColor="warning">
-            <div className="flex items-center gap-3 mb-4">
-              <AlertTriangle className="w-6 h-6 text-warning-500" />
-              <h3 className="text-lg font-semibold text-white">Budget Alerts</h3>
-            </div>
-            
-            <div className="space-y-3">
-              <div className="p-3 bg-red-500/20 rounded-lg border border-red-500/30">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-red-400 font-medium">Shopping</span>
-                  <span className="text-red-400 text-sm">87%</span>
-                </div>
-                <p className="text-xs text-gray-400">Close to budget limit</p>
-              </div>
-              
-              <div className="p-3 bg-yellow-500/20 rounded-lg border border-yellow-500/30">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-yellow-400 font-medium">Transportation</span>
-                  <span className="text-yellow-400 text-sm">82%</span>
-                </div>
-                <p className="text-xs text-gray-400">Monitor spending</p>
-              </div>
-            </div>
-          </GlassmorphicCard>
-
-          {/* Savings Goals */}
-          <GlassmorphicCard className="p-6" glow neonColor="accent">
-            <div className="flex items-center gap-3 mb-4">
-              <Target className="w-6 h-6 text-accent-500" />
-              <h3 className="text-lg font-semibold text-white">Savings Goals</h3>
-            </div>
-            
-            <div className="space-y-4">
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-gray-400">Emergency Fund</span>
-                  <span className="text-white">87.5%</span>
-                </div>
-                <div className="w-full bg-gray-700 rounded-full h-2">
-                  <div className="bg-gradient-to-r from-accent-500 to-accent-600 h-2 rounded-full w-[87.5%]" />
-                </div>
-                <div className="flex justify-between mt-1 text-xs text-gray-400">
-                  <span>$8,750</span>
-                  <span>$10,000</span>
-                </div>
-              </div>
-              
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-gray-400">Vacation Fund</span>
-                  <span className="text-white">45%</span>
-                </div>
-                <div className="w-full bg-gray-700 rounded-full h-2">
-                  <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 h-2 rounded-full w-[45%]" />
-                </div>
-                <div className="flex justify-between mt-1 text-xs text-gray-400">
-                  <span>$2,250</span>
-                  <span>$5,000</span>
-                </div>
-              </div>
-            </div>
-          </GlassmorphicCard>
-
-          {/* Budget Performance */}
-          <GlassmorphicCard className="p-6" glow neonColor="secondary">
-            <div className="flex items-center gap-3 mb-4">
-              <TrendingUp className="w-6 h-6 text-secondary-500" />
-              <h3 className="text-lg font-semibold text-white">Performance</h3>
-            </div>
-            
-            <div className="space-y-3">
-              <div className="flex justify-between">
-                <span className="text-gray-400">Total Budgeted</span>
-                <span className="text-white font-semibold">$3,150</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">Total Spent</span>
-                <span className="text-white font-semibold">$2,383</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">Remaining</span>
-                <span className="text-green-400 font-semibold">$767</span>
-              </div>
-              <div className="border-t border-white/10 pt-2">
-                <div className="flex justify-between">
-                  <span className="text-white font-medium">On Track</span>
-                  <span className="text-green-400 font-bold">75.6%</span>
-                </div>
-              </div>
-            </div>
-          </GlassmorphicCard>
+          <button className="px-4 py-2 bg-white text-black rounded-md hover:bg-gray-200 font-medium flex items-center gap-2">
+            <Plus className="w-4 h-4" />
+            Create Budget
+          </button>
         </div>
-      </motion.div>
+
+        {/* Budgets Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {budgets.map((budget, index) => {
+            const percentage = (budget.spent / budget.allocated) * 100
+            const remaining = budget.allocated - budget.spent
+
+            return (
+              <motion.div
+                key={budget.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="bg-[#111] border border-gray-800 rounded-lg p-6 hover:border-gray-700 transition-all"
+              >
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <span className="text-2xl mb-2 block">{budget.icon}</span>
+                    <h3 className="text-lg font-semibold text-white mb-1">{budget.category}</h3>
+                    <p className="text-sm text-gray-500">
+                      {remaining >= 0 ? `${formatCurrency(remaining)} left` : `${formatCurrency(Math.abs(remaining))} over`}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Progress */}
+                <div className="mb-3">
+                  <div className="flex items-center justify-between mb-2 text-sm">
+                    <span className="text-gray-500">Progress</span>
+                    <span className="text-white">{formatCurrency(budget.spent)} / {formatCurrency(budget.allocated)}</span>
+                  </div>
+                  <div className="w-full bg-gray-800 rounded-full h-2">
+                    <div
+                      className={`h-2 rounded-full ${
+                        percentage > 100 ? 'bg-red-500' :
+                        percentage > 90 ? 'bg-yellow-500' : 'bg-blue-500'
+                      }`}
+                      style={{ width: `${Math.min(percentage, 100)}%` }}
+                    ></div>
+                  </div>
+                </div>
+
+                <div className="text-sm text-gray-500">{percentage.toFixed(0)}% used</div>
+              </motion.div>
+            )
+          })}
+        </div>
+      </div>
     </div>
   )
 }

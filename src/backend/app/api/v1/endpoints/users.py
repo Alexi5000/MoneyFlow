@@ -8,26 +8,26 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 
 from app.core.database import get_db
-from app.models.user import User
-from app.schemas.user import UserCreate, UserUpdate, User, UserProfile
+from app.models.user import User as UserModel
+from app.schemas.user import UserCreate, UserUpdate, User as UserSchema, UserProfile
 from app.schemas.common import ApiResponse
 
 router = APIRouter()
 
 
-@router.get("/me", response_model=ApiResponse[User])
+@router.get("/me", response_model=ApiResponse[UserSchema])
 async def get_current_user(db: Session = Depends(get_db)):
     """Get current user profile."""
     try:
         # For now, return the first user (in production, get from JWT token)
-        user = db.query(User).first()
+        user = db.query(UserModel).first()
         if not user:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="User not found"
             )
 
-        return ApiResponse(data=user, success=True)
+        return ApiResponse(data=UserSchema.model_validate(user), success=True)
 
     except Exception as e:
         raise HTTPException(
@@ -36,7 +36,7 @@ async def get_current_user(db: Session = Depends(get_db)):
         )
 
 
-@router.put("/me", response_model=ApiResponse[User])
+@router.put("/me", response_model=ApiResponse[UserSchema])
 async def update_current_user(
     user_update: UserUpdate,
     db: Session = Depends(get_db)
@@ -44,7 +44,7 @@ async def update_current_user(
     """Update current user profile."""
     try:
         # Get current user (in production, get from JWT token)
-        user = db.query(User).first()
+        user = db.query(UserModel).first()
         if not user:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -52,7 +52,7 @@ async def update_current_user(
             )
 
         # Update user fields
-        update_data = user_update.dict(exclude_unset=True)
+        update_data = user_update.model_dump(exclude_unset=True)
         for field, value in update_data.items():
             if hasattr(user, field):
                 setattr(user, field, value)
@@ -61,7 +61,7 @@ async def update_current_user(
         db.refresh(user)
 
         return ApiResponse(
-            data=user,
+            data=UserSchema.model_validate(user),
             success=True,
             message="User updated successfully"
         )
@@ -80,7 +80,7 @@ async def update_current_user(
         )
 
 
-@router.get("/", response_model=ApiResponse[List[User]])
+@router.get("/", response_model=ApiResponse[List[UserSchema]])
 async def get_users(
     skip: int = 0,
     limit: int = 100,
@@ -88,8 +88,8 @@ async def get_users(
 ):
     """Get all users (admin endpoint)."""
     try:
-        users = db.query(User).offset(skip).limit(limit).all()
-        return ApiResponse(data=users, success=True)
+        users = db.query(UserModel).offset(skip).limit(limit).all()
+        return ApiResponse(data=[UserSchema.model_validate(u) for u in users], success=True)
 
     except Exception as e:
         raise HTTPException(
@@ -98,18 +98,18 @@ async def get_users(
         )
 
 
-@router.get("/{user_id}", response_model=ApiResponse[User])
+@router.get("/{user_id}", response_model=ApiResponse[UserSchema])
 async def get_user(user_id: str, db: Session = Depends(get_db)):
     """Get user by ID."""
     try:
-        user = db.query(User).filter(User.id == user_id).first()
+        user = db.query(UserModel).filter(UserModel.id == user_id).first()
         if not user:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="User not found"
             )
 
-        return ApiResponse(data=user, success=True)
+        return ApiResponse(data=UserSchema.model_validate(user), success=True)
 
     except HTTPException:
         raise

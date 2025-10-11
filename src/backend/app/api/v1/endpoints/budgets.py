@@ -7,9 +7,9 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
-from app.models.budget import Budget
+from app.models.budget import Budget as BudgetModel
 from app.models.user import User
-from app.schemas.budget import BudgetCreate, BudgetUpdate, Budget, BudgetList
+from app.schemas.budget import BudgetCreate, BudgetUpdate, Budget as BudgetSchema, BudgetList
 from app.schemas.common import ApiResponse
 
 router = APIRouter()
@@ -28,7 +28,7 @@ async def get_budgets(db: Session = Depends(get_db)):
             )
 
         # Get user's budgets
-        budgets = db.query(Budget).filter(Budget.user_id == user.id).all()
+        budgets = db.query(BudgetModel).filter(BudgetModel.user_id == user.id).all()
 
         # Calculate totals
         total_allocated = sum(budget.allocated for budget in budgets)
@@ -37,7 +37,7 @@ async def get_budgets(db: Session = Depends(get_db)):
 
         return ApiResponse(
             data=BudgetList(
-                budgets=budgets,
+                budgets=[BudgetSchema.model_validate(b) for b in budgets],
                 total_allocated=total_allocated,
                 total_spent=total_spent,
                 total_remaining=total_remaining
@@ -54,7 +54,7 @@ async def get_budgets(db: Session = Depends(get_db)):
         )
 
 
-@router.post("/", response_model=ApiResponse[Budget])
+@router.post("/", response_model=ApiResponse[BudgetSchema])
 async def create_budget(budget: BudgetCreate, db: Session = Depends(get_db)):
     """Create a new budget."""
     try:
@@ -67,8 +67,8 @@ async def create_budget(budget: BudgetCreate, db: Session = Depends(get_db)):
             )
 
         # Create budget
-        db_budget = Budget(
-            **budget.dict(),
+        db_budget = BudgetModel(
+            **budget.model_dump(),
             user_id=user.id,
             spent=0.0,
             remaining=budget.allocated,
@@ -80,7 +80,7 @@ async def create_budget(budget: BudgetCreate, db: Session = Depends(get_db)):
         db.refresh(db_budget)
 
         return ApiResponse(
-            data=db_budget,
+            data=BudgetSchema.model_validate(db_budget),
             success=True,
             message="Budget created successfully"
         )
@@ -93,18 +93,18 @@ async def create_budget(budget: BudgetCreate, db: Session = Depends(get_db)):
         )
 
 
-@router.get("/{budget_id}", response_model=ApiResponse[Budget])
+@router.get("/{budget_id}", response_model=ApiResponse[BudgetSchema])
 async def get_budget(budget_id: str, db: Session = Depends(get_db)):
     """Get budget by ID."""
     try:
-        budget = db.query(Budget).filter(Budget.id == budget_id).first()
+        budget = db.query(BudgetModel).filter(BudgetModel.id == budget_id).first()
         if not budget:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Budget not found"
             )
 
-        return ApiResponse(data=budget, success=True)
+        return ApiResponse(data=BudgetSchema.model_validate(budget), success=True)
 
     except HTTPException:
         raise
@@ -115,7 +115,7 @@ async def get_budget(budget_id: str, db: Session = Depends(get_db)):
         )
 
 
-@router.put("/{budget_id}", response_model=ApiResponse[Budget])
+@router.put("/{budget_id}", response_model=ApiResponse[BudgetSchema])
 async def update_budget(
     budget_id: str,
     budget_update: BudgetUpdate,
@@ -124,7 +124,7 @@ async def update_budget(
     """Update budget."""
     try:
         # Get existing budget
-        budget = db.query(Budget).filter(Budget.id == budget_id).first()
+        budget = db.query(BudgetModel).filter(BudgetModel.id == budget_id).first()
         if not budget:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -140,7 +140,7 @@ async def update_budget(
             )
 
         # Update fields
-        update_data = budget_update.dict(exclude_unset=True)
+        update_data = budget_update.model_dump(exclude_unset=True)
         for field, value in update_data.items():
             if hasattr(budget, field):
                 setattr(budget, field, value)
@@ -153,7 +153,7 @@ async def update_budget(
         db.refresh(budget)
 
         return ApiResponse(
-            data=budget,
+            data=BudgetSchema.model_validate(budget),
             success=True,
             message="Budget updated successfully"
         )
@@ -173,7 +173,7 @@ async def delete_budget(budget_id: str, db: Session = Depends(get_db)):
     """Delete budget."""
     try:
         # Get budget
-        budget = db.query(Budget).filter(Budget.id == budget_id).first()
+        budget = db.query(BudgetModel).filter(BudgetModel.id == budget_id).first()
         if not budget:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,

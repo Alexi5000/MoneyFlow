@@ -9,10 +9,10 @@ from sqlalchemy import and_, or_, desc
 from datetime import datetime, timedelta
 
 from app.core.database import get_db
-from app.models.transaction import Transaction
+from app.models.transaction import Transaction as TransactionModel
 from app.models.user import User
 from app.schemas.transaction import (
-    TransactionCreate, TransactionUpdate, Transaction,
+    TransactionCreate, TransactionUpdate, Transaction as TransactionSchema,
     TransactionList, TransactionType
 )
 from app.schemas.common import ApiResponse, FilterOptions
@@ -41,23 +41,23 @@ async def get_transactions(
             )
 
         # Build query
-        query = db.query(Transaction).filter(Transaction.user_id == user.id)
+        query = db.query(TransactionModel).filter(TransactionModel.user_id == user.id)
 
         # Apply filters
         if category:
-            query = query.filter(Transaction.category == category)
+            query = query.filter(TransactionModel.category == category)
 
         if type_filter:
-            query = query.filter(Transaction.type == type_filter.value)
+            query = query.filter(TransactionModel.type == type_filter.value)
 
         if start_date:
-            query = query.filter(Transaction.date >= start_date)
+            query = query.filter(TransactionModel.date >= start_date)
 
         if end_date:
-            query = query.filter(Transaction.date <= end_date)
+            query = query.filter(TransactionModel.date <= end_date)
 
         # Order by date (newest first)
-        query = query.order_by(desc(Transaction.date))
+        query = query.order_by(desc(TransactionModel.date))
 
         # Get total count for pagination
         total = query.count()
@@ -70,7 +70,7 @@ async def get_transactions(
 
         return ApiResponse(
             data=TransactionList(
-                transactions=transactions,
+                transactions=[TransactionSchema.model_validate(t) for t in transactions],
                 total=total,
                 page=(skip // limit) + 1,
                 limit=limit,
@@ -88,7 +88,7 @@ async def get_transactions(
         )
 
 
-@router.get("/recent", response_model=ApiResponse[List[Transaction]])
+@router.get("/recent", response_model=ApiResponse[List[TransactionSchema]])
 async def get_recent_transactions(
     limit: int = Query(10, ge=1, le=50),
     db: Session = Depends(get_db)
@@ -105,14 +105,14 @@ async def get_recent_transactions(
 
         # Get recent transactions
         transactions = (
-            db.query(Transaction)
-            .filter(Transaction.user_id == user.id)
-            .order_by(desc(Transaction.date))
+            db.query(TransactionModel)
+            .filter(TransactionModel.user_id == user.id)
+            .order_by(desc(TransactionModel.date))
             .limit(limit)
             .all()
         )
 
-        return ApiResponse(data=transactions, success=True)
+        return ApiResponse(data=[TransactionSchema.model_validate(t) for t in transactions], success=True)
 
     except HTTPException:
         raise
@@ -123,7 +123,7 @@ async def get_recent_transactions(
         )
 
 
-@router.post("/", response_model=ApiResponse[Transaction])
+@router.post("/", response_model=ApiResponse[TransactionSchema])
 async def create_transaction(
     transaction: TransactionCreate,
     db: Session = Depends(get_db)
@@ -170,18 +170,18 @@ async def create_transaction(
         )
 
 
-@router.get("/{transaction_id}", response_model=ApiResponse[Transaction])
+@router.get("/{transaction_id}", response_model=ApiResponse[TransactionSchema])
 async def get_transaction(transaction_id: str, db: Session = Depends(get_db)):
     """Get transaction by ID."""
     try:
-        transaction = db.query(Transaction).filter(Transaction.id == transaction_id).first()
+        transaction = db.query(TransactionModel).filter(TransactionModel.id == transaction_id).first()
         if not transaction:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Transaction not found"
             )
 
-        return ApiResponse(data=transaction, success=True)
+        return ApiResponse(data=TransactionSchema.model_validate(transaction), success=True)
 
     except HTTPException:
         raise
@@ -192,7 +192,7 @@ async def get_transaction(transaction_id: str, db: Session = Depends(get_db)):
         )
 
 
-@router.put("/{transaction_id}", response_model=ApiResponse[Transaction])
+@router.put("/{transaction_id}", response_model=ApiResponse[TransactionSchema])
 async def update_transaction(
     transaction_id: str,
     transaction_update: TransactionUpdate,
