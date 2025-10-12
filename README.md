@@ -1,5 +1,5 @@
 # MoneyFlow - AI-Powered Budget Tracker
-![MoneyFlow App Screenshot](moneyflow 1.png)
+![MoneyFlow App Screenshot](moneyflow-screenshot.png)
 
 
 > **A beautiful, cursor.com-inspired financial management application built with modern web technologies.**
