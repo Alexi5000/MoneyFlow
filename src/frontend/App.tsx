@@ -1,3 +1,12 @@
+/**
+ * MoneyFlow - Main Application Component
+ * 
+ * Created by: Alex Cinovoj & TechTide AI
+ * Version: 1.0.0
+ * Copyright (c) 2025 Alex Cinovoj & TechTide AI
+ * License: MIT
+ */
+
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Layout } from './components/Layout/Layout'

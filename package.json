@@ -1,8 +1,11 @@
 {
   "name": "moneyflow",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "AI-Powered Budget Tracker with cursor.com-inspired design",
+  "author": "Alex Cinovoj & TechTide AI",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -40,5 +43,20 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.5.0",
     "vite": "^5.4.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TechTide/MoneyFlow"
+  },
+  "keywords": [
+    "budget-tracker",
+    "finance",
+    "react",
+    "typescript",
+    "fastapi",
+    "python",
+    "cursor-design",
+    "tailwindcss",
+    "full-stack"
+  ]
 }

@@ -4,6 +4,10 @@
 
 Built to make you extraordinarily productive, MoneyFlow is the best way to manage your finances.
 
+**Created by**: Alex Cinovoj & TechTide AI  
+**Version**: 1.0.0  
+**License**: MIT
+
 ## ✨ Features
 
 - 💰 **Smart Budgeting** - Track budgets with beautiful visualizations and real-time updates
@@ -41,9 +45,15 @@ Built to make you extraordinarily productive, MoneyFlow is the best way to manag
 
 ### One-Click Deployment
 
-**Windows (Recommended):**
+**Using Make (Recommended):**
 ```bash
-.\QUICKSTART.bat
+make install    # Install dependencies
+make start      # Start both servers
+```
+
+**Or using scripts:**
+```bash
+.\scripts\QUICKSTART.bat
 ```
 
 This will:
@@ -95,14 +105,29 @@ MoneyFlow/
 │       ├── store/          # Zustand stores
 │       ├── types/          # TypeScript types
 │       └── utils/          # Utility functions
-├── config/                 # Build configurations
-│   ├── vite.config.ts     # Vite configuration
-│   ├── tailwind.config.ts # Tailwind configuration
-│   └── postcss.config.js  # PostCSS configuration
-├── tailwind.config.js     # Root Tailwind config
-├── postcss.config.js      # Root PostCSS config
-├── vite.config.ts         # Root Vite config
-└── QUICKSTART.bat         # One-click deployment
+├── config/                  # TypeScript & ESLint configurations
+│   ├── tsconfig.json       # TypeScript configuration
+│   ├── eslint.config.js    # ESLint configuration
+│   └── package.json        # Config dependencies
+├── docs/                    # Documentation
+│   ├── README.md           # Documentation index
+│   ├── CURRENT_STATUS.md   # System status
+│   ├── DEPLOYMENT_GUIDE.md # Deployment instructions
+│   └── backend.md          # Backend API docs
+├── scripts/                 # Deployment & utility scripts
+│   ├── QUICKSTART.bat      # One-click start
+│   ├── test_api.ps1        # API testing
+│   └── review_app.ps1      # Full app review
+├── node_modules/            # npm dependencies (auto-generated)
+├── README.md                # This file
+├── LICENSE                  # MIT License
+├── Makefile                 # Build commands
+├── .gitignore              # Git ignore rules
+├── package.json            # Node dependencies
+├── index.html              # Entry HTML file
+├── vite.config.ts          # Vite config proxy → config/
+├── tailwind.config.js      # Tailwind proxy → config/
+└── postcss.config.js       # PostCSS proxy → config/
 ```
 
 ## 🎨 Design Philosophy
@@ -119,23 +144,28 @@ MoneyFlow's design is inspired by **cursor.com**:
 ## 🛠️ Development
 
 ```bash
-# Frontend Development
-npm run dev          # Start dev server (HMR enabled)
-npm run build        # Production build
-npm run lint         # Lint code
-npm run preview      # Preview production build
+# Using Makefile (Recommended)
+make help           # Show all commands
+make install        # Install dependencies
+make start          # Start both servers
+make stop           # Stop all servers
+make test           # Test all APIs
+make dev            # Development mode
+make build          # Build for production
+make clean          # Clean build artifacts
 
-# Backend Development
-cd src/backend
-uvicorn main:app --reload  # Start with auto-reload
-pytest                      # Run tests
+# Or directly
+npm run dev         # Frontend dev server
+cd src/backend && uvicorn main:app --reload  # Backend dev
 ```
 
 ## 🧪 Testing
 
 **Test Backend APIs:**
-```powershell
-powershell -ExecutionPolicy Bypass -File test_api.ps1
+```bash
+make test
+# Or manually:
+# powershell -ExecutionPolicy Bypass -File scripts/test_api.ps1
 ```
 
 Expected output:
@@ -162,9 +192,31 @@ Interactive API docs available at:
 
 ## 📚 Documentation
 
-- **[Deployment Complete](./DEPLOYMENT_SUCCESS.md)** - Deployment summary
-- **[Design Match](./✅_CURSOR_DESIGN_COMPLETE.md)** - Cursor.com design details
-- **[Final Status](./🎉_DEPLOYMENT_AND_DESIGN_COMPLETE.md)** - Complete status
+- **[Documentation Index](./docs/README.md)** - Complete documentation hub
+- **[Final Status](./docs/FINAL_STATUS.md)** - Project status and verification
+- **[Quick Reference](./docs/QUICK_REFERENCE.md)** - Quick commands and troubleshooting
+- **[Deployment Guide](./docs/DEPLOYMENT_GUIDE.md)** - Full deployment instructions
+- **[Cursor.com Design](./docs/✅_CURSOR_DESIGN_COMPLETE.md)** - Design specifications
+- **[Authors](./docs/AUTHORS.md)** - Creator information
+
+## 👥 Credits
+
+**Created and Developed by:**
+- **Alex Cinovoj** - Lead Developer
+- **TechTide AI** - Development Partner
+
+### Technology Stack
+- Frontend: React 18.3 + TypeScript 5.5 + Vite 5.4
+- Backend: FastAPI 0.118 + Python 3.14 + SQLAlchemy 2.0
+- Styling: Tailwind CSS 3.4 (Cursor.com-inspired)
+- State: Zustand 4.4
+- Animations: Framer Motion 10.16
+
+### Design Inspiration
+- Cursor.com - Modern, clean aesthetic
+- Pure black (#000) backgrounds
+- Orange (#FF5F00) accent colors
+- System fonts and generous spacing
 
 ## 🤝 Contributing
 
@@ -176,8 +228,22 @@ Interactive API docs available at:
 
 ## 📄 License
 
-MIT License - see LICENSE file for details
+MIT License
+
+Copyright (c) 2025 Alex Cinovoj & TechTide AI
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 ---
 
-**✅ Full Stack Deployed & Running | 🎨 Cursor.com Design Complete | 🚀 Ready for Development**
+**✅ Full Stack Application | 🎨 Cursor.com Design | 🚀 Production Ready**
+
+**Creators**: Alex Cinovoj & TechTide AI © 2025

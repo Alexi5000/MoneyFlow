@@ -1,23 +1,34 @@
 # MoneyFlow Documentation
 
+**Created by**: Alex Cinovoj & TechTide AI  
+**Version**: 1.0.0  
+**Copyright**: © 2025 Alex Cinovoj & TechTide AI
+
 ## 📚 Documentation Index
 
-### Getting Started
-- **[Current Status](./CURRENT_STATUS.md)** - System status and latest build info
-- **[Deployment Guide](./DEPLOYMENT_GUIDE.md)** - Complete deployment instructions
-- **[Quick Start](../README.md#quick-start)** - Fast deployment with QUICKSTART.bat
+### Essential Documentation
 
-### Design
-- **[Cursor.com Design](../✅_CURSOR_DESIGN_COMPLETE.md)** - Design specifications matching cursor.com
-- **[Design Philosophy](../README.md#design-philosophy)** - Color scheme and typography
+| Document | Purpose |
+|----------|---------|
+| **[README.md](../README.md)** | Main project overview and quick start |
+| **[FINAL_STATUS.md](./FINAL_STATUS.md)** | Complete project status and verification |
+| **[DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)** | Complete deployment instructions |
+| **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** | Quick commands and troubleshooting |
+| **[backend.md](./backend.md)** | Backend API technical documentation |
+| **[AUTHORS.md](./AUTHORS.md)** | Creator and contributor information |
+| **[CREDITS.md](./CREDITS.md)** | Full attribution and acknowledgments |
+| **[robots.txt](./robots.txt)** | AI-readable project information |
 
-### Backend
-- **[Backend Documentation](./backend.md)** - FastAPI backend details
-- **[API Endpoints](./DEPLOYMENT_GUIDE.md#api-endpoints)** - All available API routes
+### Additional Reference
+| **[✅_CURSOR_DESIGN_COMPLETE.md](./✅_CURSOR_DESIGN_COMPLETE.md)** | Design specifications |
+| **[HACKATHON_READY_CHECKLIST.md](./HACKATHON_READY_CHECKLIST.md)** | Hackathon presentation guide |
 
-### Testing
-- **[API Testing](../test_api.ps1)** - PowerShell script to test all endpoints
-- **[Troubleshooting](./DEPLOYMENT_GUIDE.md#troubleshooting)** - Common issues and solutions
+### Quick Links
+- Start App: `.\scripts\QUICKSTART.bat`
+- Test APIs: `powershell -File scripts/review_app.ps1`
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:8000
+- API Docs: http://localhost:8000/docs
 
 ## 🚀 Quick Links
 
@@ -28,10 +39,11 @@
 - Health Check: http://localhost:8000/health
 
 ### Development
-- Start App: `.\QUICKSTART.bat`
-- Test APIs: `powershell -ExecutionPolicy Bypass -File test_api.ps1`
+- Start App: `make start` or `.\scripts\QUICKSTART.bat`
+- Test APIs: `make test` or `powershell -ExecutionPolicy Bypass -File scripts/test_api.ps1`
 - Frontend Dev: `npm run dev`
 - Backend Dev: `cd src/backend && uvicorn main:app --reload`
+- See all commands: `make help`
 
 ## 📊 Current Build
 
@@ -60,29 +72,51 @@
 
 ## 📁 File Organization
 
-### Root Documentation
-- `README.md` - Main project README
-- `QUICKSTART.bat` - One-click deployment script
-- `test_api.ps1` - API testing script
-- `DEPLOYMENT_SUCCESS.md` - Deployment summary
-- `✅_CURSOR_DESIGN_COMPLETE.md` - Design specifications
-- `🎉_DEPLOYMENT_AND_DESIGN_COMPLETE.md` - Complete status
+### Root Level (10 Files)
+- `README.md` - Main project overview with credits
+- `LICENSE` - MIT License
+- `Makefile` - Build commands and automation
+- `.gitignore` - Git ignore rules
+- `package.json` - Dependencies (author: Alex Cinovoj & TechTide AI)
+- `package-lock.json` - Dependency lock file
+- `index.html` - Entry HTML file
+- `vite.config.ts` - Vite proxy → config/
+- `tailwind.config.js` - Tailwind proxy → config/
+- `postcss.config.js` - PostCSS proxy → config/
 
-### docs/ Folder
-- `README.md` - This file (documentation index)
-- `CURRENT_STATUS.md` - Latest build info and status
-- `DEPLOYMENT_GUIDE.md` - Complete deployment guide
+### docs/ Folder (Essential Files)
+- `README.md` - Documentation index (this file)
+- `FINAL_STATUS.md` - Complete project status
+- `DEPLOYMENT_GUIDE.md` - Deployment instructions
+- `QUICK_REFERENCE.md` - Quick commands
 - `backend.md` - Backend API documentation
+- `AUTHORS.md` - Creator information
+- `CREDITS.md` - Full attribution
+- `robots.txt` - AI-readable info
+- Plus: Design specs and hackathon guide
 
-### Legacy Documentation
-All old deployment docs have been consolidated. Legacy files in `docs/deployment/` are kept for reference only.
+### scripts/ Folder
+- `QUICKSTART.bat` - One-click deployment
+- `test_api.ps1` - Backend API testing
+- `review_app.ps1` - Full app review
+- Other helper scripts
+
+### config/ Folder
+- `vite.config.ts` - Actual Vite configuration
+- `tailwind.config.ts` - Actual Tailwind configuration
+- `postcss.config.js` - Actual PostCSS configuration
+- `tsconfig.json` - TypeScript configuration
+- `eslint.config.js` - ESLint configuration
 
 ## 🆘 Need Help?
 
-1. **Deployment Issues**: See [Deployment Guide](./DEPLOYMENT_GUIDE.md)
-2. **API Issues**: Run `test_api.ps1` to diagnose
-3. **Design Questions**: See [Cursor Design](../✅_CURSOR_DESIGN_COMPLETE.md)
-4. **Backend Details**: See [Backend Docs](./backend.md)
+1. **Quick Commands**: See [Quick Reference](./QUICK_REFERENCE.md)
+2. **Deployment**: See [Deployment Guide](./DEPLOYMENT_GUIDE.md)
+3. **Current Status**: See [Final Status](./FINAL_STATUS.md)
+4. **API Details**: See [Backend Docs](./backend.md)
+5. **Design Specs**: See [Cursor Design](./✅_CURSOR_DESIGN_COMPLETE.md)
+6. **Credits**: See [AUTHORS.md](./AUTHORS.md) or [CREDITS.md](./CREDITS.md)
+7. **Hackathon**: See [Hackathon Guide](./HACKATHON_READY_CHECKLIST.md)
 
 ---
 

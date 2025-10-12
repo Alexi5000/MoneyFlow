@@ -1,8 +1,15 @@
+// MoneyFlow Vite Configuration
+// Created by: Alex Cinovoj & TechTide AI
+// Copyright (c) 2025 Alex Cinovoj & TechTide AI
+
+// MoneyFlow Vite Configuration
+// Created by: Alex Cinovoj & TechTide AI
+// Copyright (c) 2025 Alex Cinovoj & TechTide AI
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {

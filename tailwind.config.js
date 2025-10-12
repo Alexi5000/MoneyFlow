@@ -1,10 +1,12 @@
+// MoneyFlow Tailwind Configuration
+// Created by: Alex Cinovoj & TechTide AI
+// Copyright (c) 2025 Alex Cinovoj & TechTide AI
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
-    "./src/frontend/**/*.{js,ts,jsx,tsx}",
-    "./src/frontend/components/**/*.{js,ts,jsx,tsx}",
-    "./src/frontend/pages/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: 'class',
   theme: {
@@ -14,7 +16,7 @@ export default {
         secondary: '#111111',
         accent: '#FF5F00',  // Cursor.com orange
         border: '#222222',
-        'gray': {
+        gray: {
           850: '#1a1a1a',
           900: '#111111',
           950: '#0a0a0a',

@@ -3,6 +3,11 @@ MoneyFlow Backend API Server
 
 A comprehensive FastAPI backend for the MoneyFlow financial management application.
 Provides RESTful APIs for user management, transactions, budgets, and AI insights.
+
+Created by: Alex Cinovoj & TechTide AI
+Version: 1.0.0
+Copyright (c) 2025 Alex Cinovoj & TechTide AI
+License: MIT
 """
 
 from fastapi import FastAPI, HTTPException, Depends, status
