@@ -1,68 +1,111 @@
-# MoneyFlow - AI-Powered Budget Tracker
-![MoneyFlow App Screenshot](moneyflow-screenshot.png)
+<div align="center">
 
+<img src="assets/icon.png" alt="MoneyFlow Logo" width="120" />
 
-> **A beautiful, cursor.com-inspired financial management application built with modern web technologies.**
+# MoneyFlow
 
-Built to make you extraordinarily productive, MoneyFlow is the best way to manage your finances.
+### AI-Powered Budget Tracker
 
-**Created by**: Alex Cinovoj & TechTide AI  
-**Version**: 1.0.0  
-**License**: MIT
+**Stop guessing where your money goes. MoneyFlow tracks every dollar, categorizes spending with AI, and gives you the insights you need to build wealth.**
 
-## ✨ Features
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.3-61dafb?logo=react)](https://react.dev/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.118-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646cff?logo=vite)](https://vitejs.dev/)
+[![Tailwind](https://img.shields.io/badge/Tailwind-3.4-06b6d4?logo=tailwindcss)](https://tailwindcss.com/)
 
-- 💰 **Smart Budgeting** - Track budgets with beautiful visualizations and real-time updates
-- 📊 **Transaction Management** - Automatic categorization and intelligent insights
-- 🎨 **Cursor.com Design** - Sleek black theme with orange accents, exactly like cursor.com
-- 📈 **Analytics Dashboard** - Comprehensive financial analytics and trends
-- ⚡ **Lightning Fast** - Built with Vite for instant hot module replacement
-- 🎯 **AI-Powered** - Intelligent recommendations and spending analysis
+[Features](#features) · [Quick Start](#-quick-start) · [Tech Stack](#tech-stack) · [Architecture](#-project-structure) · [Docs](#-documentation)
 
-## 🚀 Tech Stack
+---
+
+<img src="assets/cover.png" alt="MoneyFlow - AI Budget Tracker" width="100%" />
+
+</div>
+
+---
+
+## The Problem
+
+Most budgeting apps are either too simple (just a spreadsheet) or too complex (requires a finance degree). You download one, manually categorize 200 transactions, get overwhelmed by the interface, and go back to checking your bank app and hoping for the best. Meanwhile, subscriptions you forgot about keep draining your account.
+
+## The Solution
+
+MoneyFlow is an **AI-powered budget tracker** with a cursor.com-inspired dark interface that makes managing money feel like using a premium dev tool. Automatic transaction categorization, intelligent spending insights, beautiful 3D visualizations, and a dashboard that actually makes you want to check your finances. Full-stack React + FastAPI with real-time analytics.
+
+> *Open MoneyFlow. See your spending breakdown in 3 seconds. Notice you spent $340 on food delivery last month. Set a budget. AI alerts you when you're trending over. Save $200/month without thinking about it.*
+
+---
+
+## Features
+
+- **AI Categorization** — Transactions automatically sorted into smart categories
+- **Smart Budgeting** — Set budgets with real-time progress tracking and alerts
+- **Analytics Dashboard** — Comprehensive spending trends, patterns, and insights
+- **3D Visualizations** — Three.js-powered financial data visualization
+- **Transaction Management** — Full CRUD with search, filter, and bulk operations
+- **Cursor.com Design** — Sleek black theme with orange accents, buttery smooth animations
+- **Lightning Fast** — Vite HMR + FastAPI async for instant responsiveness
+- **API Documentation** — Auto-generated Swagger UI and ReDoc
+- **One-Click Deploy** — Makefile commands for instant setup
+
+---
+
+## Tech Stack
 
 ### Frontend
-- **React** 18.3.1 with TypeScript 5.5.3
-- **Vite** 5.4.2 - Lightning-fast build tool
-- **Tailwind CSS** 3.4.10 - Utility-first styling
-- **Framer Motion** 10.16.16 - Smooth animations
-- **Zustand** 4.4.7 - State management
-- **React Router DOM** 6.26.2 - Client-side routing
-- **Lucide React** - Beautiful icons
-- **Three.js** - 3D visualizations
+
+| Technology | Version | Purpose |
+|---|---|---|
+| **React** | 18.3 | UI framework |
+| **TypeScript** | 5.5 | Type-safe development |
+| **Vite** | 5.4 | Build tool with HMR |
+| **Tailwind CSS** | 3.4 | Utility-first styling |
+| **Framer Motion** | 10.16 | Smooth animations |
+| **Zustand** | 4.4 | Lightweight state management |
+| **Three.js** | — | 3D financial visualizations |
+| **Lucide React** | — | Beautiful icon library |
+| **React Router** | 6.26 | Client-side routing |
 
 ### Backend
-- **FastAPI** 0.118.3 - Modern Python web framework
-- **Python** 3.14 - Latest Python
-- **SQLAlchemy** 2.0.44 - SQL toolkit and ORM
-- **Pydantic** 2.12 - Data validation
-- **Uvicorn** - ASGI server
-- **SQLite** - Embedded database
 
-## 🚀 Quick Start
+| Technology | Version | Purpose |
+|---|---|---|
+| **FastAPI** | 0.118 | Async Python web framework |
+| **Python** | 3.14 | Runtime |
+| **SQLAlchemy** | 2.0 | SQL toolkit and ORM |
+| **Pydantic** | 2.12 | Data validation |
+| **Uvicorn** | — | ASGI server |
+| **SQLite** | — | Embedded database |
+
+---
+
+## Quick Start
 
 ### Prerequisites
-- **Python 3.8+** → [Download](https://www.python.org/downloads/)
-- **Node.js 18+** → [Download](https://nodejs.org/)
 
-### One-Click Deployment
+- **Python 3.8+** — [Download](https://www.python.org/downloads/)
+- **Node.js 18+** — [Download](https://nodejs.org/)
 
-**Using Make (Recommended):**
+### One-Click Setup
+
 ```bash
-make install    # Install dependencies
-make start      # Start both servers
+# Clone the repository
+git clone https://github.com/Alexi5000/MoneyFlow.git
+cd MoneyFlow
+
+# Install and start everything
+make install    # Install all dependencies
+make start      # Start both frontend + backend
 ```
 
-**Or using scripts:**
+Or use the quickstart script:
+
 ```bash
 .\scripts\QUICKSTART.bat
 ```
 
-This will:
-1. Install all dependencies
-2. Start backend on port 8000
-3. Start frontend on port 5173
-4. Open browser automatically
+This will install dependencies, start the backend on port 8000, start the frontend on port 5173, and open your browser automatically.
 
 ### Manual Start
 
@@ -79,14 +122,34 @@ npm install
 npm run dev
 ```
 
-### 🌐 Access Points
+### Access Points
 
-- **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost:8000
-- **API Documentation**: http://localhost:8000/docs
-- **Health Check**: http://localhost:8000/health
+| Service | URL |
+|---|---|
+| **Frontend** | http://localhost:5173 |
+| **Backend API** | http://localhost:8000 |
+| **API Docs (Swagger)** | http://localhost:8000/docs |
+| **API Docs (ReDoc)** | http://localhost:8000/redoc |
+| **Health Check** | http://localhost:8000/health |
 
-## 📁 Project Structure
+---
+
+## Design Philosophy
+
+MoneyFlow's design is inspired by **cursor.com** — minimal, dark, and focused:
+
+| Element | Value | Purpose |
+|---|---|---|
+| **Background** | `#000000` | Clean, professional base |
+| **Surface** | `#0a0a0a`, `#222` | Depth without distraction |
+| **Accent** | `#FF5F00` | Purposeful call-to-actions |
+| **Typography** | System fonts | Native, fast-loading |
+| **Spacing** | Generous | Breathing room for clarity |
+| **Corners** | Rounded | Modern, friendly interactions |
+
+---
+
+## Project Structure
 
 ```
 MoneyFlow/
@@ -101,151 +164,93 @@ MoneyFlow/
 │   │   ├── main.py          # FastAPI application
 │   │   └── requirements.txt # Python dependencies
 │   └── frontend/            # React Frontend
-│       ├── components/      # Reusable components
-│       ├── pages/          # Page components
-│       ├── services/       # API services
-│       ├── store/          # Zustand stores
-│       ├── types/          # TypeScript types
-│       └── utils/          # Utility functions
+│       ├── components/      # Reusable UI components
+│       ├── pages/           # Dashboard, Budgets, Analytics, Transactions, Settings
+│       ├── services/        # API service layer
+│       ├── store/           # Zustand state stores
+│       ├── types/           # TypeScript type definitions
+│       └── utils/           # Utility functions
 ├── config/                  # TypeScript & ESLint configurations
-│   ├── tsconfig.json       # TypeScript configuration
-│   ├── eslint.config.js    # ESLint configuration
-│   └── package.json        # Config dependencies
-├── docs/                    # Documentation
-│   ├── README.md           # Documentation index
-│   ├── CURRENT_STATUS.md   # System status
-│   ├── DEPLOYMENT_GUIDE.md # Deployment instructions
-│   └── backend.md          # Backend API docs
+├── docs/                    # Full documentation suite
 ├── scripts/                 # Deployment & utility scripts
-│   ├── QUICKSTART.bat      # One-click start
-│   ├── test_api.ps1        # API testing
-│   └── review_app.ps1      # Full app review
-├── node_modules/            # npm dependencies (auto-generated)
-├── README.md                # This file
-├── LICENSE                  # MIT License
+├── assets/                  # Cover art and branding
 ├── Makefile                 # Build commands
-├── .gitignore              # Git ignore rules
-├── package.json            # Node dependencies
-├── index.html              # Entry HTML file
-├── vite.config.ts          # Vite config proxy → config/
-├── tailwind.config.js      # Tailwind proxy → config/
-└── postcss.config.js       # PostCSS proxy → config/
+├── package.json             # Node dependencies
+├── vite.config.ts           # Vite configuration
+└── tailwind.config.js       # Tailwind configuration
 ```
-
-## 🎨 Design Philosophy
-
-MoneyFlow's design is inspired by **cursor.com**:
-
-- **Pure Black** (`#000000`) - Clean, professional background
-- **Subtle Grays** (`#0a0a0a`, `#222`) - Depth without distraction
-- **Orange Accent** (`#FF5F00`) - Purposeful call-to-actions
-- **System Fonts** - Native, fast-loading typography
-- **Generous Spacing** - Breathing room for clarity
-- **Rounded Buttons** - Modern, friendly interactions
-
-## 🛠️ Development
-
-```bash
-# Using Makefile (Recommended)
-make help           # Show all commands
-make install        # Install dependencies
-make start          # Start both servers
-make stop           # Stop all servers
-make test           # Test all APIs
-make dev            # Development mode
-make build          # Build for production
-make clean          # Clean build artifacts
-
-# Or directly
-npm run dev         # Frontend dev server
-cd src/backend && uvicorn main:app --reload  # Backend dev
-```
-
-## 🧪 Testing
-
-**Test Backend APIs:**
-```bash
-make test
-# Or manually:
-# powershell -ExecutionPolicy Bypass -File scripts/test_api.ps1
-```
-
-Expected output:
-```
-✓ Health Endpoint: Backend is healthy
-✓ User API: Alex Thompson ($15,420.75)
-✓ Budgets API: 3 budgets found
-✓ Transactions API: Transactions loaded
-```
-
-## 📦 Sample Data
-
-MoneyFlow includes pre-loaded sample data:
-- **User**: Alex Thompson with $15,420.75 balance
-- **Budgets**: 3 active budgets (Food, Transportation, Entertainment)
-- **Transactions**: 30 days of sample transactions
-- **Categories**: 7 predefined categories
-
-## 🌐 API Documentation
-
-Interactive API docs available at:
-- **Swagger UI**: http://localhost:8000/docs
-- **ReDoc**: http://localhost:8000/redoc
-
-## 📚 Documentation
-
-- **[Documentation Index](./docs/README.md)** - Complete documentation hub
-- **[Final Status](./docs/FINAL_STATUS.md)** - Project status and verification
-- **[Quick Reference](./docs/QUICK_REFERENCE.md)** - Quick commands and troubleshooting
-- **[Deployment Guide](./docs/DEPLOYMENT_GUIDE.md)** - Full deployment instructions
-- **[Cursor.com Design](./docs/✅_CURSOR_DESIGN_COMPLETE.md)** - Design specifications
-- **[Authors](./docs/AUTHORS.md)** - Creator information
-
-## 👥 Credits
-
-**Created and Developed by:**
-- **Alex Cinovoj** - Lead Developer
-- **TechTide AI** - Development Partner
-
-### Technology Stack
-- Frontend: React 18.3 + TypeScript 5.5 + Vite 5.4
-- Backend: FastAPI 0.118 + Python 3.14 + SQLAlchemy 2.0
-- Styling: Tailwind CSS 3.4 (Cursor.com-inspired)
-- State: Zustand 4.4
-- Animations: Framer Motion 10.16
-
-### Design Inspiration
-- Cursor.com - Modern, clean aesthetic
-- Pure black (#000) backgrounds
-- Orange (#FF5F00) accent colors
-- System fonts and generous spacing
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-MIT License
-
-Copyright (c) 2025 Alex Cinovoj & TechTide AI
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
 
 ---
 
-**✅ Full Stack Application | 🎨 Cursor.com Design | 🚀 Production Ready**
+## Development
 
-**Creators**: Alex Cinovoj & TechTide AI © 2025
+```bash
+make help           # Show all available commands
+make install        # Install all dependencies
+make start          # Start both servers
+make stop           # Stop all servers
+make test           # Run API tests
+make dev            # Development mode
+make build          # Build for production
+make clean          # Clean build artifacts
+```
+
+---
+
+## Sample Data
+
+MoneyFlow ships with pre-loaded sample data so you can explore immediately:
+
+- **User**: Alex Thompson with $15,420.75 balance
+- **Budgets**: 3 active budgets (Food, Transportation, Entertainment)
+- **Transactions**: 30 days of realistic sample transactions
+- **Categories**: 7 predefined spending categories
+
+---
+
+## Documentation
+
+- **[Documentation Index](./docs/README.md)** — Complete documentation hub
+- **[Deployment Guide](./docs/DEPLOYMENT_GUIDE.md)** — Full deployment instructions
+- **[Quick Reference](./docs/QUICK_REFERENCE.md)** — Quick commands and troubleshooting
+- **[Backend API](./docs/backend.md)** — Backend API documentation
+- **[Authors](./docs/AUTHORS.md)** — Creator information
+
+---
+
+## Roadmap
+
+- [ ] Bank account integration (Plaid API)
+- [ ] Recurring transaction detection
+- [ ] AI spending predictions and alerts
+- [ ] Multi-currency support
+- [ ] Mobile app (React Native)
+- [ ] Export to CSV/PDF
+- [ ] Shared household budgets
+- [ ] Investment portfolio tracking
+
+---
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'feat: add AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## License
+
+MIT License — Copyright (c) 2025 Alex Cinovoj & TechTide AI. See [LICENSE](./LICENSE) for details.
+
+---
+
+<div align="center">
+
+**Built by [Alex Cinovoj](https://github.com/Alexi5000) · [TechTide AI](https://github.com/Alexi5000)**
+
+*Take control of your money.*
+
+</div>
