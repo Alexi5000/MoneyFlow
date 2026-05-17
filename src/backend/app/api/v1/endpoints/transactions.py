@@ -5,8 +5,8 @@ Transaction management API endpoints.
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
-from sqlalchemy import and_, or_, desc
-from datetime import datetime, timedelta
+from sqlalchemy import desc
+from datetime import datetime
 
 from app.core.database import get_db
 from app.models.transaction import Transaction as TransactionModel
@@ -15,7 +15,7 @@ from app.schemas.transaction import (
     TransactionCreate, TransactionUpdate, Transaction as TransactionSchema,
     TransactionList, TransactionType
 )
-from app.schemas.common import ApiResponse, FilterOptions
+from app.schemas.common import ApiResponse
 
 router = APIRouter()
 
@@ -139,8 +139,8 @@ async def create_transaction(
             )
 
         # Create transaction
-        db_transaction = Transaction(
-            **transaction.dict(),
+        db_transaction = TransactionModel(
+            **transaction.model_dump(),
             user_id=user.id
         )
 
@@ -157,7 +157,7 @@ async def create_transaction(
         db.commit()
 
         return ApiResponse(
-            data=db_transaction,
+            data=TransactionSchema.model_validate(db_transaction),
             success=True,
             message="Transaction created successfully"
         )
@@ -201,7 +201,7 @@ async def update_transaction(
     """Update transaction."""
     try:
         # Get existing transaction
-        transaction = db.query(Transaction).filter(Transaction.id == transaction_id).first()
+        transaction = db.query(TransactionModel).filter(TransactionModel.id == transaction_id).first()
         if not transaction:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -210,6 +210,11 @@ async def update_transaction(
 
         # Get current user to verify ownership
         user = db.query(User).first()
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
         if transaction.user_id != user.id:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
@@ -217,7 +222,7 @@ async def update_transaction(
             )
 
         # Update fields
-        update_data = transaction_update.dict(exclude_unset=True)
+        update_data = transaction_update.model_dump(exclude_unset=True)
         for field, value in update_data.items():
             if hasattr(transaction, field):
                 setattr(transaction, field, value)
@@ -226,7 +231,7 @@ async def update_transaction(
         db.refresh(transaction)
 
         return ApiResponse(
-            data=transaction,
+            data=TransactionSchema.model_validate(transaction),
             success=True,
             message="Transaction updated successfully"
         )
@@ -246,7 +251,7 @@ async def delete_transaction(transaction_id: str, db: Session = Depends(get_db))
     """Delete transaction."""
     try:
         # Get transaction
-        transaction = db.query(Transaction).filter(Transaction.id == transaction_id).first()
+        transaction = db.query(TransactionModel).filter(TransactionModel.id == transaction_id).first()
         if not transaction:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -255,21 +260,27 @@ async def delete_transaction(transaction_id: str, db: Session = Depends(get_db))
 
         # Get current user to verify ownership
         user = db.query(User).first()
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
         if transaction.user_id != user.id:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="Not authorized to delete this transaction"
             )
 
-        # Store amount for balance adjustment
+        # Store values for balance adjustment before deleting the ORM instance
         amount = transaction.amount
+        transaction_type = transaction.type
 
         # Delete transaction
         db.delete(transaction)
         db.commit()
 
         # Update user balance
-        if transaction.type == TransactionType.INCOME:
+        if transaction_type == TransactionType.INCOME.value:
             user.total_balance -= amount
         else:
             user.total_balance += amount

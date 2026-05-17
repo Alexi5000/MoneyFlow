@@ -9,6 +9,7 @@ alembic>=1.13.0
 # Data validation
 pydantic>=2.10.0
 pydantic-settings>=2.6.0
+email-validator>=2.2.0
 
 # Authentication (for future use)
 python-jose[cryptography]==3.3.0

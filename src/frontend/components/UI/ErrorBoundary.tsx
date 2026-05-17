@@ -1,6 +1,4 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react'
-import { GlassmorphicCard } from './GlassmorphicCard'
-import { NeonButton } from './NeonButton'
 import { AlertTriangle, RefreshCw } from 'lucide-react'
 
 interface Props {
@@ -28,10 +26,7 @@ export class ErrorBoundary extends Component<Props, State> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error, errorInfo)
     this.setState({ error, errorInfo })
-    
-    if (this.props.onError) {
-      this.props.onError(error, errorInfo)
-    }
+    this.props.onError?.(error, errorInfo)
   }
 
   handleReset = () => {
@@ -45,20 +40,18 @@ export class ErrorBoundary extends Component<Props, State> {
       }
 
       return (
-        <div className="min-h-screen flex items-center justify-center p-4">
-          <GlassmorphicCard className="p-8 max-w-md w-full text-center">
+        <div className="min-h-screen flex items-center justify-center p-4 bg-slate-950">
+          <section className="p-8 max-w-md w-full text-center rounded-2xl border border-white/10 bg-white/10 shadow-2xl backdrop-blur-xl">
             <div className="text-red-400 mb-4">
               <AlertTriangle className="w-16 h-16 mx-auto" />
             </div>
-            
-            <h2 className="text-xl font-bold text-white mb-2">
-              Something went wrong
-            </h2>
-            
+
+            <h2 className="text-xl font-bold text-white mb-2">Something went wrong</h2>
+
             <p className="text-gray-400 mb-6">
               We encountered an unexpected error. This might be due to a temporary issue or incompatibility with your device.
             </p>
-            
+
             {this.state.error && (
               <details className="mb-6 text-left">
                 <summary className="text-sm text-gray-500 cursor-pointer hover:text-gray-400">
@@ -71,38 +64,36 @@ export class ErrorBoundary extends Component<Props, State> {
                   {this.state.errorInfo && (
                     <div>
                       <strong>Stack:</strong>
-                      <pre className="mt-1 whitespace-pre-wrap">
-                        {this.state.errorInfo.componentStack}
-                      </pre>
+                      <pre className="mt-1 whitespace-pre-wrap">{this.state.errorInfo.componentStack}</pre>
                     </div>
                   )}
                 </div>
               </details>
             )}
-            
+
             <div className="space-y-3">
-              <NeonButton
-                variant="primary"
+              <button
+                type="button"
                 onClick={this.handleReset}
-                icon={<RefreshCw className="w-4 h-4" />}
-                className="w-full"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-cyan-500 px-4 py-2 font-semibold text-slate-950 transition hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-300"
               >
+                <RefreshCw className="w-4 h-4" />
                 Try Again
-              </NeonButton>
-              
-              <NeonButton
-                variant="ghost"
+              </button>
+
+              <button
+                type="button"
                 onClick={() => window.location.reload()}
-                className="w-full"
+                className="w-full rounded-lg border border-white/10 px-4 py-2 font-semibold text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/30"
               >
                 Reload Page
-              </NeonButton>
+              </button>
             </div>
-            
+
             <div className="mt-6 text-xs text-gray-500">
               If this problem persists, try using a different browser or device.
             </div>
-          </GlassmorphicCard>
+          </section>
         </div>
       )
     }

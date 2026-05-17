@@ -18,9 +18,9 @@ interface FinancialState {
   setError: (error: string | null) => void
   
   // Data fetching
-  fetchUserData: () => Promise<void>
-  fetchTransactions: () => Promise<void>
-  fetchBudgets: () => Promise<void>
+  fetchUserData: () => Promise<boolean>
+  fetchTransactions: () => Promise<boolean>
+  fetchBudgets: () => Promise<boolean>
   initializeData: () => Promise<void>
   
   // Computed values

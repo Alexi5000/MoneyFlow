@@ -53,7 +53,7 @@ export const SettingsPage: React.FC = () => {
               </div>
               <div className="flex items-center justify-between py-3 border-t border-[#222]">
                 <span className="text-gray-400 text-[14px]">Monthly Income</span>
-                <span className="text-white text-[15px] font-medium">${user?.monthly_income || 0}</span>
+                <span className="text-white text-[15px] font-medium">${user?.monthlyIncome || 0}</span>
               </div>
             </div>
           </div>

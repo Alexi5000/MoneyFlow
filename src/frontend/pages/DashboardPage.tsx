@@ -8,9 +8,9 @@ export const DashboardPage: React.FC = () => {
   const { 
     user, 
     budgets, 
-    transactions, 
     isLoading, 
     error, 
+    setError,
     initializeData,
     getTotalIncome,
     getTotalExpenses,
@@ -27,7 +27,7 @@ export const DashboardPage: React.FC = () => {
       await initializeData()
     }
     loadData()
-  }, [])
+  }, [initializeData, setError])
 
   if (isLoading && !user) {
     return (

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 import { Plus, Search } from 'lucide-react'
 import { useFinancialStore } from '../store/financialStore'
 import { formatCurrency } from '../utils/formatters'

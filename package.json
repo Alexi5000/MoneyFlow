@@ -3,14 +3,18 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "AI-Powered Budget Tracker with cursor.com-inspired design",
+  "description": "Production-ready personal finance analytics dashboard with a React frontend and FastAPI backend",
   "author": "Alex Cinovoj & TechTide AI",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "typecheck": "tsc -b",
+    "preview": "vite preview",
+    "backend:install": "python3.11 -m pip install -r src/backend/requirements.txt",
+    "backend:smoke": "cd src/backend && PYTHONPATH=. python3.11 -c \"from main import app; print('backend_import_ok', app.title)\"",
+    "verify": "npm run lint && npm run typecheck && npm run build && npm run backend:smoke"
   },
   "dependencies": {
     "@react-three/drei": "^9.88.13",
@@ -27,6 +31,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
+    "@types/node": "^22.19.19",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@types/three": "^0.158.3",
@@ -46,7 +51,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/TechTide/MoneyFlow"
+    "url": "https://github.com/Alexi5000/MoneyFlow"
   },
   "keywords": [
     "budget-tracker",
@@ -55,7 +60,7 @@
     "typescript",
     "fastapi",
     "python",
-    "cursor-design",
+    "financial-analytics",
     "tailwindcss",
     "full-stack"
   ]

@@ -28,7 +28,7 @@ interface BudgetState {
   setError: (error: string | null) => void
   
   // Alert management
-  addAlert: (alert: Omit<BudgetAlert, 'id' | 'timestamp'>) => void
+  addAlert: (alert: Omit<BudgetAlert, 'id' | 'timestamp' | 'dismissed'>) => void
   dismissAlert: (alertId: string) => void
   clearAlerts: () => void
   

@@ -272,30 +272,6 @@ export interface UserPreferences {
   }
 }
 
-// Export all types
-export type {
-  User,
-  Transaction,
-  Budget,
-  AIPrediction,
-  FinancialInsight,
-  BudgetRecommendation,
-  Category,
-  FinancialGoal,
-  Notification,
-  Account,
-  RecurringTransaction,
-  Investment,
-  FinancialSummary,
-  AIAnalysisRequest,
-  AIAnalysisResponse,
-  ChartData,
-  FilterOptions,
-  Pagination,
-  ApiResponse,
-  UserPreferences
-}
-
 // Utility types
 export type TransactionType = Transaction['type']
 export type InsightSeverity = FinancialInsight['severity']
