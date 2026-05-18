@@ -1,0 +1,138 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">MoneyFlow AI budget tracker dashboard preview</title>
+  <desc id="desc">A dark, premium dashboard hero graphic showing MoneyFlow analytics, budget health, transaction intelligence, and cash-flow visualizations.</desc>
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="10%" r="90%">
+      <stop offset="0%" stop-color="#1f3b2e"/>
+      <stop offset="34%" stop-color="#0b1512"/>
+      <stop offset="100%" stop-color="#050807"/>
+    </radialGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111c18"/>
+      <stop offset="100%" stop-color="#07100d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#16a34a"/>
+      <stop offset="47%" stop-color="#84cc16"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#facc15"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="26" flood-color="#000000" flood-opacity="0.42"/>
+    </filter>
+    <filter id="greenGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="11" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.10 0 0 0 0 0.70 0 0 0 0 0.28 0 0 0 0.75 0"/>
+      <feBlend in="SourceGraphic" mode="screen"/>
+    </filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" stroke="#1f3b2e" stroke-opacity="0.35" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="640" rx="34" fill="url(#bgGlow)"/>
+  <rect width="1280" height="640" rx="34" fill="url(#grid)" opacity="0.46"/>
+  <circle cx="1015" cy="108" r="220" fill="#16a34a" opacity="0.10"/>
+  <circle cx="190" cy="570" r="210" fill="#f59e0b" opacity="0.09"/>
+
+  <g transform="translate(70 68)">
+    <rect x="0" y="0" width="320" height="504" rx="30" fill="#06100d" stroke="#244137" stroke-opacity="0.9"/>
+    <g transform="translate(32 34)">
+      <rect x="0" y="0" width="52" height="52" rx="16" fill="url(#accent)" filter="url(#greenGlow)"/>
+      <path d="M17 33C24 23 28 23 35 17" stroke="#04100b" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="18" cy="34" r="3.6" fill="#04100b"/>
+      <circle cx="35" cy="17" r="3.6" fill="#04100b"/>
+      <text x="70" y="23" fill="#f3fff8" font-family="Inter, ui-sans-serif, system-ui" font-size="25" font-weight="800">MoneyFlow</text>
+      <text x="70" y="46" fill="#8aa99b" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="600" letter-spacing="1.8">AI FINANCE OS</text>
+    </g>
+    <g transform="translate(32 126)" font-family="Inter, ui-sans-serif, system-ui" font-size="15" font-weight="700">
+      <rect x="0" y="0" width="256" height="48" rx="15" fill="#11221b" stroke="#2f5f49"/>
+      <circle cx="24" cy="24" r="6" fill="#22c55e"/>
+      <text x="44" y="30" fill="#f3fff8">Command Dashboard</text>
+      <text x="44" y="86" fill="#9db5aa">Transactions</text>
+      <text x="44" y="142" fill="#9db5aa">Budgets</text>
+      <text x="44" y="198" fill="#9db5aa">Analytics</text>
+      <text x="44" y="254" fill="#9db5aa">Settings</text>
+      <circle cx="24" cy="80" r="5" fill="#426153"/>
+      <circle cx="24" cy="136" r="5" fill="#426153"/>
+      <circle cx="24" cy="192" r="5" fill="#426153"/>
+      <circle cx="24" cy="248" r="5" fill="#426153"/>
+    </g>
+    <g transform="translate(32 420)">
+      <rect x="0" y="0" width="256" height="52" rx="18" fill="#0d1814" stroke="#20392f"/>
+      <text x="18" y="23" fill="#86efac" font-family="Inter, ui-sans-serif, system-ui" font-size="13" font-weight="700">API status</text>
+      <text x="18" y="40" fill="#d9fff0" font-family="Inter, ui-sans-serif, system-ui" font-size="13">FastAPI online</text>
+      <circle cx="226" cy="26" r="8" fill="#22c55e" filter="url(#greenGlow)"/>
+    </g>
+  </g>
+
+  <g transform="translate(430 66)" filter="url(#softShadow)">
+    <rect x="0" y="0" width="780" height="508" rx="34" fill="url(#card)" stroke="#27483a"/>
+    <g transform="translate(34 30)">
+      <text x="0" y="32" fill="#f6fff9" font-family="Inter, ui-sans-serif, system-ui" font-size="34" font-weight="850">Budget intelligence, beautifully instrumented.</text>
+      <text x="2" y="63" fill="#91aa9f" font-family="Inter, ui-sans-serif, system-ui" font-size="15">Real-time analytics, smart categorization, budget envelopes, goal progress, and export-ready data.</text>
+      <rect x="522" y="0" width="174" height="42" rx="21" fill="#0c1b15" stroke="#315f48"/>
+      <circle cx="546" cy="21" r="6" fill="#22c55e"/>
+      <text x="562" y="26" fill="#d9fff0" font-family="Inter, ui-sans-serif, system-ui" font-size="13" font-weight="800">Demo data synced</text>
+    </g>
+
+    <g transform="translate(34 116)">
+      <g>
+        <rect x="0" y="0" width="164" height="98" rx="22" fill="#08130f" stroke="#21392f"/>
+        <text x="18" y="29" fill="#91aa9f" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="700">Net balance</text>
+        <text x="18" y="65" fill="#f6fff9" font-family="Inter, ui-sans-serif, system-ui" font-size="29" font-weight="850">$24.8k</text>
+        <text x="18" y="83" fill="#22c55e" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="800">+12.4% MoM</text>
+      </g>
+      <g transform="translate(184 0)">
+        <rect x="0" y="0" width="164" height="98" rx="22" fill="#08130f" stroke="#21392f"/>
+        <text x="18" y="29" fill="#91aa9f" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="700">Savings rate</text>
+        <text x="18" y="65" fill="#f6fff9" font-family="Inter, ui-sans-serif, system-ui" font-size="29" font-weight="850">31%</text>
+        <text x="18" y="83" fill="#86efac" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="800">healthy trend</text>
+      </g>
+      <g transform="translate(368 0)">
+        <rect x="0" y="0" width="164" height="98" rx="22" fill="#08130f" stroke="#21392f"/>
+        <text x="18" y="29" fill="#91aa9f" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="700">Budget health</text>
+        <text x="18" y="65" fill="#f6fff9" font-family="Inter, ui-sans-serif, system-ui" font-size="29" font-weight="850">84</text>
+        <text x="18" y="83" fill="#facc15" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="800">watch dining</text>
+      </g>
+      <g transform="translate(552 0)">
+        <rect x="0" y="0" width="164" height="98" rx="22" fill="#08130f" stroke="#21392f"/>
+        <text x="18" y="29" fill="#91aa9f" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="700">AI confidence</text>
+        <text x="18" y="65" fill="#f6fff9" font-family="Inter, ui-sans-serif, system-ui" font-size="29" font-weight="850">92%</text>
+        <text x="18" y="83" fill="#22c55e" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="800">categorized</text>
+      </g>
+    </g>
+
+    <g transform="translate(34 246)">
+      <rect x="0" y="0" width="444" height="198" rx="26" fill="#08130f" stroke="#21392f"/>
+      <text x="22" y="34" fill="#f6fff9" font-family="Inter, ui-sans-serif, system-ui" font-size="17" font-weight="850">Cash-flow trajectory</text>
+      <path d="M26 152 C72 117, 92 129, 130 102 S190 92, 226 112 S300 158, 350 88 S398 72, 416 62" stroke="url(#accent)" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M26 152 C72 117, 92 129, 130 102 S190 92, 226 112 S300 158, 350 88 S398 72, 416 62 L416 170 L26 170 Z" fill="#22c55e" opacity="0.10"/>
+      <g stroke="#1d332b" stroke-width="1">
+        <path d="M26 70H416"/><path d="M26 105H416"/><path d="M26 140H416"/>
+      </g>
+      <text x="26" y="184" fill="#789488" font-family="Inter, ui-sans-serif, system-ui" font-size="11">Jan</text>
+      <text x="208" y="184" fill="#789488" font-family="Inter, ui-sans-serif, system-ui" font-size="11">Jun</text>
+      <text x="394" y="184" fill="#789488" font-family="Inter, ui-sans-serif, system-ui" font-size="11">Dec</text>
+    </g>
+
+    <g transform="translate(504 246)">
+      <rect x="0" y="0" width="212" height="198" rx="26" fill="#08130f" stroke="#21392f"/>
+      <text x="22" y="34" fill="#f6fff9" font-family="Inter, ui-sans-serif, system-ui" font-size="17" font-weight="850">Category mix</text>
+      <circle cx="106" cy="112" r="54" fill="none" stroke="#16271f" stroke-width="22"/>
+      <path d="M106 58 A54 54 0 0 1 157 130" stroke="#22c55e" stroke-width="22" stroke-linecap="round" fill="none"/>
+      <path d="M157 130 A54 54 0 0 1 79 159" stroke="#f59e0b" stroke-width="22" stroke-linecap="round" fill="none"/>
+      <path d="M79 159 A54 54 0 0 1 106 58" stroke="#84cc16" stroke-width="22" stroke-linecap="round" fill="none"/>
+      <text x="77" y="117" fill="#f6fff9" font-family="Inter, ui-sans-serif, system-ui" font-size="22" font-weight="850">7</text>
+      <text x="100" y="117" fill="#91aa9f" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="700">rules</text>
+    </g>
+  </g>
+
+  <g transform="translate(858 558)">
+    <rect x="0" y="0" width="318" height="42" rx="21" fill="#07110d" stroke="#294839"/>
+    <text x="26" y="27" fill="#d9fff0" font-family="Inter, ui-sans-serif, system-ui" font-size="13" font-weight="800">React + FastAPI + TypeScript + AI insights</text>
+  </g>
+</svg>
