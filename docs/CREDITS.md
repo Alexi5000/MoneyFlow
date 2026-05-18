@@ -19,7 +19,7 @@ MoneyFlow is an original full-stack finance dashboard created for the MoneyFlow 
 |---|---|---|---|
 | **Firefly III** | [github.com/firefly-iii/firefly-iii](https://github.com/firefly-iii/firefly-iii) | Self-hosted personal finance positioning, rule-based categorization, budgets, savings goals, import/export thinking, and API-first product depth. | Treated as feature inspiration only because the project is AGPL-3.0 oriented.[1] |
 | **Actual Budget** | [github.com/actualbudget/actual](https://github.com/actualbudget/actual) | Local-first budgeting language, envelope budgeting, migration/onboarding emphasis, and documentation-first user education. | MIT-licensed reference; MoneyFlow retains original implementation.[2] |
-| **Maybe Finance** | [github.com/maybe-finance/maybe](https://github.com/maybe-finance/maybe) | Polished finance cockpit direction, self-hosting polish, export flows, AI/chat roadmap ideas, and future cash-flow visualizations. | Treated as feature inspiration only because of AGPL and trademark constraints noted by the project.[3] |
+| **Maybe Finance** | [github.com/maybe-finance/maybe](https://github.com/maybe-finance/maybe) | Polished finance cockpit direction, self-hosting polish, export flows, automation/chat roadmap ideas, and future cash-flow visualizations. | Treated as feature inspiration only because of AGPL and trademark constraints noted by the project.[3] |
 | **React TypeScript Personal Finance Dashboard** | [github.com/iambhavesh55/personal-finance-dashboard](https://github.com/iambhavesh55/personal-finance-dashboard) | Compact dashboard composition, chart-first layout, transaction CRUD patterns, local fallback thinking, and budget progress presentation. | MIT-licensed reference; MoneyFlow uses original code.[4] |
 
 ## Design and Product References
@@ -30,7 +30,7 @@ MoneyFlow adopts a dark, developer-tool-inspired interface direction with high-c
 |---|---|
 | **Dark UI language** | Black canvas, translucent panels, orange focus states, and card-based layout. |
 | **Financial cockpit layout** | KPI rows, chart grids, insight panels, budget cards, goal progress, and transaction workspace. |
-| **AI finance assistant direction** | Rule metadata, confidence scoring, insight severity, recommended actions, and categorization endpoint. |
+| **automation finance assistant direction** | Rule metadata, confidence scoring, insight severity, recommended actions, and categorization endpoint. |
 | **Self-hostable future path** | API-first backend and documentation structure designed for future database, auth, and Docker expansion. |
 
 ## Source-Code Reuse Policy

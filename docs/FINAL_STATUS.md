@@ -1,6 +1,6 @@
 # MoneyFlow Final Status
 
-MoneyFlow has been upgraded from a partial scaffold into a complete demo-grade full-stack AI budget platform. The current repository now contains a polished React dashboard, a FastAPI analytics service, updated TypeScript build configuration, API documentation, open-source inspiration credits, and a documented roadmap for the next persistence and production-hardening stages.
+MoneyFlow has been upgraded from a partial scaffold into a complete demo-grade full-stack automation budget platform. The current repository now contains a polished React dashboard, a FastAPI analytics service, updated TypeScript build configuration, API documentation, open-source inspiration credits, and a documented roadmap for the next persistence and production-hardening stages.
 
 | Area | Status |
 |---|---|
@@ -12,14 +12,14 @@ MoneyFlow has been upgraded from a partial scaffold into a complete demo-grade f
 
 ## Completed Platform Capabilities
 
-The frontend now provides a state-of-the-art dark finance cockpit with KPI cards, chart panels, transaction operations, budget progress, goal tracking, and AI-style insight surfaces. The API client can use the local FastAPI backend or fall back to embedded demo data so reviewers can still explore the experience if the backend is not running.
+The frontend now provides a state-of-the-art dark finance cockpit with KPI cards, chart panels, transaction operations, budget progress, goal tracking, and rule-based insight surfaces. The API client can use the local FastAPI backend or fall back to embedded demo data so reviewers can still explore the experience if the backend is not running.
 
 | Capability | Implementation |
 |---|---|
 | **Dashboard analytics** | Balance, income, expenses, savings rate, cash-flow history, category breakdowns, insights, budgets, and goals. |
 | **Transaction management** | Transaction list, filters, transaction creation, deletion-ready API route, recurring indicators, and confidence metadata. |
 | **Budget controls** | Category budget envelopes with spent amount, remaining amount, utilization percentage, and status. |
-| **AI-style services** | Rule-based categorization endpoint, insight severity labels, recommended actions, and confidence scores. |
+| **rule-based services** | Rule-based categorization endpoint, insight severity labels, recommended actions, and confidence scores. |
 | **Export path** | JSON export endpoint containing the major finance records and generated timestamp metadata. |
 
 ## Validation Summary

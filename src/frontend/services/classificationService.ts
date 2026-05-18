@@ -27,13 +27,13 @@ export interface BudgetRecommendation {
   confidence: number
 }
 
-class AIService {
+class automationService {
   private apiKey: string | null = null
   private baseUrl = 'https://api.openai.com/v1'
 
   constructor() {
     // In a real app, this would come from environment variables
-    this.apiKey = import.meta.env.VITE_OPENAI_API_KEY || null
+    this.apiKey = import.meta.env.VITE_OPENautomation_API_KEY || null
   }
 
   // Analyze spending patterns using transaction history
@@ -396,4 +396,4 @@ class AIService {
   }
 }
 
-export const aiService = new AIService()
+export const classificationService = new automationService()

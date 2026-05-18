@@ -1,5 +1,5 @@
 """
-AI-powered analytics and prediction API endpoints.
+intelligent analytics and prediction API endpoints.
 """
 
 import random
@@ -13,7 +13,7 @@ from app.models.user import User
 from app.models.transaction import Transaction
 from app.models.budget import Budget
 from app.schemas.ai import (
-    AIPrediction, AIAnalysisRequest, AIAnalysisResponse,
+    automationPrediction, automationAnalysisRequest, automationAnalysisResponse,
     FinancialInsight, BudgetRecommendation
 )
 from app.schemas.common import ApiResponse
@@ -21,9 +21,9 @@ from app.schemas.common import ApiResponse
 router = APIRouter()
 
 
-@router.get("/predictions", response_model=ApiResponse[AIPrediction])
+@router.get("/predictions", response_model=ApiResponse[automationPrediction])
 async def get_predictions(db: Session = Depends(get_db)):
-    """Get AI-powered financial predictions."""
+    """Get intelligent financial predictions."""
     try:
         # Get current user
         user = db.query(User).first()
@@ -42,8 +42,8 @@ async def get_predictions(db: Session = Depends(get_db)):
             Budget.user_id == user.id
         ).all()
 
-        # Generate mock predictions (in production, use real AI/ML models)
-        prediction = AIPrediction(
+        # Generate mock predictions (in production, use real automation/ML models)
+        prediction = automationPrediction(
             next_month_spending={
                 "amount": user.monthly_expenses * 1.05,  # 5% increase
                 "confidence": 0.75,
@@ -82,7 +82,7 @@ async def get_predictions(db: Session = Depends(get_db)):
 
 @router.get("/insights", response_model=ApiResponse[List[FinancialInsight]])
 async def get_insights(db: Session = Depends(get_db)):
-    """Get AI-powered financial insights."""
+    """Get intelligent financial insights."""
     try:
         # Get current user
         user = db.query(User).first()
@@ -92,7 +92,7 @@ async def get_insights(db: Session = Depends(get_db)):
                 detail="User not found"
             )
 
-        # Generate mock insights (in production, use real AI analysis)
+        # Generate mock insights (in production, use real automation analysis)
         insights = [
             FinancialInsight(
                 id="insight_1",
@@ -143,7 +143,7 @@ async def get_insights(db: Session = Depends(get_db)):
 
 @router.get("/recommendations", response_model=ApiResponse[List[BudgetRecommendation]])
 async def get_recommendations(db: Session = Depends(get_db)):
-    """Get AI-powered budget recommendations."""
+    """Get intelligent budget recommendations."""
     try:
         # Get current user
         user = db.query(User).first()
@@ -156,7 +156,7 @@ async def get_recommendations(db: Session = Depends(get_db)):
         # Get user's budgets
         budgets = db.query(Budget).filter(Budget.user_id == user.id).all()
 
-        # Generate mock recommendations (in production, use real AI analysis)
+        # Generate mock recommendations (in production, use real automation analysis)
         recommendations = [
             BudgetRecommendation(
                 category="Food & Dining",
@@ -201,12 +201,12 @@ async def get_recommendations(db: Session = Depends(get_db)):
         )
 
 
-@router.post("/analyze", response_model=ApiResponse[AIAnalysisResponse])
+@router.post("/analyze", response_model=ApiResponse[automationAnalysisResponse])
 async def analyze_finances(
-    request: AIAnalysisRequest,
+    request: automationAnalysisRequest,
     db: Session = Depends(get_db)
 ):
-    """Perform comprehensive AI analysis of user's finances."""
+    """Perform comprehensive automation analysis of user's finances."""
     try:
         # Get current user
         user = db.query(User).filter(User.id == request.user_id).first()
@@ -225,9 +225,9 @@ async def analyze_finances(
             Budget.user_id == user.id
         ).all()
 
-        # Generate comprehensive analysis (in production, use real AI models)
+        # Generate comprehensive analysis (in production, use real automation models)
         # For now, return the same data as individual endpoints
-        prediction = AIPrediction(
+        prediction = automationPrediction(
             next_month_spending={
                 "amount": user.monthly_expenses * 1.05,
                 "confidence": 0.75,
@@ -293,7 +293,7 @@ async def analyze_finances(
             )
         ]
 
-        analysis_response = AIAnalysisResponse(
+        analysis_response = automationAnalysisResponse(
             predictions=prediction,
             insights=insights,
             recommendations=recommendations,

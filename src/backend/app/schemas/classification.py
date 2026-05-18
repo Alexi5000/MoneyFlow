@@ -1,5 +1,5 @@
 """
-Pydantic schemas for AI-related operations.
+Pydantic schemas for automation-related operations.
 """
 
 from typing import Optional, List
@@ -32,8 +32,8 @@ class SavingsProjection(BaseModel):
     confidence: float
 
 
-class AIPrediction(BaseModel):
-    """Schema for AI prediction response."""
+class automationPrediction(BaseModel):
+    """Schema for automation prediction response."""
     next_month_spending: SpendingForecast
     budget_forecasts: List[BudgetForecast]
     savings_projection: SavingsProjection
@@ -66,8 +66,8 @@ class BudgetRecommendation(BaseModel):
     potential_savings: float
 
 
-class AIAnalysisRequest(BaseModel):
-    """Schema for AI analysis request."""
+class automationAnalysisRequest(BaseModel):
+    """Schema for automation analysis request."""
     user_id: str
     timeframe: str = "month"
     include_forecasting: bool = True
@@ -75,9 +75,9 @@ class AIAnalysisRequest(BaseModel):
     include_risk_analysis: bool = True
 
 
-class AIAnalysisResponse(BaseModel):
-    """Schema for AI analysis response."""
-    predictions: AIPrediction
+class automationAnalysisResponse(BaseModel):
+    """Schema for automation analysis response."""
+    predictions: automationPrediction
     insights: List[FinancialInsight]
     recommendations: List[BudgetRecommendation]
     summary: str

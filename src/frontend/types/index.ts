@@ -37,8 +37,8 @@ export interface Budget {
   icon: string
 }
 
-// AI Prediction Interface
-export interface AIPrediction {
+// automation Prediction Interface
+export interface automationPrediction {
   nextMonthSpending: {
     amount: number
     confidence: number
@@ -191,8 +191,8 @@ export interface FinancialSummary {
   emergencyFundMonths: number
 }
 
-// AI Analysis Request Interface
-export interface AIAnalysisRequest {
+// automation Analysis Request Interface
+export interface automationAnalysisRequest {
   userId: string
   timeframe: 'week' | 'month' | 'quarter' | 'year'
   includeForecasting: boolean
@@ -200,9 +200,9 @@ export interface AIAnalysisRequest {
   includeRiskAnalysis: boolean
 }
 
-// AI Analysis Response Interface
-export interface AIAnalysisResponse {
-  predictions: AIPrediction
+// automation Analysis Response Interface
+export interface automationAnalysisResponse {
+  predictions: automationPrediction
   insights: FinancialInsight[]
   recommendations: BudgetRecommendation[]
   summary: string
@@ -277,7 +277,7 @@ export type {
   User,
   Transaction,
   Budget,
-  AIPrediction,
+  automationPrediction,
   FinancialInsight,
   BudgetRecommendation,
   Category,
@@ -287,8 +287,8 @@ export type {
   RecurringTransaction,
   Investment,
   FinancialSummary,
-  AIAnalysisRequest,
-  AIAnalysisResponse,
+  automationAnalysisRequest,
+  automationAnalysisResponse,
   ChartData,
   FilterOptions,
   Pagination,

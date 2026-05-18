@@ -1,6 +1,6 @@
 # MoneyFlow - Quick Reference
 
-**Created by**: Alex Cinovoj & TechTide AI
+**Created by**: Alex Cinovoj
 **Version**: 1.0.0
 
 ---
@@ -68,5 +68,5 @@ Get-Process python,node | Stop-Process -Force
 
 ---
 
-**© 2025 Alex Cinovoj & TechTide AI**
+**© 2025 Alex Cinovoj**
 

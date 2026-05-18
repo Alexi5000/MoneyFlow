@@ -105,7 +105,7 @@ curl -X POST "http://localhost:8000/api/v1/budgets/" \
   }'
 ```
 
-### 5. AI Endpoints
+### 5. automation Endpoints
 
 #### GET /api/v1/ai/predictions
 ```bash
@@ -293,7 +293,7 @@ src/backend/tests/
 │   ├── test_transactions.py
 │   ├── test_budgets.py
 │   ├── test_categories.py
-│   └── test_ai.py
+│   └── test_classification.py
 ├── test_database/
 │   ├── __init__.py
 │   └── test_models.py

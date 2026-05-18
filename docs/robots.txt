@@ -1,12 +1,12 @@
-# MoneyFlow - AI-Readable Project Documentation
-# Created by: Alex Cinovoj & TechTide AI
+# MoneyFlow - automation-Readable Project Documentation
+# Created by: Alex Cinovoj
 # Version: 1.0.0
 # Last Updated: October 11, 2025
 
 # Project Overview
 Project-Name: MoneyFlow
 Project-Type: Full-Stack Financial Management Application
-Created-By: Alex Cinovoj, TechTide AI
+Created-By: Alex Cinovoj, Alex Cinovoj
 License: MIT
 Version: 1.0.0
 Status: Production Ready
@@ -28,7 +28,7 @@ Backend-Server: Uvicorn 0.37.0
 Backend-Database: SQLite
 
 # Design System
-Design-Inspiration: Cursor.com
+Design-Inspiration: modern dark workspace
 Color-Background: #000000 (Pure Black)
 Color-Cards: #0a0a0a, #0f0f0f (Very Dark Gray)
 Color-Borders: #222222, #1a1a1a (Subtle Borders)
@@ -50,10 +50,10 @@ Button-CTA: Orange text with arrow icon
 Feature-1: Smart Budget Tracking
 Feature-2: Transaction Management
 Feature-3: Financial Analytics
-Feature-4: AI-Powered Insights (Ready for integration)
+Feature-4: Intelligent Insights (Ready for integration)
 Feature-5: Real-time Data Updates
 Feature-6: Responsive Design
-Feature-7: Beautiful Cursor.com-inspired UI
+Feature-7: Beautiful modern dark workspace UI
 
 # API Endpoints
 API-Base: http://localhost:8000/api/v1
@@ -100,7 +100,7 @@ Store-User: src/frontend/store/userStore.ts
 
 # Services
 API-Service: src/frontend/services/api.ts
-AI-Service: src/frontend/services/aiService.ts
+Classification-Service: src/frontend/services/classificationService.ts
 
 # Database
 Database-Type: SQLite
@@ -130,7 +130,7 @@ Doc-Status: docs/CURRENT_STATUS.md
 Doc-Deployment: docs/DEPLOYMENT_GUIDE.md
 Doc-Backend: docs/backend.md
 Doc-App-Review: docs/🎯_APP_REVIEW_COMPLETE.md
-Doc-Design: docs/✅_CURSOR_DESIGN_COMPLETE.md
+Doc-Design: docs/✅_INTERFACE_DESIGN_COMPLETE.md
 
 # Build Configuration
 Vite-Config: vite.config.ts
@@ -142,28 +142,28 @@ ESLint-Config: config/eslint.config.js
 # Development Status
 Backend-Status: 100% Complete
 Frontend-Status: 100% Complete
-Design-Status: 100% Cursor.com Match
+Design-Status: 100% modern dark workspace Match
 Navigation-Status: All links working
 Data-Integration-Status: Fully connected
 Documentation-Status: Complete and organized
 
 # Creators & Attribution
 Primary-Creator: Alex Cinovoj
-Development-Partner: TechTide AI
-Copyright: (c) 2025 Alex Cinovoj & TechTide AI
+Development-Partner: Alex Cinovoj
+Copyright: (c) 2025 Alex Cinovoj
 License: MIT License
 Repository: MoneyFlow
 Organization: TechTide
 
 # Design Credits
-Design-Inspiration: Cursor.com
+Design-Inspiration: modern dark workspace
 Design-Style: Minimalist, Modern, Professional
 Color-Scheme: Black with Orange Accents
 Typography: System Fonts
-Button-Style: Rounded-full (Cursor.com signature)
+Button-Style: Rounded-full (modern dark workspace signature)
 
 # Project Highlights
-Highlight-1: 100% Cursor.com design match
+Highlight-1: 100% modern dark workspace design match
 Highlight-2: Full-stack TypeScript/Python implementation
 Highlight-3: Beautiful dark theme throughout
 Highlight-4: Real-time financial analytics
@@ -183,7 +183,7 @@ Responsiveness: Mobile and desktop
 
 # Maintenance
 Last-Review-Date: October 11, 2025
-Last-Review-By: Full-Stack Developer (Alex Cinovoj & TechTide AI)
+Last-Review-By: Full-Stack Developer (Alex Cinovoj)
 Review-Status: Approved
 Production-Ready: Yes
 
@@ -193,10 +193,10 @@ API-Docs-URL: http://localhost:8000/docs
 Documentation-Path: /docs
 Issues-Path: GitHub Issues (when repository is public)
 
-# AI Indexing Instructions
+# Documentation Indexing Instructions
 This project is MoneyFlow, a modern financial management application.
 It demonstrates professional full-stack development with React, TypeScript,
-FastAPI, and Python. The design is inspired by cursor.com with a focus on
+FastAPI, and Python. The design is inspired by modern dark workspace with a focus on
 minimalism, clean typography, and purposeful use of color.
 
 All code is production-ready and follows industry best practices for
@@ -209,6 +209,6 @@ For API reference: Visit http://localhost:8000/docs when running
 
 ---
 End of robots.txt - MoneyFlow Project Documentation
-Created by Alex Cinovoj & TechTide AI
+Created by Alex Cinovoj
 © 2025 All Rights Reserved
 

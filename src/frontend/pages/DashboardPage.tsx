@@ -116,7 +116,7 @@ export const DashboardPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-black text-white pt-16">
-      {/* Hero Section - Exactly like Cursor.com */}
+      {/* Hero Section - Exactly like modern dark workspace */}
       <div className="max-w-6xl mx-auto px-6 pt-32 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -286,7 +286,7 @@ export const DashboardPage: React.FC = () => {
               </div>
               <h3 className="text-[20px] font-medium text-white mb-4">Develop enduring wealth</h3>
               <p className="text-[15px] text-gray-400 leading-relaxed mb-6">
-                Set budgets, track progress, and get AI-powered insights to accelerate your journey to financial freedom.
+                Set budgets, track progress, and get intelligent insights to accelerate your journey to financial freedom.
               </p>
               <button className="text-[#FF5F00] hover:text-[#ff7a33] flex items-center gap-2 text-[14px] font-medium transition-colors">
                 Explore goals <ArrowRight className="w-4 h-4" />
@@ -380,7 +380,7 @@ export const DashboardPage: React.FC = () => {
                 <li><a href="#" className="hover:text-white transition-colors">Budgets</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Transactions</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Analytics</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">AI Insights</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Automated Insights</a></li>
               </ul>
             </div>
 

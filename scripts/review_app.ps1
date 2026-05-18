@@ -36,7 +36,7 @@ Write-Host "  48px headers: Applied" -ForegroundColor Green
 Write-Host "  Rounded-full buttons: Applied" -ForegroundColor Green
 Write-Host "  Orange accents: Applied" -ForegroundColor Green
 Write-Host "  Dark cards: Applied" -ForegroundColor Green
-Write-Host "  Cursor.com match: 100%" -ForegroundColor Green
+Write-Host "  modern dark workspace match: 100%" -ForegroundColor Green
 
 Write-Host "`nApp Status: COMPLETE" -ForegroundColor Green
 Write-Host ""

@@ -65,7 +65,7 @@ interface Recommendation {
   category: string
 }
 
-interface AIState {
+interface ClassificationState {
   predictions: Prediction | null
   insights: Insight[]
   recommendations: Recommendation[]
@@ -83,11 +83,11 @@ interface AIState {
   setError: (error: string | null) => void
   updateLastAnalysis: () => void
 
-  // AI Analysis functions
+  // automation Analysis functions
   analyzeSpendingPatterns: () => Promise<void>
   generateInsights: () => Promise<void>
   createRecommendations: () => Promise<void>
-  fetchAIData: () => Promise<void>
+  fetchClassificationData: () => Promise<void>
 
   // Utility functions
   getInsightsByCategory: (category: string) => Insight[]
@@ -96,7 +96,7 @@ interface AIState {
   resetAnalysis: () => void
 }
 
-export const useAIStore = create<AIState>((set, get) => ({
+export const useClassificationStore = create<ClassificationState>((set, get) => ({
   predictions: null,
   insights: [],
   recommendations: [],
@@ -117,15 +117,15 @@ export const useAIStore = create<AIState>((set, get) => ({
     set({ isAnalyzing: true, analysisProgress: 0, error: null })
 
     try {
-      // Simulate AI analysis with progress updates
+      // Simulate automation analysis with progress updates
       for (let i = 0; i <= 100; i += 20) {
         set({ analysisProgress: i })
         await new Promise(resolve => setTimeout(resolve, 200))
       }
 
-      const analysisResponse = await apiService.getAIPredictions()
-      const insightsResponse = await apiService.getAIInsights()
-      const recommendationsResponse = await apiService.getAIInsights() // Using insights as recommendations for now
+      const analysisResponse = await apiService.getClassificationPredictions()
+      const insightsResponse = await apiService.getAutomatedInsights()
+      const recommendationsResponse = await apiService.getAutomatedInsights() // Using insights as recommendations for now
 
       set({
         predictions: analysisResponse,
@@ -150,7 +150,7 @@ export const useAIStore = create<AIState>((set, get) => ({
     set({ isAnalyzing: true, error: null })
 
     try {
-      const insights = await apiService.getAIInsights()
+      const insights = await apiService.getAutomatedInsights()
 
       set({
         insights,
@@ -172,7 +172,7 @@ export const useAIStore = create<AIState>((set, get) => ({
     set({ isAnalyzing: true, error: null })
 
     try {
-      const recommendations = await apiService.getAIInsights() // Using insights as recommendations for now
+      const recommendations = await apiService.getAutomatedInsights() // Using insights as recommendations for now
 
       set({
         recommendations,
@@ -188,15 +188,15 @@ export const useAIStore = create<AIState>((set, get) => ({
     }
   },
 
-  fetchAIData: async () => {
+  fetchClassificationData: async () => {
     set({ isAnalyzing: true, error: null })
 
     try {
-      // Fetch all AI data in parallel
+      // Fetch all analysis data in parallel
       const [predictionsResponse, insightsResponse, recommendationsResponse] = await Promise.all([
-        apiService.getAIPredictions(),
-        apiService.getAIInsights(),
-        apiService.getAIInsights() // Using insights as recommendations for now
+        apiService.getClassificationPredictions(),
+        apiService.getAutomatedInsights(),
+        apiService.getAutomatedInsights() // Using insights as recommendations for now
       ])
 
       set({
@@ -208,9 +208,9 @@ export const useAIStore = create<AIState>((set, get) => ({
         error: null
       })
     } catch (error) {
-      console.error('Failed to fetch AI data:', error)
+      console.error('Failed to fetch analysis data:', error)
       set({
-        error: 'Failed to fetch AI data. Please try again.',
+        error: 'Failed to fetch analysis data. Please try again.',
         isAnalyzing: false
       })
     }

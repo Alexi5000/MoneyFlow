@@ -1,10 +1,10 @@
 // MoneyFlow Vite Configuration
-// Created by: Alex Cinovoj & TechTide AI
-// Copyright (c) 2025 Alex Cinovoj & TechTide AI
+// Created by: Alex Cinovoj
+// Copyright (c) 2025 Alex Cinovoj
 
 // MoneyFlow Vite Configuration
-// Created by: Alex Cinovoj & TechTide AI
-// Copyright (c) 2025 Alex Cinovoj & TechTide AI
+// Created by: Alex Cinovoj
+// Copyright (c) 2025 Alex Cinovoj
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'

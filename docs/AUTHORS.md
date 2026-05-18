@@ -11,7 +11,7 @@
 - User experience design
 - Technical leadership
 
-### TechTide AI
+### Alex Cinovoj
 **Role**: Development Partner
 **Contributions**:
 - Technical implementation
@@ -65,8 +65,8 @@
 
 ## 🎨 Design System
 
-**Designer**: Alex Cinovoj & TechTide AI
-**Inspiration**: Cursor.com
+**Designer**: Alex Cinovoj
+**Inspiration**: modern dark workspace
 
 ### Custom Design Elements
 - Unique color palette (#000, #FF5F00, #222)
@@ -75,7 +75,7 @@
 - Bespoke component library
 - Original layouts and compositions
 
-**All design work is original**, inspired by cursor.com aesthetic.
+**All design work is original**, inspired by modern dark workspace aesthetic.
 
 ---
 
@@ -99,7 +99,7 @@ This project demonstrates:
 
 ## 📖 Documentation Authors
 
-All documentation written by: **Alex Cinovoj & TechTide AI**
+All documentation written by: **Alex Cinovoj**
 
 ### Documentation Includes:
 - Complete README
@@ -127,7 +127,7 @@ All documentation written by: **Alex Cinovoj & TechTide AI**
 - Component composition (frontend)
 
 ### Code Review
-**Reviewed by**: Alex Cinovoj & TechTide AI
+**Reviewed by**: Alex Cinovoj
 **Status**: Approved
 **Quality**: Production Ready
 
@@ -136,7 +136,7 @@ All documentation written by: **Alex Cinovoj & TechTide AI**
 ## 🎉 Achievement Summary
 
 **Project**: MoneyFlow v1.0.0
-**Created by**: Alex Cinovoj & TechTide AI
+**Created by**: Alex Cinovoj
 **Completion**: 100%
 **Quality**: Professional Grade
 **Status**: Production Ready
@@ -146,7 +146,7 @@ All documentation written by: **Alex Cinovoj & TechTide AI**
 
 ---
 
-**© 2025 Alex Cinovoj & TechTide AI**
+**© 2025 Alex Cinovoj**
 **All Rights Reserved** (under MIT License terms)
 
 Built with passion, precision, and purpose.

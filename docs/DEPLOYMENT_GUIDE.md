@@ -1,6 +1,6 @@
 # MoneyFlow - Complete Deployment Guide
 
-**Created by**: Alex Cinovoj & TechTide AI
+**Created by**: Alex Cinovoj
 **Version**: 1.0.0
 **Copyright**: © 2025
 
@@ -134,7 +134,7 @@ server: {
 Files: `tailwind.config.js`, `postcss.config.js`
 
 ```javascript
-// Cursor.com color scheme
+// modern dark workspace color scheme
 colors: {
   primary: '#000000',     // Pure black
   accent: '#FF5F00',      // Cursor orange
@@ -272,13 +272,13 @@ Get-Process | Where-Object {$_.Name -eq "node"} | Stop-Process -Force
 - `GET /api/v1/categories/` - Get all categories
 - `GET /api/v1/categories/user` - Get user categories
 
-### AI
-- `GET /api/v1/ai/predictions` - Get AI predictions
+### automation
+- `GET /api/v1/ai/predictions` - Get automation predictions
 - `GET /api/v1/ai/insights` - Get financial insights
 
 ## 🎨 Design System
 
-### Colors (Cursor.com Inspired)
+### Colors (modern dark workspace Inspired)
 ```css
 Background:  #000000  /* Pure black */
 Cards:       #0a0a0a  /* Very dark gray */
@@ -311,11 +311,11 @@ Font Family: System fonts (SF Pro, Segoe UI, Roboto)
 
 ## 📖 Additional Documentation
 
-- **[Design Match Guide](./✅_CURSOR_DESIGN_COMPLETE.md)** - Cursor.com design details
+- **[Design Match Guide](./✅_INTERFACE_DESIGN_COMPLETE.md)** - modern dark workspace design details
 - **[API Testing](./test_api.ps1)** - Backend API test script
 - **[Deployment Status](./DEPLOYMENT_SUCCESS.md)** - Current deployment info
 
 ---
 
-**Status**: 🟢 Fully Operational | **Design**: 🎨 Cursor.com Match | **Version**: 1.0.0
+**Status**: 🟢 Fully Operational | **Design**: 🎨 modern dark workspace Match | **Version**: 1.0.0
 

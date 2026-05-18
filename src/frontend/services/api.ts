@@ -1,4 +1,4 @@
-import { User, Transaction, Budget, AIInsight } from '../types'
+import { User, Transaction, Budget, AutomatedInsight } from '../types'
 
 // API service for MoneyFlow backend
 class ApiService {
@@ -36,7 +36,7 @@ class ApiService {
     return response.data.budgets
   }
 
-  async getAIInsights(): Promise<AIInsight[]> {
+  async getAutomatedInsights(): Promise<AutomatedInsight[]> {
     const response = await this.request<{ data: any[]; success: boolean }>('/ai/insights')
     return response.data
   }
@@ -85,7 +85,7 @@ class ApiService {
     })
   }
 
-  async getAIPredictions(): Promise<any> {
+  async getClassificationPredictions(): Promise<any> {
     const response = await this.request<{ data: any; success: boolean }>('/ai/predictions')
     return response.data
   }

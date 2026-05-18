@@ -1,5 +1,5 @@
 <svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">MoneyFlow AI budget tracker dashboard preview</title>
+  <title id="title">MoneyFlow automation budget tracker dashboard preview</title>
   <desc id="desc">A dark, premium dashboard hero graphic showing MoneyFlow analytics, budget health, transaction intelligence, and cash-flow visualizations.</desc>
   <defs>
     <radialGradient id="bgGlow" cx="50%" cy="10%" r="90%">
@@ -46,7 +46,7 @@
       <circle cx="18" cy="34" r="3.6" fill="#04100b"/>
       <circle cx="35" cy="17" r="3.6" fill="#04100b"/>
       <text x="70" y="23" fill="#f3fff8" font-family="Inter, ui-sans-serif, system-ui" font-size="25" font-weight="800">MoneyFlow</text>
-      <text x="70" y="46" fill="#8aa99b" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="600" letter-spacing="1.8">AI FINANCE OS</text>
+      <text x="70" y="46" fill="#8aa99b" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="600" letter-spacing="1.8">FINANCE OPERATIONS</text>
     </g>
     <g transform="translate(32 126)" font-family="Inter, ui-sans-serif, system-ui" font-size="15" font-weight="700">
       <rect x="0" y="0" width="256" height="48" rx="15" fill="#11221b" stroke="#2f5f49"/>
@@ -100,7 +100,7 @@
       </g>
       <g transform="translate(552 0)">
         <rect x="0" y="0" width="164" height="98" rx="22" fill="#08130f" stroke="#21392f"/>
-        <text x="18" y="29" fill="#91aa9f" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="700">AI confidence</text>
+        <text x="18" y="29" fill="#91aa9f" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="700">Rule confidence</text>
         <text x="18" y="65" fill="#f6fff9" font-family="Inter, ui-sans-serif, system-ui" font-size="29" font-weight="850">92%</text>
         <text x="18" y="83" fill="#22c55e" font-family="Inter, ui-sans-serif, system-ui" font-size="12" font-weight="800">categorized</text>
       </g>
@@ -133,6 +133,6 @@
 
   <g transform="translate(858 558)">
     <rect x="0" y="0" width="318" height="42" rx="21" fill="#07110d" stroke="#294839"/>
-    <text x="26" y="27" fill="#d9fff0" font-family="Inter, ui-sans-serif, system-ui" font-size="13" font-weight="800">React + FastAPI + TypeScript + AI insights</text>
+    <text x="26" y="27" fill="#d9fff0" font-family="Inter, ui-sans-serif, system-ui" font-size="13" font-weight="800">React + FastAPI + TypeScript + automated insights</text>
   </g>
 </svg>

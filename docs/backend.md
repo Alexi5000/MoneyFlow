@@ -1,6 +1,6 @@
 # Backend Operations for MoneyFlow
 
-The MoneyFlow backend is a FastAPI service implemented in `src/backend/main.py`. It provides a complete demo-grade finance API for dashboard analytics, transaction management, budgets, goals, categorization rules, AI-style insights, and data export. The service currently uses deterministic seeded in-memory data so the repository can run immediately without database provisioning.
+The MoneyFlow backend is a FastAPI service implemented in `src/backend/main.py`. It provides a complete demo-grade finance API for dashboard analytics, transaction management, budgets, goals, categorization rules, rule-based insights, and data export. The service currently uses deterministic seeded in-memory data so the repository can run immediately without database provisioning.
 
 ## Runtime Model
 
@@ -25,7 +25,7 @@ The MoneyFlow backend is a FastAPI service implemented in `src/backend/main.py`.
 | `DELETE` | `/api/v1/transactions/{transaction_id}` | Deletes a transaction by identifier. |
 | `GET` | `/api/v1/budgets` | Lists budget envelopes with spent, remaining, and utilization metrics. |
 | `GET` | `/api/v1/goals` | Lists savings goals with target amount, current amount, status, and target date. |
-| `GET` | `/api/v1/rules` | Lists categorization rules used by the AI-style categorization service. |
+| `GET` | `/api/v1/rules` | Lists categorization rules used by the rule-based categorization service. |
 | `POST` | `/api/v1/categorize` | Predicts a transaction category, confidence score, and explanation based on provided text/merchant data. |
 | `GET` | `/api/v1/export` | Returns a complete JSON export including transactions, budgets, goals, rules, and generated timestamp metadata. |
 
@@ -44,7 +44,7 @@ The API uses Pydantic models to keep the frontend contract explicit. The most im
 
 ## Categorization Flow
 
-The categorization endpoint is designed as a deterministic stand-in for a future LLM or machine-learning service. It evaluates merchant/title text against category rules, returns a predicted category, includes a confidence score, and explains the rationale so the UI can present AI-style transparency.
+The categorization endpoint is designed as a deterministic stand-in for a future classification service. It evaluates merchant/title text against category rules, returns a predicted category, includes a confidence score, and explains the rationale so the UI can present rule-based transparency.
 
 | Step | Behavior |
 |---|---|

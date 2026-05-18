@@ -69,8 +69,8 @@ export const ParticleLoader: React.FC = () => {
   )
 }
 
-// AI Analysis loading animation
-export const AIAnalysisLoader: React.FC<{ progress?: number }> = ({ progress = 0 }) => {
+// automation Analysis loading animation
+export const automationAnalysisLoader: React.FC<{ progress?: number }> = ({ progress = 0 }) => {
   return (
     <div className="flex flex-col items-center justify-center space-y-4 p-8">
       <div className="relative">
@@ -90,7 +90,7 @@ export const AIAnalysisLoader: React.FC<{ progress?: number }> = ({ progress = 0
       </div>
 
       <div className="text-center space-y-2">
-        <h3 className="text-lg font-semibold text-white">AI Analysis in Progress</h3>
+        <h3 className="text-lg font-semibold text-white">automation Analysis in Progress</h3>
         <p className="text-sm text-gray-400">Analyzing your financial patterns...</p>
 
         {progress > 0 && (

@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     # Project metadata
     PROJECT_NAME: str = "MoneyFlow API"
     VERSION: str = "1.0.0"
-    DESCRIPTION: str = "AI-Powered Budget Tracking API"
+    DESCRIPTION: str = "Intelligent Budget Tracking API"
     API_V1_STR: str = "/api/v1"
 
     # Server settings
@@ -52,9 +52,9 @@ class Settings(BaseSettings):
     DATABASE_URL: str = "sqlite:///./moneyflow.db"
     DATABASE_TEST_URL: str = "sqlite:///./test.db"
 
-    # AI Service settings (for future integration)
-    OPENAI_API_KEY: Optional[str] = None
-    AI_MODEL: str = "gpt-3.5-turbo"
+    # automation Service settings (for future integration)
+    OPENautomation_API_KEY: Optional[str] = None
+    automation_MODEL: str = "gpt-3.5-turbo"
 
     # Rate limiting
     RATE_LIMIT_REQUESTS: int = 100

@@ -111,7 +111,7 @@ CURRENT_MONTH_START = TODAY.replace(day=1)
 transactions: list[Transaction] = [
     Transaction(date=CURRENT_MONTH_START, merchant="TechTide Labs", category="Salary", amount=8250, type="income", account="Everyday Checking", recurring=True, confidence=0.99),
     Transaction(date=CURRENT_MONTH_START + timedelta(days=1), merchant="Figma Subscription", category="Software", amount=18, type="expense", account="Founder Card", recurring=True, confidence=0.96),
-    Transaction(date=CURRENT_MONTH_START + timedelta(days=2), merchant="Cursor Pro", category="Software", amount=20, type="expense", account="Founder Card", recurring=True, confidence=0.98),
+    Transaction(date=CURRENT_MONTH_START + timedelta(days=2), merchant="Developer Tools", category="Software", amount=20, type="expense", account="Founder Card", recurring=True, confidence=0.98),
     Transaction(date=CURRENT_MONTH_START + timedelta(days=3), merchant="Whole Foods", category="Groceries", amount=124.38, type="expense", account="Everyday Checking", confidence=0.91),
     Transaction(date=CURRENT_MONTH_START + timedelta(days=4), merchant="Blue Bottle Coffee", category="Dining", amount=16.45, type="expense", account="Everyday Checking", confidence=0.88),
     Transaction(date=CURRENT_MONTH_START + timedelta(days=5), merchant="MTA", category="Transportation", amount=34, type="expense", account="Everyday Checking", recurring=True, confidence=0.93),
@@ -137,7 +137,7 @@ budgets: list[Budget] = [
 goals: list[Goal] = [
     Goal(name="Emergency runway", target=25000, saved=14350, due_date=TODAY + timedelta(days=210), priority="high"),
     Goal(name="Tax reserve", target=12000, saved=6800, due_date=TODAY + timedelta(days=120), priority="high"),
-    Goal(name="AI workstation", target=4200, saved=2100, due_date=TODAY + timedelta(days=95), priority="medium"),
+    Goal(name="Engineering workstation", target=4200, saved=2100, due_date=TODAY + timedelta(days=95), priority="medium"),
 ]
 
 rules: list[CategoryRule] = [
@@ -275,7 +275,7 @@ def build_insights() -> list[Insight]:
 
 app = FastAPI(
     title="MoneyFlow API",
-    description="AI-powered budget tracker API with analytics, budgets, goals, rules, and forecast endpoints.",
+    description="intelligent budget tracker API with analytics, budgets, goals, rules, and forecast endpoints.",
     version="2.0.0",
 )
 

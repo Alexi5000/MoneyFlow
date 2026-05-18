@@ -1,6 +1,6 @@
 # MoneyFlow Documentation
 
-**MoneyFlow** is documented as a full-stack AI budget platform with a React frontend, FastAPI backend, seeded finance analytics, and license-safe open-source inspiration notes. This index points maintainers to the most important product, implementation, deployment, and attribution documents.
+**MoneyFlow** is documented as a full-stack automation budget platform with a React frontend, FastAPI backend, seeded finance analytics, and license-safe open-source inspiration notes. This index points maintainers to the most important product, implementation, deployment, and attribution documents.
 
 | Document | Purpose |
 |---|---|

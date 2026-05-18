@@ -1,11 +1,11 @@
 <p align="center">
   <a href="https://github.com/Alexi5000/MoneyFlow#readme">
-    <img src="./docs/assets/moneyflow-readme-hero.svg" alt="MoneyFlow AI budget tracker dashboard preview" width="100%" />
+    <img src="./docs/assets/moneyflow-readme-hero.svg" alt="MoneyFlow automation budget tracker dashboard preview" width="100%" />
   </a>
 </p>
 
 <p align="center">
-  <strong>MoneyFlow is an AI-powered budget command center with a cursor.com-inspired dark interface, smart categorization, real-time analytics, budget envelopes, savings goals, and a complete React plus FastAPI platform foundation.</strong>
+  <strong>MoneyFlow is an intelligent budget command center with a modern dark workspace dark interface, smart categorization, real-time analytics, budget envelopes, savings goals, and a complete React plus FastAPI platform foundation.</strong>
 </p>
 
 <p align="center">
@@ -40,7 +40,7 @@ The README has been redesigned to follow the same above-the-fold conventions use
 |---|---|
 | **Frontend cockpit** | A React 18 and TypeScript dashboard with cursor-style dark surfaces, responsive navigation, KPI cards, charts, budgets, goals, settings, and demo fallback state. |
 | **Backend platform** | A FastAPI service with health checks, typed Pydantic models, seeded finance data, transaction CRUD, analytics, categorization, budgets, goals, rules, and export payloads. |
-| **Finance intelligence** | AI-style insight cards, rule-driven category suggestions, confidence scoring, recurring-spend signals, cash-flow summaries, savings-rate metrics, and budget-health analysis. |
+| **Finance intelligence** | rule-based insight cards, rule-driven category suggestions, confidence scoring, recurring-spend signals, cash-flow summaries, savings-rate metrics, and budget-health analysis. |
 | **Documentation system** | A root landing page, backend reference, buildout architecture, final status, deployment notes, and license-safe inspiration credits. |
 | **Validation posture** | A reusable backend contract script, production frontend build checks, documentation reference scans, and repository hygiene checks. |
 
@@ -52,7 +52,7 @@ The graphic above is a repository-local SVG preview of the MoneyFlow design lang
 
 | Experience | Detail |
 |---|---|
-| **Command Dashboard** | Net balance, income, expense, savings-rate, budget-health, and AI-confidence cards give a quick executive summary. |
+| **Command Dashboard** | Net balance, income, expense, savings-rate, budget-health, and automation-confidence cards give a quick executive summary. |
 | **Analytics Canvas** | Cash-flow trend charts, category distribution, recurring-spend analysis, and insight prioritization turn raw transactions into decisions. |
 | **Budget Studio** | Category envelopes show utilization, remaining funds, status labels, and practical warnings when a category is at risk. |
 | **Goals Workspace** | Savings goals track current progress, targets, date metadata, and next-step recommendations. |
@@ -194,7 +194,7 @@ MoneyFlow is now a strong full-stack foundation. The next production-oriented st
 | **Persistence** | Add a real database layer, migrations, seed scripts, and environment-based configuration. |
 | **Authentication** | Add user accounts, session management, protected routes, and per-user finance records. |
 | **Bank connectivity** | Integrate a provider such as Plaid or a CSV import pipeline for real transaction ingestion. |
-| **AI services** | Replace deterministic categorization with provider-backed enrichment, explainability, and human approval flows. |
+| **classification services** | Replace deterministic categorization with provider-backed enrichment, explainability, and human approval flows. |
 | **Deployment** | Add production Docker or platform-specific deployment instructions with environment validation. |
 | **Testing** | Expand unit, integration, accessibility, and end-to-end coverage across frontend and backend flows. |
 
@@ -217,11 +217,11 @@ npm run build
 MoneyFlow is released under the MIT License. See [LICENSE](./LICENSE) for details. Third-party projects referenced in this README retain their own licenses, authorship, and contribution histories.
 
 <p align="center">
-  <strong>Built by <a href="https://github.com/Alexi5000">Alex Cinovoj</a> · TechTide AI</strong>
+  <strong>Built by <a href="https://github.com/Alexi5000">Alex Cinovoj</a> · Alex Cinovoj</strong>
 </p>
 
 <p align="center">
-  <em>Take control of your money with a modern AI finance cockpit.</em>
+  <em>Take control of your money with a modern automation finance cockpit.</em>
 </p>
 
 ---

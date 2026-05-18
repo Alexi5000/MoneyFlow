@@ -3,8 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "AI-Powered Budget Tracker with cursor.com-inspired design",
-  "author": "Alex Cinovoj & TechTide AI",
+  "description": "Professional budgeting, analytics, and cash-flow dashboard built with React, TypeScript, and FastAPI",
+  "author": "Alex Cinovoj",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
@@ -47,16 +47,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/TechTide/MoneyFlow"
+    "url": "https://github.com/Alexi5000/MoneyFlow.git"
   },
   "keywords": [
     "budget-tracker",
-    "finance",
+    "personal-finance",
+    "cash-flow",
+    "finance-dashboard",
     "react",
     "typescript",
     "fastapi",
     "python",
-    "cursor-design",
     "tailwindcss",
     "full-stack"
   ]
