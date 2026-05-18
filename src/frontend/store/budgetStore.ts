@@ -18,7 +18,7 @@ interface BudgetState {
   alerts: BudgetAlert[]
   isLoading: boolean
   error: string | null
-  
+
   // Actions
   setBudgets: (budgets: Budget[]) => void
   addBudget: (budget: Budget) => void
@@ -26,23 +26,23 @@ interface BudgetState {
   deleteBudget: (id: string) => void
   setLoading: (loading: boolean) => void
   setError: (error: string | null) => void
-  
+
   // Alert management
   addAlert: (alert: Omit<BudgetAlert, 'id' | 'timestamp'>) => void
   dismissAlert: (alertId: string) => void
   clearAlerts: () => void
-  
+
   // Data fetching
   fetchBudgets: () => Promise<void>
   createBudget: (budget: Omit<Budget, 'id'>) => Promise<void>
-  
+
   // Computed values
   getTotalAllocated: () => number
   getTotalSpent: () => number
   getOverBudgetCount: () => number
   getNearLimitCount: () => number
   getBudgetHealth: () => 'excellent' | 'good' | 'warning' | 'critical'
-  
+
   // Alert generation
   checkBudgetAlerts: () => void
 }
@@ -92,9 +92,9 @@ export const useBudgetStore = create<BudgetState>()(
           timestamp: new Date().toISOString(),
           dismissed: false
         }
-        
+
         set((state) => ({
-          alerts: [alert, ...state.alerts.filter(a => 
+          alerts: [alert, ...state.alerts.filter(a =>
             !(a.budgetId === alert.budgetId && a.type === alert.type)
           )]
         }))
@@ -160,7 +160,7 @@ export const useBudgetStore = create<BudgetState>()(
         const { budgets } = get()
         const overBudget = budgets.filter(b => b.percentage > 100).length
         const nearLimit = budgets.filter(b => b.percentage > 80 && b.percentage <= 100).length
-        
+
         if (overBudget > 0) return 'critical'
         if (nearLimit > budgets.length * 0.5) return 'warning'
         if (nearLimit > 0) return 'good'
@@ -170,7 +170,7 @@ export const useBudgetStore = create<BudgetState>()(
       // Alert generation
       checkBudgetAlerts: () => {
         const { budgets, addAlert } = get()
-        
+
         budgets.forEach((budget) => {
           // Over budget alert
           if (budget.percentage > 100) {

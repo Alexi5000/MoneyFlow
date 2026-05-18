@@ -1,6 +1,6 @@
 # MoneyFlow - Quick Reference
 
-**Created by**: Alex Cinovoj & TechTide AI  
+**Created by**: Alex Cinovoj & TechTide AI
 **Version**: 1.0.0
 
 ---

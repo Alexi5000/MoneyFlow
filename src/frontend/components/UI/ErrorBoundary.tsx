@@ -28,7 +28,7 @@ export class ErrorBoundary extends Component<Props, State> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error, errorInfo)
     this.setState({ error, errorInfo })
-    
+
     if (this.props.onError) {
       this.props.onError(error, errorInfo)
     }
@@ -50,15 +50,15 @@ export class ErrorBoundary extends Component<Props, State> {
             <div className="text-red-400 mb-4">
               <AlertTriangle className="w-16 h-16 mx-auto" />
             </div>
-            
+
             <h2 className="text-xl font-bold text-white mb-2">
               Something went wrong
             </h2>
-            
+
             <p className="text-gray-400 mb-6">
               We encountered an unexpected error. This might be due to a temporary issue or incompatibility with your device.
             </p>
-            
+
             {this.state.error && (
               <details className="mb-6 text-left">
                 <summary className="text-sm text-gray-500 cursor-pointer hover:text-gray-400">
@@ -79,7 +79,7 @@ export class ErrorBoundary extends Component<Props, State> {
                 </div>
               </details>
             )}
-            
+
             <div className="space-y-3">
               <NeonButton
                 variant="primary"
@@ -89,7 +89,7 @@ export class ErrorBoundary extends Component<Props, State> {
               >
                 Try Again
               </NeonButton>
-              
+
               <NeonButton
                 variant="ghost"
                 onClick={() => window.location.reload()}
@@ -98,7 +98,7 @@ export class ErrorBoundary extends Component<Props, State> {
                 Reload Page
               </NeonButton>
             </div>
-            
+
             <div className="mt-6 text-xs text-gray-500">
               If this problem persists, try using a different browser or device.
             </div>

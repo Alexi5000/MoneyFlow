@@ -21,7 +21,7 @@ interface NavigationState {
   breadcrumbs: BreadcrumbItem[]
   navigationHistory: string[]
   quickActions: QuickAction[]
-  
+
   // Actions
   setCurrentTab: (tab: string) => void
   toggleSidebar: () => void

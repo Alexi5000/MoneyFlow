@@ -1,256 +1,170 @@
-<div align="center">
-
-<img src="assets/icon.png" alt="MoneyFlow Logo" width="120" />
-
 # MoneyFlow
 
-### AI-Powered Budget Tracker
+**MoneyFlow** is an AI-powered budget tracker and personal-finance command center with a Cursor-inspired dark interface, a FastAPI analytics backend, and a React + TypeScript dashboard. The project now presents a complete full-stack platform experience: seeded finance data, budget and goal tracking, rule-based categorization, real-time analytics, insight generation, transaction creation, demo fallback data, and polished responsive dashboards.
 
-**Stop guessing where your money goes. MoneyFlow tracks every dollar, categorizes spending with AI, and gives you the insights you need to build wealth.**
+> MoneyFlow is built as an original implementation. The product direction is inspired by established open-source finance tools such as Firefly III, Actual Budget, Maybe Finance, and modern React finance dashboards, but this repository does not copy AGPL-licensed source code into the project. Inspiration and licensing notes are documented in [Credits and Inspiration](./docs/CREDITS.md).[1] [2] [3] [4]
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?logo=typescript)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-18.3-61dafb?logo=react)](https://react.dev/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.118-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
-[![Vite](https://img.shields.io/badge/Vite-5.4-646cff?logo=vite)](https://vitejs.dev/)
-[![Tailwind](https://img.shields.io/badge/Tailwind-3.4-06b6d4?logo=tailwindcss)](https://tailwindcss.com/)
+| Area | Current Buildout |
+|---|---|
+| **Frontend** | React 18, TypeScript, Vite, Tailwind CSS, Recharts, Framer Motion, Lucide icons, responsive dark dashboard shell. |
+| **Backend** | FastAPI service with seeded in-memory finance data, dashboard analytics, transaction CRUD, budget and goal endpoints, categorization rules, and export payloads. |
+| **Analytics** | Monthly cash-flow series, category breakdowns, budget utilization, goal progress, AI-style insights, confidence scoring, and recommended actions. |
+| **Reliability** | Frontend API client includes demo fallback data so the UI remains explorable even when the backend is offline. |
+| **Documentation** | Architecture plan, backend API docs, credits, deployment notes, and quick reference guides are included under `docs/`. |
 
-[Features](#features) · [Quick Start](#-quick-start) · [Tech Stack](#tech-stack) · [Architecture](#-project-structure) · [Docs](#-documentation)
+## Feature Highlights
 
----
+MoneyFlow is designed to feel like a premium financial cockpit rather than a basic expense table. The dashboard combines high-level financial health metrics with actionable explanations, while the underlying API exposes structured data that can later be swapped from seeded demo records to a persistent database.
 
-<img src="assets/cover.png" alt="MoneyFlow - AI Budget Tracker" width="100%" />
+| Feature | Description |
+|---|---|
+| **AI Command Dashboard** | Displays balance, income, expenses, savings rate, cash-flow trend, budget health, and insight cards. |
+| **Smart Transactions** | Supports transaction listing, filtering, creation, deletion, category metadata, confidence scoring, and recurring markers. |
+| **Budget Studio** | Shows category budgets, spent amounts, remaining balances, utilization percentages, and status states. |
+| **Goals and Envelopes** | Tracks goal progress and target dates, borrowing envelope-budgeting ideas from open-source finance products without copying their code.[2] |
+| **Categorization Engine** | Provides rule metadata and an `/api/v1/categorize` endpoint for merchant/title-driven category suggestions. |
+| **Analytics Workspace** | Visualizes category mix, monthly cash flow, recurring spending, risk signals, and AI-style recommendations. |
+| **Export Readiness** | Exposes an `/api/v1/export` endpoint returning transactions, budgets, goals, rules, and generated timestamp metadata. |
+| **Responsive UI** | Includes desktop sidebar navigation, mobile top navigation, glassy cards, orange-accent visual hierarchy, and accessible semantic sections. |
 
-</div>
+## Screens and Routes
 
----
+| Route | Purpose |
+|---|---|
+| `/` | Executive dashboard with KPIs, charts, category distribution, insights, recent transactions, budget health, and goal progress. |
+| `/transactions` | Transaction operations including search/filter views and new transaction submission. |
+| `/budgets` | Budget control center with utilization states and category progress. |
+| `/analytics` | AI finance intelligence surface with insight prioritization and recurring-spend analysis. |
+| `/settings` | Platform configuration, API status, data export hints, and refresh actions. |
 
-## The Problem
+## API Contract
 
-Most budgeting apps are either too simple (just a spreadsheet) or too complex (requires a finance degree). You download one, manually categorize 200 transactions, get overwhelmed by the interface, and go back to checking your bank app and hoping for the best. Meanwhile, subscriptions you forgot about keep draining your account.
+The backend lives in `src/backend/main.py` and is intentionally self-contained for easy local evaluation. It uses typed Pydantic models, FastAPI route declarations, CORS configuration, and deterministic seeded data.
 
-## The Solution
-
-MoneyFlow is an **AI-powered budget tracker** with a cursor.com-inspired dark interface that makes managing money feel like using a premium dev tool. Automatic transaction categorization, intelligent spending insights, beautiful 3D visualizations, and a dashboard that actually makes you want to check your finances. Full-stack React + FastAPI with real-time analytics.
-
-> *Open MoneyFlow. See your spending breakdown in 3 seconds. Notice you spent $340 on food delivery last month. Set a budget. AI alerts you when you're trending over. Save $200/month without thinking about it.*
-
----
-
-## Features
-
-- **AI Categorization** — Transactions automatically sorted into smart categories
-- **Smart Budgeting** — Set budgets with real-time progress tracking and alerts
-- **Analytics Dashboard** — Comprehensive spending trends, patterns, and insights
-- **3D Visualizations** — Three.js-powered financial data visualization
-- **Transaction Management** — Full CRUD with search, filter, and bulk operations
-- **Cursor.com Design** — Sleek black theme with orange accents, buttery smooth animations
-- **Lightning Fast** — Vite HMR + FastAPI async for instant responsiveness
-- **API Documentation** — Auto-generated Swagger UI and ReDoc
-- **One-Click Deploy** — Makefile commands for instant setup
-
----
-
-## Tech Stack
-
-### Frontend
-
-| Technology | Version | Purpose |
+| Method | Endpoint | Description |
 |---|---|---|
-| **React** | 18.3 | UI framework |
-| **TypeScript** | 5.5 | Type-safe development |
-| **Vite** | 5.4 | Build tool with HMR |
-| **Tailwind CSS** | 3.4 | Utility-first styling |
-| **Framer Motion** | 10.16 | Smooth animations |
-| **Zustand** | 4.4 | Lightweight state management |
-| **Three.js** | — | 3D financial visualizations |
-| **Lucide React** | — | Beautiful icon library |
-| **React Router** | 6.26 | Client-side routing |
-
-### Backend
-
-| Technology | Version | Purpose |
-|---|---|---|
-| **FastAPI** | 0.118 | Async Python web framework |
-| **Python** | 3.14 | Runtime |
-| **SQLAlchemy** | 2.0 | SQL toolkit and ORM |
-| **Pydantic** | 2.12 | Data validation |
-| **Uvicorn** | — | ASGI server |
-| **SQLite** | — | Embedded database |
-
----
+| `GET` | `/health` | Returns service status, version, and seeded-record counts. |
+| `GET` | `/api/v1/dashboard` | Returns analytics summary, category spend, monthly trend, cash-flow forecast, recurring candidates, and insights. |
+| `GET` | `/api/v1/transactions` | Lists transactions with optional query, category, type, and recurring filters. |
+| `POST` | `/api/v1/transactions` | Creates a transaction and applies categorization metadata. |
+| `DELETE` | `/api/v1/transactions/{transaction_id}` | Deletes a transaction by identifier. |
+| `GET` | `/api/v1/budgets` | Lists budget envelopes and current utilization. |
+| `GET` | `/api/v1/goals` | Lists savings goals and progress metadata. |
+| `GET` | `/api/v1/rules` | Lists merchant and keyword categorization rules. |
+| `POST` | `/api/v1/categorize` | Predicts category, confidence, and rationale for a transaction-like payload. |
+| `GET` | `/api/v1/export` | Returns a complete JSON export payload for local backup or integration work. |
 
 ## Quick Start
 
-### Prerequisites
+The project can be evaluated with the backend and frontend running in separate terminals. The frontend defaults to `http://127.0.0.1:8000` for API calls and can be pointed elsewhere with `VITE_MONEYFLOW_API_URL`.
 
-- **Python 3.8+** — [Download](https://www.python.org/downloads/)
-- **Node.js 18+** — [Download](https://nodejs.org/)
-
-### One-Click Setup
+| Requirement | Recommended Version |
+|---|---|
+| **Node.js** | 18 or newer |
+| **Python** | 3.10 or newer |
+| **Package manager** | `npm` is the validated path for this build. |
 
 ```bash
 # Clone the repository
 git clone https://github.com/Alexi5000/MoneyFlow.git
 cd MoneyFlow
 
-# Install and start everything
-make install    # Install all dependencies
-make start      # Start both frontend + backend
+# Frontend dependencies
+npm install
+
+# Backend dependencies
+python -m pip install -r src/backend/requirements.txt
 ```
 
-Or use the quickstart script:
+Start the backend first:
 
-```bash
-.\scripts\QUICKSTART.bat
-```
-
-This will install dependencies, start the backend on port 8000, start the frontend on port 5173, and open your browser automatically.
-
-### Manual Start
-
-**Backend:**
 ```bash
 cd src/backend
-pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-**Frontend (New Terminal):**
+Start the frontend in a second terminal:
+
 ```bash
-npm install
 npm run dev
 ```
 
-### Access Points
+Then open `http://localhost:5173`. API docs are available at `http://localhost:8000/docs` when the backend is running.
 
-| Service | URL |
+## Validation
+
+This buildout has been validated with the production frontend build and direct backend import/API checks. The current frontend bundle is produced with `npm run build`; Vite reports one non-blocking chunk-size warning because the dashboard intentionally includes rich visualization and animation dependencies.
+
+| Command | Purpose |
 |---|---|
-| **Frontend** | http://localhost:5173 |
-| **Backend API** | http://localhost:8000 |
-| **API Docs (Swagger)** | http://localhost:8000/docs |
-| **API Docs (ReDoc)** | http://localhost:8000/redoc |
-| **Health Check** | http://localhost:8000/health |
-
----
-
-## Design Philosophy
-
-MoneyFlow's design is inspired by **cursor.com** — minimal, dark, and focused:
-
-| Element | Value | Purpose |
-|---|---|---|
-| **Background** | `#000000` | Clean, professional base |
-| **Surface** | `#0a0a0a`, `#222` | Depth without distraction |
-| **Accent** | `#FF5F00` | Purposeful call-to-actions |
-| **Typography** | System fonts | Native, fast-loading |
-| **Spacing** | Generous | Breathing room for clarity |
-| **Corners** | Rounded | Modern, friendly interactions |
-
----
+| `npm run build` | Type-checks the active React app and creates the production Vite bundle. |
+| `python -c "import main"` from `src/backend` | Confirms the backend entry point imports cleanly. |
+| `uvicorn main:app --reload` from `src/backend` | Runs the local API service for interactive testing. |
 
 ## Project Structure
 
-```
+```text
 MoneyFlow/
+├── config/                         # TypeScript project references
+├── docs/                           # Architecture, API, credits, deployment, and readiness notes
 ├── src/
-│   ├── backend/              # FastAPI Backend
-│   │   ├── app/
-│   │   │   ├── api/         # API endpoints
-│   │   │   ├── core/        # Config & database
-│   │   │   ├── models/      # SQLAlchemy models
-│   │   │   ├── schemas/     # Pydantic schemas
-│   │   │   └── middleware/  # Custom middleware
-│   │   ├── main.py          # FastAPI application
-│   │   └── requirements.txt # Python dependencies
-│   └── frontend/            # React Frontend
-│       ├── components/      # Reusable UI components
-│       ├── pages/           # Dashboard, Budgets, Analytics, Transactions, Settings
-│       ├── services/        # API service layer
-│       ├── store/           # Zustand state stores
-│       ├── types/           # TypeScript type definitions
-│       └── utils/           # Utility functions
-├── config/                  # TypeScript & ESLint configurations
-├── docs/                    # Full documentation suite
-├── scripts/                 # Deployment & utility scripts
-├── assets/                  # Cover art and branding
-├── Makefile                 # Build commands
-├── package.json             # Node dependencies
-├── vite.config.ts           # Vite configuration
-└── tailwind.config.js       # Tailwind configuration
+│   ├── backend/
+│   │   ├── main.py                 # FastAPI application and finance analytics API
+│   │   └── requirements.txt        # Python dependencies
+│   └── frontend/
+│       ├── App.tsx                 # Full MoneyFlow dashboard application
+│       ├── index.css               # Tailwind and global visual system
+│       ├── main.tsx                # React entry point
+│       └── vite-env.d.ts           # Vite TypeScript environment declarations
+├── package.json                    # Frontend scripts and dependencies
+├── tsconfig.json                   # Root TypeScript build references
+├── vite.config.ts                  # Vite configuration
+└── tailwind.config.js              # Tailwind design tokens
 ```
 
----
+## Open-Source Inspiration and License Safety
 
-## Development
+MoneyFlow draws product inspiration from open-source finance projects, especially self-hosted budgeting, envelope systems, rule-based categorization, data export, and dashboard analytics. Firefly III and Maybe Finance are AGPL-oriented projects, so they are treated as feature inspiration only unless future maintainers intentionally adopt compatible obligations.[1] [3] Actual Budget and the reviewed React finance dashboard are MIT-licensed references, but MoneyFlow still uses an original implementation with attribution rather than wholesale copying.[2] [4]
 
-```bash
-make help           # Show all available commands
-make install        # Install all dependencies
-make start          # Start both servers
-make stop           # Stop all servers
-make test           # Run API tests
-make dev            # Development mode
-make build          # Build for production
-make clean          # Clean build artifacts
-```
-
----
-
-## Sample Data
-
-MoneyFlow ships with pre-loaded sample data so you can explore immediately:
-
-- **User**: Alex Thompson with $15,420.75 balance
-- **Budgets**: 3 active budgets (Food, Transportation, Entertainment)
-- **Transactions**: 30 days of realistic sample transactions
-- **Categories**: 7 predefined spending categories
-
----
-
-## Documentation
-
-- **[Documentation Index](./docs/README.md)** — Complete documentation hub
-- **[Deployment Guide](./docs/DEPLOYMENT_GUIDE.md)** — Full deployment instructions
-- **[Quick Reference](./docs/QUICK_REFERENCE.md)** — Quick commands and troubleshooting
-- **[Backend API](./docs/backend.md)** — Backend API documentation
-- **[Authors](./docs/AUTHORS.md)** — Creator information
-
----
+| Project | Inspiration Used | License Boundary |
+|---|---|---|
+| **Firefly III** | Self-hosted finance positioning, rules, budgets, savings goals, API-first coverage. | Feature inspiration only because of AGPL-3.0 licensing.[1] |
+| **Actual Budget** | Envelope-budgeting language, local-first mindset, onboarding and documentation focus. | MIT reference; original MoneyFlow code remains preferred.[2] |
+| **Maybe Finance** | Polished finance cockpit, exports, AI/chat direction, Sankey-style future roadmap. | Feature inspiration only because of AGPL/trademark constraints noted by the project.[3] |
+| **React Finance Dashboard** | Compact React dashboard patterns, Recharts, Tailwind UI, local demo fallback ideas. | MIT reference; adapted as original MoneyFlow implementation.[4] |
 
 ## Roadmap
 
-- [ ] Bank account integration (Plaid API)
-- [ ] Recurring transaction detection
-- [ ] AI spending predictions and alerts
-- [ ] Multi-currency support
-- [ ] Mobile app (React Native)
-- [ ] Export to CSV/PDF
-- [ ] Shared household budgets
-- [ ] Investment portfolio tracking
+MoneyFlow is now ready for a final-stage expansion path that can add durable persistence and bank-grade integrations without changing the core product direction. The next logical step is moving seeded in-memory data into SQLite/PostgreSQL with migrations, then layering authentication, Plaid-style bank sync, recurring transaction detection, export formats, and household collaboration.
 
----
+| Stage | Planned Work |
+|---|---|
+| **Persistence** | Replace seeded runtime records with SQLAlchemy models, migrations, and local SQLite/PostgreSQL profiles. |
+| **Bank Connectivity** | Add provider abstractions for Plaid-style account sync, transaction import, and balance refresh. |
+| **AI Services** | Add pluggable LLM-backed insight generation, anomaly detection, and cash-flow forecasting. |
+| **Reports** | Add CSV/PDF exports, tax summaries, category drill-downs, and Sankey cash-flow diagrams. |
+| **Security** | Add authentication, account scoping, encrypted secrets, and production CORS policies. |
+| **Deployment** | Add Docker Compose and production environment templates for self-hosted installations. |
 
 ## Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'feat: add AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
+Contributions should preserve the license-safe implementation boundary described above. If a future change directly imports third-party source code, it must verify license compatibility, retain required notices, and document the origin in `docs/CREDITS.md` before merging.
 
 ## License
 
-MIT License — Copyright (c) 2025 Alex Cinovoj & TechTide AI. See [LICENSE](./LICENSE) for details.
-
----
+MoneyFlow is released under the MIT License. See [LICENSE](./LICENSE) for details.
 
 <div align="center">
 
-**Built by [Alex Cinovoj](https://github.com/Alexi5000) · [TechTide AI](https://github.com/Alexi5000)**
+**Built by [Alex Cinovoj](https://github.com/Alexi5000) · TechTide AI**
 
-*Take control of your money.*
+*Take control of your money with a modern AI finance cockpit.*
 
 </div>
+
+## References
+
+[1]: https://github.com/firefly-iii/firefly-iii "Firefly III on GitHub"
+[2]: https://github.com/actualbudget/actual "Actual Budget on GitHub"
+[3]: https://github.com/maybe-finance/maybe "Maybe Finance on GitHub"
+[4]: https://github.com/iambhavesh55/personal-finance-dashboard "React TypeScript Personal Finance Dashboard on GitHub"

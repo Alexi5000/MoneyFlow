@@ -5,11 +5,11 @@ import { useFinancialStore } from '../store/financialStore'
 import { formatCurrency } from '../utils/formatters'
 
 export const AnalyticsPage: React.FC = () => {
-  const { 
-    transactions, 
+  const {
+    transactions,
     initializeData,
     getTotalIncome,
-    getTotalExpenses 
+    getTotalExpenses
   } = useFinancialStore()
 
   useEffect(() => {

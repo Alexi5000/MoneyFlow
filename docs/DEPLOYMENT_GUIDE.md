@@ -1,7 +1,7 @@
 # MoneyFlow - Complete Deployment Guide
 
-**Created by**: Alex Cinovoj & TechTide AI  
-**Version**: 1.0.0  
+**Created by**: Alex Cinovoj & TechTide AI
+**Version**: 1.0.0
 **Copyright**: © 2025
 
 ## 🎯 Quick Deployment (Recommended)

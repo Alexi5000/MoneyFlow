@@ -41,15 +41,15 @@ class AIService {
     try {
       // Group transactions by category
       const categorySpending = this.groupTransactionsByCategory(transactions)
-      
+
       // Calculate trends and predictions
       const predictions: SpendingPrediction[] = []
-      
+
       for (const [category, categoryTransactions] of Object.entries(categorySpending)) {
         const prediction = this.calculateCategoryPrediction(category, categoryTransactions)
         predictions.push(prediction)
       }
-      
+
       return predictions
     } catch (error) {
       console.error('Error analyzing spending patterns:', error)
@@ -64,7 +64,7 @@ class AIService {
   ): Promise<FinancialInsight[]> {
     try {
       const insights: FinancialInsight[] = []
-      
+
       // Analyze budget performance
       budgets.forEach(budget => {
         if (budget.percentage > 90) {
@@ -83,14 +83,14 @@ class AIService {
           })
         }
       })
-      
+
       // Analyze spending trends
       const recentTransactions = transactions
         .filter(t => t.type === 'expense')
         .slice(0, 30)
-      
+
       const frequentMerchants = this.findFrequentMerchants(recentTransactions)
-      
+
       frequentMerchants.forEach(merchant => {
         if (merchant.totalSpent > 200) {
           insights.push({
@@ -109,7 +109,7 @@ class AIService {
           })
         }
       })
-      
+
       return insights
     } catch (error) {
       console.error('Error generating insights:', error)
@@ -124,17 +124,17 @@ class AIService {
   ): Promise<BudgetRecommendation[]> {
     try {
       const recommendations: BudgetRecommendation[] = []
-      
+
       // Analyze spending patterns for each category
       const categorySpending = this.groupTransactionsByCategory(transactions)
-      
+
       currentBudgets.forEach(budget => {
         const categoryTransactions = categorySpending[budget.category] || []
         const averageSpending = this.calculateAverageMonthlySpending(categoryTransactions)
-        
+
         let recommendedBudget = budget.allocated
         let reasoning = 'Budget appears appropriate based on current spending.'
-        
+
         if (averageSpending > budget.allocated * 1.1) {
           recommendedBudget = Math.ceil(averageSpending * 1.1)
           reasoning = 'Consider increasing budget based on consistent overspending.'
@@ -142,7 +142,7 @@ class AIService {
           recommendedBudget = Math.ceil(averageSpending * 1.2)
           reasoning = 'You could reduce this budget and allocate funds elsewhere.'
         }
-        
+
         recommendations.push({
           category: budget.category,
           currentBudget: budget.allocated,
@@ -151,7 +151,7 @@ class AIService {
           confidence: this.calculateConfidence(categoryTransactions.length)
         })
       })
-      
+
       return recommendations
     } catch (error) {
       console.error('Error creating budget recommendations:', error)
@@ -167,15 +167,15 @@ class AIService {
     try {
       const categorySpending = this.groupTransactionsByCategory(transactions)
       const predictions = []
-      
+
       for (const [category, categoryTransactions] of Object.entries(categorySpending)) {
         const expenseTransactions = categoryTransactions.filter(t => t.type === 'expense')
-        
+
         if (expenseTransactions.length === 0) continue
-        
+
         const averageMonthly = this.calculateAverageMonthlySpending(expenseTransactions)
         let predicted = averageMonthly
-        
+
         // Adjust based on timeframe
         switch (timeframe) {
           case 'week':
@@ -186,18 +186,18 @@ class AIService {
             break
           // month is default
         }
-        
+
         // Apply seasonal adjustments and trends
         const trend = this.calculateTrend(expenseTransactions)
         predicted *= (1 + trend)
-        
+
         predictions.push({
           category,
           predicted: Math.round(predicted * 100) / 100,
           confidence: this.calculateConfidence(expenseTransactions.length)
         })
       }
-      
+
       return predictions
     } catch (error) {
       console.error('Error predicting future expenses:', error)
@@ -221,7 +221,7 @@ class AIService {
     const expenseTransactions = transactions.filter(t => t.type === 'expense')
     const averageSpending = this.calculateAverageMonthlySpending(expenseTransactions)
     const trend = this.calculateTrend(expenseTransactions)
-    
+
     return {
       category,
       predictedAmount: Math.round(averageSpending * (1 + trend) * 100) / 100,
@@ -233,45 +233,45 @@ class AIService {
 
   private calculateAverageMonthlySpending(transactions: Transaction[]): number {
     if (transactions.length === 0) return 0
-    
+
     const totalSpending = transactions.reduce((sum, t) => sum + Math.abs(t.amount), 0)
     const monthsSpan = this.calculateMonthsSpan(transactions)
-    
+
     return monthsSpan > 0 ? totalSpending / monthsSpan : totalSpending
   }
 
   private calculateMonthsSpan(transactions: Transaction[]): number {
     if (transactions.length === 0) return 1
-    
+
     const dates = transactions.map(t => new Date(t.date))
     const earliest = new Date(Math.min(...dates.map(d => d.getTime())))
     const latest = new Date(Math.max(...dates.map(d => d.getTime())))
-    
-    const monthsDiff = (latest.getFullYear() - earliest.getFullYear()) * 12 + 
+
+    const monthsDiff = (latest.getFullYear() - earliest.getFullYear()) * 12 +
                       (latest.getMonth() - earliest.getMonth()) + 1
-    
+
     return Math.max(1, monthsDiff)
   }
 
   private calculateTrend(transactions: Transaction[]): number {
     if (transactions.length < 4) return 0
-    
+
     // Simple linear regression to calculate trend
     const sortedTransactions = transactions
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    
+
     const n = sortedTransactions.length
     const x = Array.from({ length: n }, (_, i) => i)
     const y = sortedTransactions.map(t => Math.abs(t.amount))
-    
+
     const sumX = x.reduce((a, b) => a + b, 0)
     const sumY = y.reduce((a, b) => a + b, 0)
     const sumXY = x.reduce((sum, xi, i) => sum + xi * y[i], 0)
     const sumXX = x.reduce((sum, xi) => sum + xi * xi, 0)
-    
+
     const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX)
     const avgY = sumY / n
-    
+
     return avgY > 0 ? slope / avgY : 0 // Normalize by average
   }
 
@@ -282,23 +282,23 @@ class AIService {
 
   private identifySpendingFactors(transactions: Transaction[]): string[] {
     const factors = []
-    
+
     // Analyze day of week patterns
     const dayOfWeekSpending = transactions.reduce((acc, t) => {
       const day = new Date(t.date).getDay()
       acc[day] = (acc[day] || 0) + Math.abs(t.amount)
       return acc
     }, {} as Record<number, number>)
-    
+
     const weekendSpending = (dayOfWeekSpending[0] || 0) + (dayOfWeekSpending[6] || 0)
     const weekdaySpending = Object.entries(dayOfWeekSpending)
       .filter(([day]) => day !== '0' && day !== '6')
       .reduce((sum, [, amount]) => sum + amount, 0)
-    
+
     if (weekendSpending > weekdaySpending * 0.4) {
       factors.push('Higher weekend spending')
     }
-    
+
     // Analyze merchant frequency
     const merchantCounts = transactions.reduce((acc, t) => {
       if (t.merchant) {
@@ -306,15 +306,15 @@ class AIService {
       }
       return acc
     }, {} as Record<string, number>)
-    
+
     const frequentMerchants = Object.entries(merchantCounts)
       .filter(([, count]) => count > 3)
       .map(([merchant]) => merchant)
-    
+
     if (frequentMerchants.length > 0) {
       factors.push(`Frequent purchases at ${frequentMerchants[0]}`)
     }
-    
+
     return factors
   }
 
@@ -329,7 +329,7 @@ class AIService {
       }
       return acc
     }, {} as Record<string, { count: number; totalSpent: number }>)
-    
+
     return Object.entries(merchantData)
       .map(([name, data]) => ({ name, ...data }))
       .sort((a, b) => b.totalSpent - a.totalSpent)

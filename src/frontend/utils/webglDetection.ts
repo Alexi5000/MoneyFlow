@@ -55,19 +55,19 @@ export const isLowEndDevice = (): boolean => {
   // Check for low memory
   const memory = (navigator as any).deviceMemory
   if (memory && memory < 4) return true
-  
+
   // Check for slow connection
   const connection = (navigator as any).connection
   if (connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')) {
     return true
   }
-  
+
   // Check for mobile device (generally less powerful)
   if (isMobileDevice()) return true
-  
+
   // Check hardware concurrency (CPU cores)
   if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) return true
-  
+
   return false
 }
 
@@ -88,7 +88,7 @@ export const getWebGLCapabilities = (): Partial<DeviceCapabilities> => {
   try {
     const canvas = document.createElement('canvas')
     const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
-    
+
     if (!gl) {
       return {
         hasWebGL: false,
@@ -124,10 +124,10 @@ export const analyzeDeviceCapabilities = (): DeviceCapabilities => {
   const webglCaps = getWebGLCapabilities()
   const mobile = isMobileDevice()
   const lowEnd = isLowEndDevice()
-  
+
   let recommendedParticleCount = 1000
   let recommendedQuality: 'low' | 'medium' | 'high' = 'high'
-  
+
   if (lowEnd || !webglCaps.hasWebGL) {
     recommendedParticleCount = 100
     recommendedQuality = 'low'
@@ -138,7 +138,7 @@ export const analyzeDeviceCapabilities = (): DeviceCapabilities => {
     recommendedParticleCount = 1500
     recommendedQuality = 'high'
   }
-  
+
   return {
     hasWebGL: webglCaps.hasWebGL || false,
     hasWebGL2: webglCaps.hasWebGL2 || false,
@@ -160,35 +160,35 @@ export class PerformanceMonitor {
   private lastTime = 0
   private fps = 0
   private memoryUsage = 0
-  
+
   constructor() {
     this.lastTime = performance.now()
   }
-  
+
   update() {
     const currentTime = performance.now()
     this.frameCount++
-    
+
     if (currentTime - this.lastTime >= 1000) {
       this.fps = Math.round((this.frameCount * 1000) / (currentTime - this.lastTime))
       this.frameCount = 0
       this.lastTime = currentTime
-      
+
       // Update memory usage if available
       if ((performance as any).memory) {
         this.memoryUsage = (performance as any).memory.usedJSHeapSize / 1048576 // Convert to MB
       }
     }
   }
-  
+
   getFPS(): number {
     return this.fps
   }
-  
+
   getMemoryUsage(): number {
     return this.memoryUsage
   }
-  
+
   isPerformanceGood(): boolean {
     return this.fps >= 30 && this.memoryUsage < 100 // Less than 100MB
   }

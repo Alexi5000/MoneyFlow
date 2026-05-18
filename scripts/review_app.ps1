@@ -6,13 +6,13 @@ Write-Host "Backend APIs..." -ForegroundColor Yellow
 try {
     $health = Invoke-RestMethod -Uri "http://localhost:8000/health"
     Write-Host "  Health: OK ($($health.status))" -ForegroundColor Green
-    
+
     $user = Invoke-RestMethod -Uri "http://localhost:8000/api/v1/users/me"
     Write-Host "  User: $($user.data.name)" -ForegroundColor Green
-    
+
     $budgets = Invoke-RestMethod -Uri "http://localhost:8000/api/v1/budgets/"
     Write-Host "  Budgets: $($budgets.data.budgets.Count) found" -ForegroundColor Green
-    
+
     $trans = Invoke-RestMethod -Uri "http://localhost:8000/api/v1/transactions/recent?limit=5"
     Write-Host "  Transactions: $($trans.data.Count) found" -ForegroundColor Green
 } catch {

@@ -9,20 +9,20 @@ interface FinancialState {
   budgets: Budget[]
   isLoading: boolean
   error: string | null
-  
+
   // Actions
   setUser: (user: User) => void
   setTransactions: (transactions: Transaction[]) => void
   setBudgets: (budgets: Budget[]) => void
   setLoading: (loading: boolean) => void
   setError: (error: string | null) => void
-  
+
   // Data fetching
   fetchUserData: () => Promise<void>
   fetchTransactions: () => Promise<void>
   fetchBudgets: () => Promise<void>
   initializeData: () => Promise<void>
-  
+
   // Computed values
   getTotalIncome: () => number
   getTotalExpenses: () => number
@@ -85,22 +85,22 @@ export const useFinancialStore = create<FinancialState>()(
         set({ isLoading: true, error: null })
         try {
           const { fetchUserData, fetchTransactions, fetchBudgets } = get()
-          
+
           // Fetch user first (critical)
           const userSuccess = await fetchUserData()
           if (!userSuccess) {
             throw new Error('Failed to connect to backend. Please ensure the server is running.')
           }
-          
+
           // Fetch other data (non-critical, continue even if they fail)
           await Promise.allSettled([
             fetchTransactions(),
             fetchBudgets()
           ])
-          
+
           set({ isLoading: false })
         } catch (error) {
-          set({ 
+          set({
             isLoading: false,
             error: error instanceof Error ? error.message : 'Failed to initialize data'
           })

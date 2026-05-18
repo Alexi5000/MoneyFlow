@@ -17,7 +17,7 @@ export const SettingsPage: React.FC = () => {
           <h1 className="text-[48px] font-normal text-white mb-3 leading-tight">Resources</h1>
           <p className="text-[16px] text-gray-400">Documentation, guides, and helpful information</p>
         </div>
-            
+
         {/* Resources Sections */}
         <div className="space-y-6">
           {/* Documentation */}
@@ -38,7 +38,7 @@ export const SettingsPage: React.FC = () => {
               </a>
             </div>
           </div>
-            
+
           {/* User Profile */}
           <div className="bg-[#0a0a0a] border border-[#222] rounded-lg p-8">
             <h2 className="text-[20px] font-medium text-white mb-6">User Profile</h2>
@@ -57,7 +57,7 @@ export const SettingsPage: React.FC = () => {
               </div>
             </div>
           </div>
-            
+
           {/* Preferences */}
           <div className="bg-[#0a0a0a] border border-[#222] rounded-lg p-8">
             <h2 className="text-[20px] font-medium text-white mb-6">Preferences</h2>

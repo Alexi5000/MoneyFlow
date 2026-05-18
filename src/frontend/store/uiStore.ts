@@ -7,7 +7,7 @@ interface UIState {
   activeView: 'dashboard' | 'transactions' | 'budgets' | 'insights' | 'settings'
   isAnimating: boolean
   notifications: Notification[]
-  
+
   // Actions
   toggleTheme: () => void
   setTheme: (theme: 'light' | 'dark') => void
@@ -43,7 +43,7 @@ export const useUIStore = create<UIState>((set, get) => ({
     const { theme } = get()
     const newTheme = theme === 'light' ? 'dark' : 'light'
     set({ theme: newTheme })
-    
+
     // Update document class for theme switching
     if (typeof document !== 'undefined') {
       document.documentElement.classList.toggle('dark', newTheme === 'dark')

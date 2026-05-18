@@ -5,12 +5,12 @@ import { useFinancialStore } from '../store/financialStore'
 import { formatCurrency } from '../utils/formatters'
 
 export const DashboardPage: React.FC = () => {
-  const { 
-    user, 
-    budgets, 
-    transactions, 
-    isLoading, 
-    error, 
+  const {
+    user,
+    budgets,
+    transactions,
+    isLoading,
+    error,
     initializeData,
     getTotalIncome,
     getTotalExpenses,
@@ -21,7 +21,7 @@ export const DashboardPage: React.FC = () => {
     const loadData = async () => {
       // Always clear error on mount
       setError(null)
-      
+
       // Force fresh data load
       console.log('Initializing MoneyFlow data...')
       await initializeData()
@@ -61,7 +61,7 @@ export const DashboardPage: React.FC = () => {
               {error}
             </p>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => {
@@ -128,7 +128,7 @@ export const DashboardPage: React.FC = () => {
             Built to make you extraordinarily productive,<br />
             MoneyFlow is the best way to manage your finances.
           </h1>
-          
+
           <button className="mt-4 px-8 py-3 bg-white text-black rounded-full hover:bg-gray-100 transition-all font-medium text-[15px] inline-flex items-center gap-2">
             Download for Windows <ArrowRight className="w-4 h-4" />
           </button>
@@ -252,7 +252,7 @@ export const DashboardPage: React.FC = () => {
       <div className="bg-black py-24">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-[40px] font-normal text-white mb-16">Stay on the frontier</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-[#0a0a0a] border border-[#222] rounded-lg p-8 hover:border-[#333] transition-colors">
               <div className="mb-6">
@@ -305,7 +305,7 @@ export const DashboardPage: React.FC = () => {
                 It was night and day from one month to another, adoption went from single digits to over 80%. It just spread like wildfire, all the best savers were using MoneyFlow.
               </p>
               <div className="flex items-center gap-3">
-                <img 
+                <img
                   src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face"
                   alt="Sarah Chen"
                   className="w-12 h-12 rounded-full object-cover"
@@ -322,7 +322,7 @@ export const DashboardPage: React.FC = () => {
                 The most useful financial tool I currently pay for, hands down, is MoneyFlow. It's fast, autocompletes when and where you need it to, handles budgets properly.
               </p>
               <div className="flex items-center gap-3">
-                <img 
+                <img
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
                   alt="Marcus Lee"
                   className="w-12 h-12 rounded-full object-cover"
@@ -339,7 +339,7 @@ export const DashboardPage: React.FC = () => {
                 It's official. I love MoneyFlow budgeting. It's wild how easy it makes financial planning and tracking.
               </p>
               <div className="flex items-center gap-3">
-                <img 
+                <img
                   src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face"
                   alt="Alex Rivera"
                   className="w-12 h-12 rounded-full object-cover"
@@ -383,7 +383,7 @@ export const DashboardPage: React.FC = () => {
                 <li><a href="#" className="hover:text-white transition-colors">AI Insights</a></li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="text-white font-medium mb-5 text-[15px]">Resources</h4>
               <ul className="space-y-3 text-gray-400 text-[14px]">

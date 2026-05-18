@@ -14,7 +14,7 @@ export const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
 }) => {
   const getSkeletonClasses = () => {
     const baseClasses = 'bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse'
-    
+
     switch (variant) {
       case 'card':
         return `${baseClasses} h-32 w-full rounded-2xl border-3 border-gray-300`

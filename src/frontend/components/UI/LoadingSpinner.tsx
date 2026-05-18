@@ -88,11 +88,11 @@ export const AIAnalysisLoader: React.FC<{ progress?: number }> = ({ progress = 0
           <div className="w-8 h-8 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full opacity-80" />
         </div>
       </div>
-      
+
       <div className="text-center space-y-2">
         <h3 className="text-lg font-semibold text-white">AI Analysis in Progress</h3>
         <p className="text-sm text-gray-400">Analyzing your financial patterns...</p>
-        
+
         {progress > 0 && (
           <div className="w-48 h-2 bg-gray-700 rounded-full overflow-hidden">
             <motion.div

@@ -21,5 +21,5 @@
       "@/*": ["../src/frontend/*"]
     }
   },
-  "include": ["../src/frontend"]
+  "include": ["../src/frontend/App.tsx", "../src/frontend/main.tsx", "../src/frontend/vite-env.d.ts"]
 }

@@ -73,7 +73,7 @@ interface AIState {
   lastAnalysis: number | null
   analysisProgress: number
   error: string | null
-  
+
   // Actions
   setPredictions: (predictions: Prediction) => void
   setInsights: (insights: Insight[]) => void
@@ -82,13 +82,13 @@ interface AIState {
   setAnalysisProgress: (progress: number) => void
   setError: (error: string | null) => void
   updateLastAnalysis: () => void
-  
+
   // AI Analysis functions
   analyzeSpendingPatterns: () => Promise<void>
   generateInsights: () => Promise<void>
   createRecommendations: () => Promise<void>
   fetchAIData: () => Promise<void>
-  
+
   // Utility functions
   getInsightsByCategory: (category: string) => Insight[]
   getRecommendationsByImpact: (impact: 'low' | 'medium' | 'high') => Recommendation[]
@@ -115,14 +115,14 @@ export const useAIStore = create<AIState>((set, get) => ({
 
   analyzeSpendingPatterns: async () => {
     set({ isAnalyzing: true, analysisProgress: 0, error: null })
-    
+
     try {
       // Simulate AI analysis with progress updates
       for (let i = 0; i <= 100; i += 20) {
         set({ analysisProgress: i })
         await new Promise(resolve => setTimeout(resolve, 200))
       }
-      
+
       const analysisResponse = await apiService.getAIPredictions()
       const insightsResponse = await apiService.getAIInsights()
       const recommendationsResponse = await apiService.getAIInsights() // Using insights as recommendations for now
@@ -138,17 +138,17 @@ export const useAIStore = create<AIState>((set, get) => ({
       })
     } catch (error) {
       console.error('Failed to analyze spending patterns:', error)
-      set({ 
+      set({
         error: 'Failed to analyze spending patterns. Please try again.',
-        isAnalyzing: false, 
-        analysisProgress: 0 
+        isAnalyzing: false,
+        analysisProgress: 0
       })
     }
   },
 
   generateInsights: async () => {
     set({ isAnalyzing: true, error: null })
-    
+
     try {
       const insights = await apiService.getAIInsights()
 
@@ -170,7 +170,7 @@ export const useAIStore = create<AIState>((set, get) => ({
 
   createRecommendations: async () => {
     set({ isAnalyzing: true, error: null })
-    
+
     try {
       const recommendations = await apiService.getAIInsights() // Using insights as recommendations for now
 
@@ -190,7 +190,7 @@ export const useAIStore = create<AIState>((set, get) => ({
 
   fetchAIData: async () => {
     set({ isAnalyzing: true, error: null })
-    
+
     try {
       // Fetch all AI data in parallel
       const [predictionsResponse, insightsResponse, recommendationsResponse] = await Promise.all([
@@ -209,9 +209,9 @@ export const useAIStore = create<AIState>((set, get) => ({
       })
     } catch (error) {
       console.error('Failed to fetch AI data:', error)
-      set({ 
+      set({
         error: 'Failed to fetch AI data. Please try again.',
-        isAnalyzing: false 
+        isAnalyzing: false
       })
     }
   },
@@ -229,7 +229,7 @@ export const useAIStore = create<AIState>((set, get) => ({
   shouldRefreshAnalysis: () => {
     const { lastAnalysis } = get()
     if (!lastAnalysis) return true
-    
+
     // Refresh analysis if it's been more than 24 hours
     const twentyFourHours = 24 * 60 * 60 * 1000
     return Date.now() - lastAnalysis > twentyFourHours

@@ -151,7 +151,7 @@ Both servers running:
 The design now matches cursor.com's:
 - ✅ Color scheme
 - ✅ Typography scale
-- ✅ Button styles  
+- ✅ Button styles
 - ✅ Card designs
 - ✅ Spacing/padding
 - ✅ Animations
