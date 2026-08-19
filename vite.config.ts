@@ -17,9 +17,6 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src/frontend'),
     },
   },
-  optimizeDeps: {
-    include: ['three', '@react-three/fiber', '@react-three/drei']
-  },
   server: {
     port: 5173,
     host: 'localhost',
@@ -34,7 +31,6 @@ export default defineConfig({
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-charts': ['recharts'],
           'vendor-motion': ['framer-motion'],
-          'vendor-three': ['three', '@react-three/fiber', '@react-three/drei'],
         },
       },
     },
