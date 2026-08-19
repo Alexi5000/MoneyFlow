@@ -9,7 +9,13 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint --config config/eslint.config.js .",
+    "typecheck": "tsc -b",
+    "test": "npm run test:frontend-contract && npm run test:backend",
+    "test:frontend-contract": "node --test tests/repository-contract.test.mjs",
+    "test:backend": "python3 -m pytest src/backend/tests -q",
+    "validate:backend": "python3 scripts/validate_backend_contract.py",
+    "quality": "npm run lint && npm run typecheck && npm run test && npm run build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -22,7 +28,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
     "recharts": "^2.8.0",
-    "three": "^0.158.0",
+    "three": "^0.159.0",
     "zustand": "^4.4.7"
   },
   "devDependencies": {
@@ -30,7 +36,7 @@
     "@types/node": "^25.8.0",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
-    "@types/three": "^0.158.3",
+    "@types/three": "^0.159.0",
     "@typescript-eslint/eslint-plugin": "^8.5.0",
     "@typescript-eslint/parser": "^8.5.0",
     "@vitejs/plugin-react": "^4.3.1",

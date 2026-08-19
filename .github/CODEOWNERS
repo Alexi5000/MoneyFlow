@@ -1,0 +1,13 @@
+# Alexi5000 owns the repository-quality and governance baseline.
+/.github/CODEOWNERS @Alexi5000
+/.github/workflows/quality.yml @Alexi5000
+/.env.example @Alexi5000
+/README.md @Alexi5000
+/CONTRIBUTING.md @Alexi5000
+/CODE_OF_CONDUCT.md @Alexi5000
+/SECURITY.md @Alexi5000
+/SUPPORT.md @Alexi5000
+/FORK_POLICY.md @Alexi5000
+/package.json @Alexi5000
+/tests/ @Alexi5000
+/src/backend/tests/ @Alexi5000

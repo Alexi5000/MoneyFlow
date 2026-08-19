@@ -1,0 +1,36 @@
+name: Feature request
+description: Propose a scoped improvement to MoneyFlow
+title: "feature: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Proposals should describe a user outcome and a testable result. Do not include credentials, bank tokens, personal financial records, or security-sensitive data.
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Intended user outcome
+      description: Explain the problem and the observable improvement.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: State the smallest verifiable behavior or API contract that would make this complete.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Data and security boundaries
+      description: Describe whether the proposal touches external providers, real financial data, authentication, environment variables, or browser-visible configuration.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Explain simpler approaches or why the current behavior is insufficient.

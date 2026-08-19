@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { motion } from 'framer-motion'
 import { TrendingUp, TrendingDown, DollarSign } from 'lucide-react'
 import { useFinancialStore } from '../store/financialStore'
 import { formatCurrency } from '../utils/formatters'

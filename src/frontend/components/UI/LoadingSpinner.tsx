@@ -70,7 +70,7 @@ export const ParticleLoader: React.FC = () => {
 }
 
 // automation Analysis loading animation
-export const automationAnalysisLoader: React.FC<{ progress?: number }> = ({ progress = 0 }) => {
+export const AutomationAnalysisLoader: React.FC<{ progress?: number }> = ({ progress = 0 }) => {
   return (
     <div className="flex flex-col items-center justify-center space-y-4 p-8">
       <div className="relative">

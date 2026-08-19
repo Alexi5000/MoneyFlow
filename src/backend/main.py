@@ -10,7 +10,7 @@ SQLAlchemy or PostgreSQL without changing the frontend integration surface.
 from __future__ import annotations
 
 from collections import defaultdict
-from datetime import date as Date, datetime, timedelta
+from datetime import date as Date, datetime, timedelta, timezone
 from enum import Enum
 from statistics import mean
 from typing import Literal
@@ -294,7 +294,7 @@ def health_check() -> dict:
         "status": "healthy",
         "service": "moneyflow-api",
         "version": "2.0.0",
-        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "timestamp": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
     }
 
 
@@ -373,7 +373,7 @@ def categorize_merchant(merchant: str = Query(..., min_length=2)) -> dict:
 @app.get("/api/v1/export")
 def export_data() -> dict:
     return {
-        "exportedAt": datetime.utcnow().isoformat() + "Z",
+        "exportedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "transactions": [item.model_dump(mode="json") for item in transactions],
         "budgets": [item.model_dump(mode="json") for item in budgets],
         "goals": [item.model_dump(mode="json") for item in goals],

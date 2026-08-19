@@ -164,8 +164,6 @@ export const useClassificationStore = create<ClassificationState>((set, get) => 
         isAnalyzing: false
       })
     }
-      })
-    }
   },
 
   createRecommendations: async () => {

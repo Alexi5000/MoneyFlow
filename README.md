@@ -30,6 +30,12 @@
 
 ---
 
+## Alexi5000 Fork Purpose
+
+MoneyFlow is Alexi5000’s local-first budgeting and cash-flow product foundation. It is maintained as a practical reference for careful AI-assisted application development: deterministic calculations, typed service contracts, observable validation, and explicit boundaries around sensitive financial data. The repository reflects experience building agent workflows and automations with Cursor, Claude, Codex-class tools, and comparable systems while keeping current financial behavior understandable without relying on an AI model.
+
+The current application uses seeded local data. It is not a bank connection, hosted financial service, tax product, or personalized financial advisor. See [FORK_POLICY.md](./FORK_POLICY.md) for the engineering and integration boundary.
+
 ## Why MoneyFlow
 
 MoneyFlow turns personal finance into a **high-signal operating system** instead of another spreadsheet. The platform combines a polished dark dashboard, deterministic seeded demo data, a typed FastAPI contract, and a React experience that remains explorable even when the backend is offline. The repository is built as a product foundation: the current implementation is local-first and demo-ready, while the architecture leaves a clear path toward persistent storage, authentication, bank-sync providers, and production deployment.
@@ -61,6 +67,15 @@ The graphic above is a repository-local SVG preview of the MoneyFlow design lang
 
 ---
 
+## Use Cases
+
+| Use case | What MoneyFlow demonstrates |
+|---|---|
+| **Budgeting prototype** | A deterministic dashboard for balances, spending, envelopes, savings goals, and cash-flow summaries using seeded data. |
+| **Full-stack contract reference** | A React and TypeScript frontend paired with a typed FastAPI API whose public route behavior is exercised in smoke tests. |
+| **Responsible automation foundation** | A clear boundary for future import, classification, or provider integrations: server-side secrets, consent, auditability, and deterministic validation before handling real records. |
+| **AI-assisted engineering practice** | An application that can be evolved with modern agent-development tools while retaining human-readable financial logic, repeatable tests, and explicit review gates. |
+
 ## Built With
 
 MoneyFlow deliberately keeps the stack familiar, inspectable, and easy to run locally. The frontend and backend are separated cleanly, but the contracts are aligned so the repository can evolve into a hosted platform without a rewrite.
@@ -70,18 +85,18 @@ MoneyFlow deliberately keeps the stack familiar, inspectable, and easy to run lo
 | **Interface** | React 18, TypeScript, Vite, Tailwind CSS, Framer Motion, Recharts, and Lucide icons. |
 | **API** | Python, FastAPI, Pydantic, Uvicorn, and CORS middleware. |
 | **Data model** | In-memory seeded finance records with typed transaction, budget, goal, rule, analytics, and export models. |
-| **Validation** | `scripts/validate_backend_contract.py`, `npm run build`, route checks, documentation scans, and whitespace hygiene. |
+| **Validation** | Frontend linting and type checks, dependency-free repository contracts, FastAPI request-level smoke tests, the established backend contract script, and a Vite production build. |
 | **Package workflow** | `npm` is the validated frontend package-manager path for this repository buildout. |
 
 ---
 
-## Quick Start
+## Verified Setup
 
 The fastest way to evaluate MoneyFlow is to run the FastAPI backend and Vite frontend in two terminals. The frontend reads `VITE_MONEYFLOW_API_URL` when present and otherwise points to the local backend default.
 
 | Requirement | Recommended Version |
 |---|---|
-| **Node.js** | 18 or newer. |
+| **Node.js** | 20 or newer. |
 | **Python** | 3.10 or newer. |
 | **npm** | Current stable npm bundled with Node.js. |
 
@@ -90,11 +105,17 @@ The fastest way to evaluate MoneyFlow is to run the FastAPI backend and Vite fro
 git clone https://github.com/Alexi5000/MoneyFlow.git
 cd MoneyFlow
 
-# Install the frontend dependencies
-npm install
-
-# Install the backend dependencies
+# Create an isolated backend environment and install pinned dependencies
+python3 -m venv .venv
+. .venv/bin/activate
 python -m pip install -r src/backend/requirements.txt
+
+# Install the locked frontend dependency graph
+npm ci
+
+# Verify linting, TypeScript, smoke suites, and production build
+npm run quality
+npm run validate:backend
 ```
 
 Start the backend first:
@@ -137,20 +158,21 @@ The backend lives in [`src/backend/main.py`](./src/backend/main.py). It is inten
 MoneyFlow includes repeatable validation commands so future changes can be checked without relying on ad hoc manual inspection.
 
 ```bash
-# Backend contract validation
-python scripts/validate_backend_contract.py
+# Run linting, type checks, repository-contract smoke checks,
+# FastAPI request-level smoke checks, and the production build.
+npm run quality
 
-# Frontend production build
-npm run build
+# Run the established backend contract check directly when debugging API behavior.
+npm run validate:backend
 ```
 
 | Validation Area | Expected Result |
 |---|---|
-| **Backend import** | `src.backend.main` imports successfully and exposes the expected FastAPI route contract. |
-| **Dashboard contract** | Dashboard analytics include summaries, trends, categories, forecast, recurring candidates, and insights. |
-| **Transaction CRUD** | Listing, creation, categorization metadata, and deletion paths are exercised by the validation script. |
-| **Frontend build** | Vite produces a production bundle from the active React and TypeScript entry points. |
-| **Docs and hygiene** | Documentation references are checked, generated dependency folders are ignored, and trailing whitespace is normalized. |
+| **Repository contract** | The dependency-free Node smoke suite checks documentation, environment safety, policies, application surfaces, and CI coverage. |
+| **FastAPI smoke suite** | Request-level tests exercise health, dashboard, categorization, export, and reversible transaction lifecycle behavior. |
+| **Backend contract** | The established validation script checks imports, route registration, seeded analytics, and transaction CRUD behavior. |
+| **Frontend quality** | ESLint and TypeScript check the active React entry points before Vite creates a production bundle. |
+| **Environment safety** | The committed `.env.example` documents public browser configuration and prohibits client-side secrets. |
 
 ---
 
@@ -200,14 +222,20 @@ MoneyFlow is now a strong full-stack foundation. The next production-oriented st
 
 ---
 
+## Support
+
+For reproducible setup failures, documentation corrections, or feature discussions, open a public issue with your operating system, Node.js and Python versions, exact commands, and non-sensitive output. See [SUPPORT.md](./SUPPORT.md) for routing guidance.
+
+Do **not** post account data, bank tokens, credentials, personal financial records, or suspected vulnerabilities in public issues. Follow [SECURITY.md](./SECURITY.md) for private security reporting.
+
 ## Contributing
 
 Contributions should preserve the repository’s attribution boundaries, avoid introducing license-incompatible source code, and keep the frontend and backend contracts synchronized. A good pull request should include a concise description, screenshots or API examples when applicable, and validation evidence from the backend contract script and frontend production build.
 
 ```bash
 git checkout -b feature/your-moneyflow-improvement
-python scripts/validate_backend_contract.py
-npm run build
+npm run quality
+npm run validate:backend
 ```
 
 ---

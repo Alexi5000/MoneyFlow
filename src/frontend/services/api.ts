@@ -1,5 +1,7 @@
 import { User, Transaction, Budget, AutomatedInsight } from '../types'
 
+type ApiRecord = Record<string, unknown>
+
 // API service for MoneyFlow backend
 class ApiService {
   private baseUrl = 'http://localhost:8000/api/v1'
@@ -37,7 +39,7 @@ class ApiService {
   }
 
   async getAutomatedInsights(): Promise<AutomatedInsight[]> {
-    const response = await this.request<{ data: any[]; success: boolean }>('/ai/insights')
+    const response = await this.request<{ data: AutomatedInsight[]; success: boolean }>('/ai/insights')
     return response.data
   }
 
@@ -85,13 +87,13 @@ class ApiService {
     })
   }
 
-  async getClassificationPredictions(): Promise<any> {
-    const response = await this.request<{ data: any; success: boolean }>('/ai/predictions')
+  async getClassificationPredictions(): Promise<ApiRecord> {
+    const response = await this.request<{ data: ApiRecord; success: boolean }>('/ai/predictions')
     return response.data
   }
 
-  async getCategories(): Promise<any[]> {
-    const response = await this.request<{ data: any[]; success: boolean }>('/categories/')
+  async getCategories(): Promise<ApiRecord[]> {
+    const response = await this.request<{ data: ApiRecord[]; success: boolean }>('/categories/')
     return response.data
   }
 }

@@ -3,6 +3,21 @@
  * Provides functions to detect WebGL support and device capabilities
  */
 
+interface NavigatorCapabilities extends Navigator {
+  deviceMemory?: number
+  connection?: {
+    effectiveType?: string
+  }
+}
+
+interface PerformanceMemory {
+  usedJSHeapSize: number
+}
+
+interface PerformanceCapabilities extends Performance {
+  memory?: PerformanceMemory
+}
+
 export interface DeviceCapabilities {
   hasWebGL: boolean
   hasWebGL2: boolean
@@ -23,7 +38,7 @@ export const isWebGLSupported = (): boolean => {
     const canvas = document.createElement('canvas')
     const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
     return !!(gl && gl instanceof WebGLRenderingContext)
-  } catch (e) {
+  } catch {
     return false
   }
 }
@@ -36,7 +51,7 @@ export const isWebGL2Supported = (): boolean => {
     const canvas = document.createElement('canvas')
     const gl = canvas.getContext('webgl2')
     return !!(gl && gl instanceof WebGL2RenderingContext)
-  } catch (e) {
+  } catch {
     return false
   }
 }
@@ -53,11 +68,12 @@ export const isMobileDevice = (): boolean => {
  */
 export const isLowEndDevice = (): boolean => {
   // Check for low memory
-  const memory = (navigator as any).deviceMemory
+  const browserNavigator = navigator as NavigatorCapabilities
+  const memory = browserNavigator.deviceMemory
   if (memory && memory < 4) return true
 
   // Check for slow connection
-  const connection = (navigator as any).connection
+  const connection = browserNavigator.connection
   if (connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')) {
     return true
   }
@@ -106,7 +122,7 @@ export const getWebGLCapabilities = (): Partial<DeviceCapabilities> => {
       maxVertexUniforms: gl.getParameter(gl.MAX_VERTEX_UNIFORM_VECTORS),
       maxFragmentUniforms: gl.getParameter(gl.MAX_FRAGMENT_UNIFORM_VECTORS)
     }
-  } catch (e) {
+  } catch {
     return {
       hasWebGL: false,
       hasWebGL2: false,
@@ -175,8 +191,9 @@ export class PerformanceMonitor {
       this.lastTime = currentTime
 
       // Update memory usage if available
-      if ((performance as any).memory) {
-        this.memoryUsage = (performance as any).memory.usedJSHeapSize / 1048576 // Convert to MB
+      const browserPerformance = performance as PerformanceCapabilities
+      if (browserPerformance.memory) {
+        this.memoryUsage = browserPerformance.memory.usedJSHeapSize / 1048576 // Convert to MB
       }
     }
   }
