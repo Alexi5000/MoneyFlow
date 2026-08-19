@@ -1,0 +1,62 @@
+name: Quality
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint, type check, API smoke test, and build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: src/backend/requirements.txt
+
+      - name: Install frontend dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Install backend dependencies
+        run: python -m pip install --upgrade pip && python -m pip install -r src/backend/requirements.txt
+
+      - name: Lint frontend sources
+        run: npm run lint
+
+      - name: Type-check frontend sources
+        run: npm run typecheck
+
+      - name: Run repository contract smoke suite
+        run: npm run test:frontend-contract
+
+      - name: Run FastAPI smoke suite
+        run: npm run test:backend
+
+      - name: Run backend contract validation
+        run: npm run validate:backend
+
+      - name: Build frontend for production
+        run: npm run build
