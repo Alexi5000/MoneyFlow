@@ -27,10 +27,10 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-charts': ['recharts'],
-          'vendor-motion': ['framer-motion'],
+        manualChunks(id) {
+          if (/node_modules\/(react|react-dom|react-router-dom)\//.test(id)) return 'vendor-react'
+          if (id.includes('node_modules/recharts/')) return 'vendor-charts'
+          if (id.includes('node_modules/framer-motion/')) return 'vendor-motion'
         },
       },
     },
