@@ -29,9 +29,9 @@ MoneyFlow now contains a complete platform slice rather than a placeholder appli
 
 | Task | Command |
 |---|---|
-| **Install frontend dependencies** | `npm install` |
+| **Install frontend dependencies** | `npm ci` |
 | **Install backend dependencies** | `python -m pip install -r src/backend/requirements.txt` |
-| **Run backend** | `cd src/backend && uvicorn main:app --host 0.0.0.0 --port 8000 --reload` |
+| **Run backend** | `uvicorn src.backend.main:app --host 127.0.0.1 --port 8000 --reload` |
 | **Run frontend** | `npm run dev` |
 | **Build frontend** | `npm run build` |
 | **Open API docs** | `http://localhost:8000/docs` |

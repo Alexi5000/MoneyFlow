@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>MoneyFlow is an intelligent budget command center with a modern dark workspace dark interface, smart categorization, real-time analytics, budget envelopes, savings goals, and a complete React plus FastAPI platform foundation.</strong>
+  <strong>A local budgeting demo with a dark dashboard, rule-based categorization, budget envelopes, savings goals, and a React plus FastAPI foundation.</strong>
 </p>
 
 <p align="center">
@@ -96,7 +96,7 @@ The fastest way to evaluate MoneyFlow is to run the FastAPI backend and Vite fro
 
 | Requirement | Recommended Version |
 |---|---|
-| **Node.js** | 20 or newer. |
+| **Node.js** | 22.12 or newer on the Node 22 line used by CI; Vite also supports Node 20.19+. |
 | **Python** | 3.10 or newer. |
 | **npm** | Current stable npm bundled with Node.js. |
 
@@ -131,6 +131,12 @@ npm run dev
 ```
 
 Open the Vite URL shown in the terminal. If the API is not reachable, the frontend falls back to embedded demo data so the visual experience remains testable.
+
+## Configuration and Deployment
+
+Copy [`.env.example`](./.env.example) to `.env` to override the public backend URL with `VITE_MONEYFLOW_API_URL`. Restart Vite after changing it. Never put credentials in `VITE_*` variables; they are embedded in the browser bundle.
+
+The backend stores seeded records in memory and has no account authentication. Changes disappear when it restarts. Keep the API bound to loopback for local evaluation. See the [deployment guide](./docs/DEPLOYMENT_GUIDE.md) for preview, verification, and production prerequisites.
 
 ---
 
@@ -245,7 +251,7 @@ npm run validate:backend
 MoneyFlow is released under the MIT License. See [LICENSE](./LICENSE) for details. Third-party projects referenced in this README retain their own licenses, authorship, and contribution histories.
 
 <p align="center">
-  <strong>Built by <a href="https://github.com/Alexi5000">Alex Cinovoj</a> · Alex Cinovoj</strong>
+  <strong>Built by <a href="https://github.com/Alexi5000">Alex Cinovoj</a></strong>
 </p>
 
 <p align="center">
