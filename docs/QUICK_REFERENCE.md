@@ -1,72 +1,22 @@
-# MoneyFlow - Quick Reference
+# MoneyFlow quick reference
 
-**Created by**: Alex Cinovoj
-**Version**: 1.0.0
+[Setup and deployment](DEPLOYMENT_GUIDE.md) · [Overview](../README.md) · [API reference](backend.md)
 
----
+Run from the repository root after setup. Activate `.venv` for Python commands.
 
-## 🚀 Start Application
+| Task | Command |
+|---|---|
+| Install locked frontend packages | `npm ci` |
+| Start local API | `uvicorn src.backend.main:app --host 127.0.0.1 --port 8000 --reload` |
+| Start frontend in another terminal | `npm run dev` |
+| Run quality gates | `npm run quality` |
+| Verify backend contract | `npm run validate:backend` |
+| Build frontend | `npm run build` |
+| Preview built frontend locally | `npm run preview -- --host 127.0.0.1` |
+| Check running API | `curl --fail http://127.0.0.1:8000/health` |
 
-```bash
-.\scripts\QUICKSTART.bat
-```
+Use the address printed by Vite. Application routes are `/`, `/budgets`, `/transactions`, `/analytics`, and `/settings`. API docs are at `http://127.0.0.1:8000/docs`.
 
-Wait 15 seconds, then open: http://localhost:5173
+The dashboard displays embedded demo data when the backend is unavailable. Check health and the interface's data-source status before diagnosing connection issues. Backend records reset on restart.
 
----
-
-## 🌐 Access Points
-
-- **Frontend**: http://localhost:5173
-- **Backend**: http://localhost:8000
-- **API Docs**: http://localhost:8000/docs
-- **Health**: http://localhost:8000/health
-
----
-
-## 📄 Essential Pages
-
-1. **Home** - http://localhost:5173/
-2. **Budgets** - http://localhost:5173/budgets
-3. **Transactions** - http://localhost:5173/transactions
-4. **Analytics** - http://localhost:5173/analytics
-5. **Resources** - http://localhost:5173/settings
-
----
-
-## 🧪 Testing
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/review_app.ps1
-```
-
----
-
-## 🛑 Stop Servers
-
-```powershell
-Get-Process python,node | Stop-Process -Force
-```
-
----
-
-## 🔄 Troubleshooting
-
-### "Styles not loading"
-```
-1. Hard refresh: Ctrl + Shift + R
-2. Clear cache: F12 → Application → Clear site data
-3. Restart: .\scripts\QUICKSTART.bat
-```
-
-### "Connection error"
-```
-1. Check backend: curl http://localhost:8000/health
-2. Clear localStorage: F12 → Console → localStorage.clear()
-3. Restart servers
-```
-
----
-
-**© 2025 Alex Cinovoj**
-
+If a port is occupied, stop the specific process you started or select another port. Update `VITE_MONEYFLOW_API_URL` and restart Vite when changing the backend address. Stop development servers with Ctrl+C in their own terminals; do not terminate every Python or Node process on the machine.
