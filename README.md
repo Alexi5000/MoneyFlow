@@ -30,17 +30,17 @@
 
 ---
 
-## Alexi5000 Fork Purpose
+## Why this exists
 
-MoneyFlow is Alexi5000’s local-first budgeting and cash-flow product foundation. It is maintained as a practical reference for careful AI-assisted application development: deterministic calculations, typed service contracts, observable validation, and explicit boundaries around sensitive financial data. The repository reflects experience building agent workflows and automations with Cursor, Claude, Codex-class tools, and comparable systems while keeping current financial behavior understandable without relying on an AI model.
+**What it does.** MoneyFlow is a local-first budgeting demo: a React 18 and TypeScript dashboard for balances, cash-flow trends, category spend, budget envelopes, savings goals and transactions, backed by a FastAPI service that serves seeded in-memory finance records, rule-based categorization, analytics and a JSON export. When the API is offline the frontend falls back to embedded demo data, so the interface stays explorable.
 
-The current application uses seeded local data. It is not a bank connection, hosted financial service, tax product, or personalized financial advisor. See [FORK_POLICY.md](./FORK_POLICY.md) for the engineering and integration boundary.
+**Who it serves.** Developers who want a typed React plus FastAPI contract for personal-finance tooling that they can run and extend locally, and reviewers evaluating how a budgeting prototype can keep financial logic deterministic and readable without depending on a model. It is not a bank connection, hosted financial service, tax product or personalized financial advisor, and the committed application has no production authentication or durable storage.
 
-## Why MoneyFlow
+**Why Alex built it.** MoneyFlow is an original repository created 2025-06-28 (GitHub reports `isFork=false`); it is not a GitHub fork of another project, and the earlier "Fork Purpose" heading referred to open-source inspiration, which is documented under Open-Source Inspiration and License Boundaries below. The first commit (`53a112c`, 2025-06-28: "MoneyFlow - AI-Powered Budget Tracker Setup") set out a budget tracker, and the same day's commits assembled a financial dashboard and a mock backend (`83d7c85`: "Integrate Modernize Template for Financial Dashboard", `9101e8a`: "Mock Data and Backend Service for MoneyFlow"). A FastAPI backend followed (`1d4a356`, 2025-10-07: "Add comprehensive FastAPI backend - 31 files, 21 API endpoints, full database integration"), the full-stack rebuild landed in `196b0ee` (2026-05-18: "feat: build full-stack MoneyFlow platform"), and the quality baseline and CI workflow were added in `489e8e3` and `64aaf42` (2026-08-19). [FORK_POLICY.md](./FORK_POLICY.md) records the maintenance intent: a practical reference for careful AI-assisted application development with deterministic calculations, typed service contracts, observable validation and explicit boundaries around sensitive financial data.
 
-MoneyFlow turns personal finance into a **high-signal operating system** instead of another spreadsheet. The platform combines a polished dark dashboard, deterministic seeded demo data, a typed FastAPI contract, and a React experience that remains explorable even when the backend is offline. The repository is built as a product foundation: the current implementation is local-first and demo-ready, while the architecture leaves a clear path toward persistent storage, authentication, bank-sync providers, and production deployment.
+**Real-world use case (2025 to 2026 evidence).** **Proposed use case.** A developer building a personal-finance product wants to prototype budgeting, envelope and categorization UX before any real account data is involved, because the US basis for consumer-permissioned bank data sharing is unsettled: the CFPB opened a reconsideration of its Personal Financial Data Rights rule (Dodd-Frank section 1033) with an Advance Notice of Proposed Rulemaking published 2025-08-22[^1], and on 2025-10-29 a federal court stayed the rule's compliance dates pending that reconsideration[^2][^3]. MoneyFlow lets such a prototype run end to end on seeded, in-memory data with zero real records, while the integration boundary for any future bank provider (server-side secrets, consent, auditability, deterministic validation) stays written down in FORK_POLICY.md rather than assumed.
 
-The README has been redesigned to follow the same above-the-fold conventions used by strong open-source landing pages: a visual project banner, meaningful badges, immediate documentation links, quick-start commands, API tables, and clear attribution boundaries. Public README pattern research was guided by the curated `awesome-readme` collection and `Best-README-Template`, both of which emphasize screenshots, badges, concise summaries, quick links, installation guidance, roadmap context, and credits as hallmarks of useful project front pages.[1] [2]
+The README follows the above-the-fold conventions used by strong open-source landing pages: a visual project banner, meaningful badges, immediate documentation links, quick-start commands, API tables, and clear attribution boundaries. Public README pattern research was guided by the curated `awesome-readme` collection and `Best-README-Template`.[1] [2]
 
 | Product Layer | What Is Implemented |
 |---|---|
@@ -234,6 +234,10 @@ For reproducible setup failures, documentation corrections, or feature discussio
 
 Do **not** post account data, bank tokens, credentials, personal financial records, or suspected vulnerabilities in public issues. Follow [SECURITY.md](./SECURITY.md) for private security reporting.
 
+## Security
+
+As of 2026-10-20 GitHub reports zero open Dependabot, code-scanning and secret-scanning alerts for this repository, and frontend and API dependencies were last upgraded for known vulnerabilities in PR #2 (2026-10-18). The backend keeps seeded records in memory, has no account authentication, and should stay bound to loopback for local evaluation; it is not hardened for exposure to real users or real financial data. Report suspected vulnerabilities privately per [SECURITY.md](./SECURITY.md).
+
 ## Contributing
 
 Contributions should preserve the repository’s attribution boundaries, avoid introducing license-incompatible source code, and keep the frontend and backend contracts synchronized. A good pull request should include a concise description, screenshots or API examples when applicable, and validation evidence from the backend contract script and frontend production build.
@@ -251,7 +255,7 @@ npm run validate:backend
 MoneyFlow is released under the MIT License. See [LICENSE](./LICENSE) for details. Third-party projects referenced in this README retain their own licenses, authorship, and contribution histories.
 
 <p align="center">
-  <strong>Built by <a href="https://github.com/Alexi5000">Alex Cinovoj</a></strong>
+  <strong>Built by <a href="https://github.com/Alexi5000">Alex Cinovoj</a>, Founder &amp; CTO of TechTide AI</strong>
 </p>
 
 <p align="center">
@@ -268,3 +272,7 @@ MoneyFlow is released under the MIT License. See [LICENSE](./LICENSE) for detail
 [4]: https://github.com/actualbudget/actual "Actual Budget"
 [5]: https://github.com/maybe-finance/maybe "Maybe Finance"
 [6]: https://github.com/iambhavesh55/personal-finance-dashboard "Personal Finance Dashboard"
+
+[^1]: Consumer Financial Protection Bureau, "Personal Financial Data Rights Reconsideration" (Advance Notice of Proposed Rulemaking), Federal Register, https://www.federalregister.gov/documents/2025/08/22/2025-16139/personal-financial-data-rights-reconsideration, published 2025-08-22.
+[^2]: Consumer Financial Protection Bureau, "Personal financial data rights" compliance resources, https://www.consumerfinance.gov/compliance/compliance-resources/other-applicable-requirements/personal-financial-data-rights/, page updated 2026-01-06; it records the 2025-10-29 court stay of the rule's compliance dates. Retrieved 2026-10-21.
+[^3]: American Banker, "Court halts compliance with CFPB's final open banking rule", https://www.americanbanker.com/news/court-halts-compliance-with-cfpbs-final-open-banking-rule, published 2025-10-29.
