@@ -14,4 +14,4 @@ Any bank connection, external model provider, authentication provider, or durabl
 
 ## Quality boundary
 
-Fork-maintained documentation, policies, smoke tests, environment templates, and CI quality gates are owned by Alexi5000. Product changes should remain small, observable, and backed by the documented quality contract. Do not add temporary bypasses, undocumented environment requirements, or generated artifacts to the repository.
+MoneyFlow is an original repository, not a GitHub fork. Documentation, policies, smoke tests, environment templates, and CI quality gates are owned by Alexi5000. Product changes should remain small, observable, and backed by the documented quality contract. Do not add temporary bypasses, undocumented environment requirements, or generated artifacts to the repository.

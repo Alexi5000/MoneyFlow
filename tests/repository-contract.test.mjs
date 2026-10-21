@@ -54,7 +54,7 @@ test('README explains purpose, setup, use cases, support, and validation', () =>
   const readme = read('README.md')
 
   for (const heading of [
-    '## Alexi5000 Fork Purpose',
+    '## Why this exists',
     '## Verified Setup',
     '## Use Cases',
     '## Support',
