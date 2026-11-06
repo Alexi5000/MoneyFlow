@@ -7,14 +7,14 @@ try {
     $health = Invoke-RestMethod -Uri "http://localhost:8000/health"
     Write-Host "  Health: OK ($($health.status))" -ForegroundColor Green
 
-    $user = Invoke-RestMethod -Uri "http://localhost:8000/api/v1/users/me"
-    Write-Host "  User: $($user.data.name)" -ForegroundColor Green
+    $dashboard = Invoke-RestMethod -Uri "http://localhost:8000/api/v1/dashboard"
+    Write-Host "  Dashboard: net worth $($dashboard.summary.net_worth)" -ForegroundColor Green
 
-    $budgets = Invoke-RestMethod -Uri "http://localhost:8000/api/v1/budgets/"
-    Write-Host "  Budgets: $($budgets.data.budgets.Count) found" -ForegroundColor Green
+    $budgets = @(Invoke-RestMethod -Uri "http://localhost:8000/api/v1/budgets" | ForEach-Object { $_ })
+    Write-Host "  Budgets: $($budgets.Count) found" -ForegroundColor Green
 
-    $trans = Invoke-RestMethod -Uri "http://localhost:8000/api/v1/transactions/recent?limit=5"
-    Write-Host "  Transactions: $($trans.data.Count) found" -ForegroundColor Green
+    $trans = @(Invoke-RestMethod -Uri "http://localhost:8000/api/v1/transactions" | ForEach-Object { $_ })
+    Write-Host "  Transactions: $($trans.Count) found" -ForegroundColor Green
 } catch {
     Write-Host "  Backend Error: $_" -ForegroundColor Red
 }
