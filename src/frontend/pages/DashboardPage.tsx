@@ -101,7 +101,7 @@ export const DashboardPage: React.FC = () => {
               </li>
               <li className="flex gap-2">
                 <span className="text-gray-600">3.</span>
-                <span>Run quick start: <code className="text-blue-400 bg-[#111] px-2 py-0.5 rounded text-xs">.\QUICKSTART.bat</code></span>
+                <span>Run quick start: <code className="text-blue-400 bg-[#111] px-2 py-0.5 rounded text-xs">.\scripts\QUICKSTART.bat</code></span>
               </li>
             </ol>
           </div>

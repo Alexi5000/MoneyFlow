@@ -2,7 +2,7 @@
 title MoneyFlow - Quick Start
 
 REM Navigate to project root
-cd /d "%~dp0"
+cd /d "%~dp0.."
 
 echo ================================================
 echo          MONEYFLOW - QUICK START
